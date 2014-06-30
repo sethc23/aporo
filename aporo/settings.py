@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'app',
     'api',
     'rest_framework',
-    'cal',
+    #'cal',
     'xmin',
     'phonegap',
     # Uncomment the next line to enable admin documentation:
