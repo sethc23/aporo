@@ -1,0 +1,14 @@
+/**
+ * Put CSS for external theming
+ **/
+body{text-align: center;}
+@font-face
+{
+font-family: HelveticaNeue;
+font-size: 20px;
+src: url('../fonts/HelveticaNeue.ttf')
+}
+.titlebar {
+    background-color: #FFFFFF !important;
+    border-radius: 0px !important;
+}

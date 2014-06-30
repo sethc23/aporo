@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/phonegap/resources/css/cupertino.css" rel="stylesheet" type="text/css" />
+    <link href="/static/phonegap/resources/css/mod.css" rel="stylesheet" type="text/css" />
+    <title>Sencha App - Project Name</title>
+    
+    <!-- Load Cordova library -->
+    <script type="text/javascript" src="/static/phonegap/libs/cordova-2.5.0.js"></script>
+    
+    <!-- Load SenchaTouch library -->
+    <script type="text/javascript" src="/static/phonegap/libs/sencha-touch-all.js"></script>
+    
+    <!-- Load BarCode scanner plugin -->
+    <script type="text/javascript" src="/static/phonegap/plugins/barcodescanner.js"></script>
+    
+    <!-- Load Cordova functions -->
+    <script type="text/javascript" src="/static/phonegap/functions.js"></script>
+    
+    
+    <!-- Load SenchaTouch main app configuration -->
+    <script type="text/javascript" src="/static/phonegap/app.js"></script>
+    
+    
+    <script type="text/javascript">
+    var debugging = false; //true if debugging to browser
+    var deployed = true; //true if deployed to device
+    var initialized = true; //true if deviceReady event fires
+    var watchID = null; //Initialize the geo watch
+    
+    
+    document.addEventListener("deviceready", deviceActivate, false);
+    
+    function deviceActivate()
+    {
+        initialized = true;
+        window.addEventListener("batterylow", lowBattery, false);
+        window.addEventListener("batterycritical", criticalBattery, false);
+        window.addEventListener("batterystatus", batteryCallback, false);
+        document.addEventListener("online", onOnline, false);
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("pause", onPause, false);
+        document.addEventListener("resume", onResume, false);
+    }
+    
+    
+    </script>
+</head>
+<body>
+
+    
+    
+</body>
+</html>

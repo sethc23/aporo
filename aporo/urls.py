@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -45,6 +46,8 @@ urlpatterns = patterns('',
     url(r'^api/', include(currier_resource.urls)),
 
     url(r'^api_view/', include(router.urls)),
+
+    url(r'^phonegap/', include('phonegap.urls')),
 
     # url(r'^app/', include('app.urls',namespace='app')),
     # url(r'^api/', include(router.urls)),

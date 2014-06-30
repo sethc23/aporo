@@ -10,6 +10,9 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'app/index.html', {})
 
+
+
+
 class IndexView(generic.ListView):
     template_name = 'poll/index.html'
     context_object_name = 'latest_poll_list'

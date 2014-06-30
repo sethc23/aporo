@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'cal',
     'xmin',
+    'phonegap',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
