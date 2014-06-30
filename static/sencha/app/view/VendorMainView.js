@@ -1,0 +1,35 @@
+Ext.define('TransportApp.view.VendorMainView',{
+	extend:'Ext.Panel',
+	xtype:'VendorMainView',
+	scrollable:null,	
+	id:'VendorMainView',
+	config:
+    {
+		layout: 'card',
+		items:
+            [
+                {
+                    id:"VendorMenu",
+                    itemId:"VendorMenu",
+                    xtype:"VendorMenu",
+                    disabled:false,
+                    flex:1
+
+                },
+                {
+                    id:"HistoryView",
+                    itemId:"HistoryView",
+                    xtype:"HistoryView",
+                    disabled:false,
+                    flex:1
+                },
+                {
+                    id:"AddVendorOrder",
+                    itemId:"AddVendorOrder",
+                    xtype:"AddVendorOrder",
+                    disabled:false,
+                    flex:1
+                }
+			]
+	}
+});

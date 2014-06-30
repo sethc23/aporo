@@ -1,0 +1,63 @@
+from django.conf.urls import patterns, include, url
+
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
+
+from rest_framework import routers
+from api.views import VendorViewSet,OrderViewSet,CurrierViewSet
+router = routers.DefaultRouter()
+router.register(r'vendors', VendorViewSet)
+router.register(r'orders', OrderViewSet)
+router.register(r'curriers', CurrierViewSet)
+
+# from cal.api import CalResource, EventResource
+# cal_resource = CalResource()
+# event_resource = EventResource()
+
+
+from api.resources import VendorResource,OrderResource,CurrierResource
+
+vendor_resource = VendorResource()
+order_resource = OrderResource()
+currier_resource = CurrierResource()
+
+urlpatterns = patterns('',
+    # Admin page
+    url(r'^admin/', include(admin.site.urls)),
+
+    url(r'xmin/', include('xmin.urls')),
+
+    # Templates
+    # url(r'^', include('cal.urls')),
+
+    # RESTful URLs
+    # url(r'^', include(cal_resource.urls)),
+    # url(r'^', include(event_resource.urls)),
+
+    # # Templates
+    url(r'^api', include('api.urls')),
+    url(r'^app', include('app.urls', namespace='app')),
+
+    # # RESTful URLs
+    url(r'^api/', include(vendor_resource.urls)), # /api/vendor/?format=json
+    url(r'^api/', include(order_resource.urls)),
+    url(r'^api/', include(currier_resource.urls)),
+
+    url(r'^api_view/', include(router.urls)),
+
+    # url(r'^app/', include('app.urls',namespace='app')),
+    # url(r'^api/', include(router.urls)),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # Examples:
+    # url(r'^$', 'aporo.views.home', name='home'),
+    # url(r'^aporo/', include('aporo.urls')),
+    # url(r'^api/', include(v1_api.urls)),
+
+    # (r'^api/', include('cigar_example.restapi.urls', namespace="cigars")),
+
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+)
