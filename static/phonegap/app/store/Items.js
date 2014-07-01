@@ -3,11 +3,11 @@ Ext.define('App.store.Items', {
         config: {
         model: 'App.model.Items',
         proxy: {
-        type: 'ajax',
-        url : 'data.json',
-        reader: {
-            rootProperty: 'data',
-            type: 'json'
+            type: 'ajax',
+            url : '/static/phonegap/data.json',
+            reader: {
+                rootProperty: 'data',
+                type: 'json'
         },
     autoLoad: true
     }

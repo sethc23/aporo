@@ -74,7 +74,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # os_path.join(PROJECT_ROOT, 'project_static'), #project-wide static files
+    # os_path.join(PROJECT_ROOT, 'static/'), #project-wide static files
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os_path.join(PROJECT_ROOT, 'templates'), #project-wide templates
+    os_path.join(PROJECT_ROOT, 'templates/'), #project-wide templates
 )
 
 INSTALLED_APPS = (
