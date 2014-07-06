@@ -16,6 +16,10 @@ Ext.define('TransportApp.controller.RegistrationController',{
                                     RegisterCommand    : "onRegisterCommand",	
                                     ContactHelpCommand : "onContactHelpCommand",
                                     VendorMenuCommand  :"OnVendorMenuCommand",
+                            },
+                            
+                            'button[itemId=RegisterBtn]' : {
+                                tap: 'RegisterButtonTap'
                             }
                     }
             },
@@ -105,5 +109,45 @@ Ext.define('TransportApp.controller.RegistrationController',{
                    this.callParent(arguments);
                    console.log("init");
            },
+           
+           
+           /**
+            * This listener will fire after Registration submit button tap
+            **/
+           
+           RegisterButtonTap: function()
+           {
+             var registration_form = Ext.getCmp('RegistrationView');  //Getting DOM query of FormPanel
+             var data = registration_form.getValues(); //Full form data as object
+             for(var key in data)
+             {
+                if(data[key]=='')
+                {
+                    Ext.Msg.alert('Warning', 'Please do not leave any field as blank');
+                    return;
+                }
+             }
+             
+            var progressIndicator = Ext.Viewport.add(Ext.create("Ext.ProgressIndicator", {
+                loadingText: 'Please wait'
+            }));
+            
+            progressIndicator.show(); //A progress mask while making Ajax request
+            
+            Ext.Ajax.request({
+            url: TransportApp.config.Env.baseApiUrl+'/curriers/', 
+            method: 'POST',
+            params: Ext.JSON.encode(registration_form.getValues()),
+            success: function(res){
+                progressIndicator.hide();
+                Ext.Msg.alert('Response', res.toString());
+            },
+            failure: function(e)
+            {
+                Ext.Msg.alert("Error", e.detail);
+                progressIndicator.hide();
+            }
+        });
+           }
 });
 

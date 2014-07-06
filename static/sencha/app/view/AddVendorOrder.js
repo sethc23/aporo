@@ -99,7 +99,7 @@ Ext.define(
                             text: strSubmit,
                             cls: 'ClsSmallButton',
                             margin: '15 10 15 10',
-                            itemId: 'btnSave',
+                            itemId: 'saveBtn',
                             flex:
                                 .5,
                             ui: "action"
@@ -116,11 +116,11 @@ Ext.define(
                         }]
                 }],
             listeners: [
-                {
+                /*{
                     delegate: "#btnSave",
                     event: "tap",
                     fn: "OnSaveButtonTap"
-                },
+                },*/
                 {
                     delegate: "#btCancel",
                     event: "tap",
@@ -137,7 +137,7 @@ Ext.define(
                     fn: "OnBackButton"
                 }]
         },
-        OnSaveButtonTap: function ()
+        /*OnSaveButtonTap: function ()
         {
             alert(
                 'Save Button tap'
@@ -145,7 +145,7 @@ Ext.define(
             this.fireEvent(
                 "AddOrderCommand",
                 this);
-        },
+        },*/
         OnCancelButtonTap: function ()
         {
             this.fireEvent(

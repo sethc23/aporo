@@ -24,7 +24,13 @@ Ext.define('TransportApp.controller.VendorController', {
             HistoryView:
             {
                 HistoryBackButtonCommand:'OnHistoryBackButtonCommand'
+            },
+            
+            'button[itemId=saveBtn]' :
+            {
+                tap: 'onVendorOrderSaveTap'
             }
+            
         }
     },
     slideLeftTransition: { type: 'slide', direction: 'left' },
@@ -57,6 +63,48 @@ Ext.define('TransportApp.controller.VendorController', {
     OnHistoryBackButtonCommand:function()
     {
         Ext.getCmp("VendorMainView").animateActiveItem(Ext.getCmp("VendorMenu"),{type: 'slide', direction: 'right'});
+    },
+    
+    
+    
+    /**
+     * This listener will fire after Vendor add/save button tap
+     **/
+    
+    onVendorOrderSaveTap: function()
+    {
+        var vendor_form = Ext.getCmp('AddVendorOrder');  //Getting DOM query of FormPanel
+             var data = vendor_form.getValues(); //Full form data as object
+             for(var key in data)
+             {
+                if(data[key]=='')
+                {
+                    Ext.Msg.alert('Warning', 'Please do not leave any field as blank');
+                    return;
+                }
+             }
+             
+            var progressIndicator = Ext.Viewport.add(Ext.create("Ext.ProgressIndicator", {
+                loadingText: 'Please wait'
+            }));
+            
+            progressIndicator.show(); //A progress mask while making Ajax request
+            
+            Ext.Ajax.request({
+            url: TransportApp.config.Env.baseApiUrl+'/orders/',
+            method: 'post',
+            params: Ext.JSON.encode(vendor_form.getValues()),
+            success: function(res){
+                progressIndicator.hide();
+                Ext.Msg.alert('Response', res.toString());
+            },
+            failure: function(e)
+            {
+                e = Ext.JSON.decode(e.responseText);
+                Ext.Msg.alert("Error", e.detail);
+                progressIndicator.hide();
+            }
+        });
     }
 
 });

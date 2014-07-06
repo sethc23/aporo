@@ -98,7 +98,7 @@
 							{	xtype: 'button',
 								text: strSubmit,
 								margin:'15 10 15 10',
-								itemId: 'btnRegister',
+								itemId: 'RegisterBtn',
 								flex:.4,
 								ui: "action"
 							},
@@ -114,11 +114,11 @@
 						}
 					],
 					listeners: [
-					{
+					/*{
 						delegate: "#btnRegister",
 						event: "tap",
 						fn: "OnRegisterButtonTap"
-					},
+					},*/
 					{
 						delegate: "#btCancelRegistration",
 						event: "tap",
@@ -136,10 +136,10 @@
 					 },
 				]  
 				},
-			OnRegisterButtonTap: function () {
+			/*OnRegisterButtonTap: function () {
 				//	alert('in functiond');
 				this.fireEvent("RegisterCommand", this);
-			},
+			},*/
 			OnCancelButtonTap:function(){					
 				//this.fireEvent("CancelRegisterCommand", this);
 				

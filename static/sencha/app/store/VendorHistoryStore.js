@@ -14,18 +14,13 @@
 					autoLoad: true,
 					proxy:
 						{
-							type: 'rest',
-							url: '/api/vendor/',
-							//url:'http://50.23.221.50/WCF/CustomerService/GetPassengerRides?passengerId=885',
+							type: 'ajax',
+                            method: 'GET',
+							url: TransportApp.config.Env.baseApiUrl+'/vendors/',
+                            useDefaultXhrHeader: false,
 							reader: 
 							{
-								type: 'json',
-                                root: 'objects'
-//								rootProperty: 'responseData.feed.entries'
-                            },
-                            writer: {
-                                type: "json",
-                                nameProperty: "mapping"
+								type: 'json'
                             }
 						}
 

@@ -1,8 +1,16 @@
+Ext.Loader.setPath('TransportApp.config', 'app/config'); // set the path of static information class - like: APIurl variable
+
+Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin  
+
 Ext.application({
 	name:'TransportApp',
 
-    appFolder: '/static/sencha/app',
+    //appFolder: '/static/sencha/app',
 	
+    requires: [
+    'TransportApp.config.Env'
+    ],
+    
 	views:['MainView','MenuView','RegistrationView','VendorMenu','VendorOrderList','AddVendorOrder','VendorHistory','ContactHelp','HistoryView','VendorMainView'],
 	
 	models:['VendorOrderModel','VendorHistoryModel','RegistrationModel'],
@@ -13,7 +21,7 @@ Ext.application({
 	
 	launch:function()
 	{		
-		Ext.Loader.setPath('TransportApp', '/static/sencha/app');
+		//Ext.Loader.setPath('TransportApp', '/static/sencha/app');
 		/*var UserId = get_cookie("rememberUserId");
 		
 			if(UserId != null && UserId != "")
