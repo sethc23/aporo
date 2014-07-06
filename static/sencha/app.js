@@ -5,7 +5,7 @@ Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Se
 Ext.application({
 	name:'TransportApp',
 
-    //appFolder: '/static/sencha/app',
+    appFolder: '/static/sencha/app',
 	
     requires: [
     'TransportApp.config.Env'
@@ -21,7 +21,7 @@ Ext.application({
 	
 	launch:function()
 	{		
-		//Ext.Loader.setPath('TransportApp', '/static/sencha/app');
+		Ext.Loader.setPath('TransportApp', '/static/sencha/app');
 		/*var UserId = get_cookie("rememberUserId");
 		
 			if(UserId != null && UserId != "")
