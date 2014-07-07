@@ -114,7 +114,7 @@ Ext.define('TransportApp.controller.RegistrationController',{
                             primary_cell:"",
                             primary_email:"",
                             bus_phone:"",
-                            bus_email:"",
+                            bus_email:""
                    });
                    this.activateRegisterScreen(newUser);
                    TransportApp.RegController = this;

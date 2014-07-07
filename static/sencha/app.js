@@ -1,6 +1,6 @@
 Ext.Loader.setPath('TransportApp.config', 'static/sencha/app/config'); // set the path of static information class - like: APIurl variable
 
-//Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin
+Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin
 
 Ext.application({
 	name:'TransportApp',
