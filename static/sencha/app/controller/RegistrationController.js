@@ -47,17 +47,24 @@ Ext.define('TransportApp.controller.RegistrationController',{
 					RegistrationValues.set("fldPcEmail", newValues.fldPcEmail);
 					RegistrationValues.set("fldVendorNumber", newValues.fldVendorNumber);
 					RegistrationValues.set("fldVendorEmail", newValues.fldVendorEmail);
-                                 var errors = RegistrationValues.validate();
+                    var errors = RegistrationValues.validate();
                                  
                                  
-                                  var RegisterUser_item = JSON.stringify({
-						VendorName :newValues.fldVendorName,
-						Address :newValues.fldAddress,
-						PcName:newValues.fldPcName,
-						PcNumber:newValues.fldPcNumber,
-						PcEmail:newValues.fldPcEmail,
-						VendorNumber:newValues.fldVendorNumber,
-						VendorEmail:newValues.fldVendorEmail	
+                    var RegisterUser_item = JSON.stringify({
+//						VendorName :newValues.fldVendorName,
+//						Address :newValues.fldAddress,
+//						PcName:newValues.fldPcName,
+//						PcNumber:newValues.fldPcNumber,
+//						PcEmail:newValues.fldPcEmail,
+//						VendorNumber:newValues.fldVendorNumber,
+//						VendorEmail:newValues.fldVendorEmail
+                        name :newValues.fldVendorName,
+						addr1 :newValues.fldAddress,
+						primary_first_name:newValues.fldPcName,
+						primary_cell:newValues.fldPcNumber,
+						primary_email:newValues.fldPcEmail,
+						bus_phone:newValues.fldVendorNumber,
+						bus_email:newValues.fldVendorEmail
 					});
 
 
@@ -94,13 +101,20 @@ Ext.define('TransportApp.controller.RegistrationController',{
                 // TODO: (Shariar #2) revise below code to rely (and iterate over) on RegistrationModel.js
 
                     var newUser = Ext.create("TransportApp.model.RegistrationModel", {
-                           VendorName: "",
-                           Address: "",
-                           PcName:"",
-                           PcNumber:"",
-                           PcEmail:"",
-                           VendorNumber:"",
-                           VendorEmail:""
+//                           VendorName: "",
+//                           Address: "",
+//                           PcName:"",
+//                           PcNumber:"",
+//                           PcEmail:"",
+//                           VendorNumber:"",
+//                           VendorEmail:""
+                            name :"",
+                            addr1 :"",
+                            primary_first_name:"",
+                            primary_cell:"",
+                            primary_email:"",
+                            bus_phone:"",
+                            bus_email:"",
                    });
                    this.activateRegisterScreen(newUser);
                    TransportApp.RegController = this;

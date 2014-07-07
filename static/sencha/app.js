@@ -2,10 +2,6 @@ Ext.Loader.setPath('TransportApp.config', 'static/sencha/app/config'); // set th
 
 //Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin
 
- //Ext.Ajax.defaultHeaders = {
-//        'X-CSRFToken': Ext.util.Cookies.get('csrftoken')
-//};
-
 Ext.application({
 	name:'TransportApp',
 
@@ -34,8 +30,7 @@ Ext.application({
 			}
 		InstaPark.ApplicationPath="http://50.23.221.50/instaparkservice/";*/
 		Ext.Viewport.add({xclass:'TransportApp.view.MainView'});
-		
-		//Ext.Viewport.add({	xclass:'InstaPark.view.SMSView'});
+
 	}
 });
 
