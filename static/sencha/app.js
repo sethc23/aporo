@@ -1,6 +1,10 @@
-Ext.Loader.setPath('TransportApp.config', 'app/config'); // set the path of static information class - like: APIurl variable
+Ext.Loader.setPath('TransportApp.config', 'static/sencha/app/config'); // set the path of static information class - like: APIurl variable
 
-Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin  
+//Ext.Ajax.setUseDefaultXhrHeader(false); //Disabling default request header of Sencha - if true it won't allow to cross-origin
+
+ //Ext.Ajax.defaultHeaders = {
+//        'X-CSRFToken': Ext.util.Cookies.get('csrftoken')
+//};
 
 Ext.application({
 	name:'TransportApp',
@@ -13,9 +17,9 @@ Ext.application({
     
 	views:['MainView','MenuView','RegistrationView','VendorMenu','VendorOrderList','AddVendorOrder','VendorHistory','ContactHelp','HistoryView','VendorMainView'],
 	
-	models:['VendorOrderModel','VendorHistoryModel','RegistrationModel'],
+	models:['VendorOrderHistoryModel','RegistrationModel'],
 	
-	stores:['VendorOrderStore','VendorHistoryStore'],
+	stores:['VendorOrderHistoryStore'],
 	
 	controllers:['RegistrationController','AppMainController','VendorController','ContactHelpController','HistoryController'],
 	

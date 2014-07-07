@@ -91,7 +91,7 @@ Ext.define('TransportApp.controller.VendorController', {
             progressIndicator.show(); //A progress mask while making Ajax request
             
             Ext.Ajax.request({
-            url: TransportApp.config.Env.baseApiUrl+'/orders/',
+            url: TransportApp.config.Env.baseApiUrl+'/orders/?format=json',
             method: 'post',
             params: Ext.JSON.encode(vendor_form.getValues()),
             success: function(res){
