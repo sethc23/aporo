@@ -49,6 +49,10 @@ urlpatterns = patterns('',
 
     url(r'^phonegap/', include('phonegap.urls')),
 
+    url(r'^login/', include('login.urls')),
+
+    url(r'^minimal_extjs4_app/', include('minimal_extjs4_app.urls')),
+
     # url(r'^app/', include('app.urls',namespace='app')),
     # url(r'^api/', include(router.urls)),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
@@ -64,3 +68,6 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
 )
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()

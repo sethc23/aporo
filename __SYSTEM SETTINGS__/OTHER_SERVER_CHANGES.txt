@@ -1,5 +1,7 @@
 Two changes to  ~/python2.6/site-packages/tastypie/resources.py
 
+or, with virtualenv, ../django/aporo/lib/python2.6/site-packages/tastypie/resources.py
+
 
 1. 	changed "from django.conf.urls.defaults import patterns, url"
 
