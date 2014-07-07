@@ -10,17 +10,14 @@ Ext.define("TransportApp.view.VendorOrderList",{
                                             id:'idVendorOrderList',
                                             xtype:'list',
                                             flex:.8,
-                                            itemTpl:'<div id={Address}  class="ListBg">'+
-                                                '<div style="width:100%">'+
-                                                        '<div style="width:20%; float:left" class="ListTitle1">{OrderId}</div>'+
-							  '<div style="width:20%; float:left" class="ListTitle1">{DGId}</div>'+
-							  '<div style="width:20%; float:right;text-align:right;padding-right:30px" class="ListTitle2">{ExpectedPickupTime}</div>'+
-                                                        '<div style="width:40%; float:right;text-align:right;padding-right:30px" class="ListTitle2">{Address}</div>'+
+                                            itemTpl:'<div id={order_id}  class="ListBg">'+
+                                                    '<div style="width:100%">'+
+                                                        '<div style="width:20%; float:left" class="ListTitle1">{order_id}</div>'+
+                                                        '<div style="width:60%; float:right;text-align:right;padding-right:30px" class="ListTitle2">{deliv_addr}</div>'+
+                                                        '<div style="width:20%; float:left;text-align:left;padding-bottom:3px" class="ListSubtitle">{pickup_time}</div>'+
                                                     '</div>'+
-                                                 
-                                                '</div>'+
-                                            '</div>',
-                                            store: 'VendorOrderStore',
+                                                    '</div>',
+                                            store: 'VendorOrderHistoryStore',
                                         }
                                     ]
 			},

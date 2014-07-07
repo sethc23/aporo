@@ -35,7 +35,10 @@ Ext.define('TransportApp.controller.RegistrationController',{
              var RegistrationView = this.getRegistrationView();
 				var RegistrationValues = RegistrationView.getRecord();
 				var newValues = RegistrationView.getValues();
-				
+
+
+                // TODO: (Shariar #1) revise below code to rely (and iterate over) on RegistrationModel.js
+
 					// Update the current note's fields with form values.
 					RegistrationValues.set("fldVendorName", newValues.fldVendorName);
 					RegistrationValues.set("fldAddress", newValues.fldAddress);
@@ -56,6 +59,9 @@ Ext.define('TransportApp.controller.RegistrationController',{
 						VendorNumber:newValues.fldVendorNumber,
 						VendorEmail:newValues.fldVendorEmail	
 					});
+
+
+
 					errors.each(function (item, index, length) {
 					// Each item in the errors collection is an instance of the Ext.data.Error class.						
 						Ext.Msg.alert(item.getMessage());
@@ -84,7 +90,10 @@ Ext.define('TransportApp.controller.RegistrationController',{
             },
             InitRegister:function()
             {
-                   var newUser = Ext.create("TransportApp.model.RegistrationModel", {
+
+                // TODO: (Shariar #2) revise below code to rely (and iterate over) on RegistrationModel.js
+
+                    var newUser = Ext.create("TransportApp.model.RegistrationModel", {
                            VendorName: "",
                            Address: "",
                            PcName:"",
@@ -135,7 +144,7 @@ Ext.define('TransportApp.controller.RegistrationController',{
             progressIndicator.show(); //A progress mask while making Ajax request
             
             Ext.Ajax.request({
-            url: TransportApp.config.Env.baseApiUrl+'/curriers/', 
+            url: TransportApp.config.Env.baseApiUrl+'/vendors/',
             method: 'POST',
             params: Ext.JSON.encode(registration_form.getValues()),
             success: function(res){
