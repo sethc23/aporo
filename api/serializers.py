@@ -1,16 +1,13 @@
 # from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from app.models import Vendor,Order,Currier
+from app.models import Vendor,Order,Currier,Form
 
 
 class VendorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vendor
-        fields = ['vend_id','language','name','addr1','addr2','zipcode',
-                  'primary_first_name','primary_last_name','primary_cell','primary_email',
-                  'secondary_first_name','secondary_last_name','secondary_cell','secondary_email',
-                  'bus_email','bus_phone','registration_date_time','rating']
-
+        fields = ['vend_id','name','addr1','addr2','zip','email','phone','other_phone',
+                  'primary_user_id','reg_date_time','ready_rating','users_self_reg','area']
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -25,3 +22,9 @@ class CurrierSerializer(serializers.HyperlinkedModelSerializer):
                   'addr2','zipcode','cell','email','emergency_contact_name',
                   'emergency_contact_number','payment_method',
                   'registration_date_time','rating']
+
+class FormSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Form
+        #fields = '__all__'
+        # fields = ['name']

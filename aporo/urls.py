@@ -6,22 +6,30 @@ from django.contrib import admin
 admin.autodiscover()
 
 from rest_framework import routers
-from api.views import VendorViewSet,OrderViewSet,CurrierViewSet
+from api.views import VendorViewSet,OrderViewSet,CurrierViewSet,FormViewSet
+from api.views import FilteredVendorViewSet,FilteredFormViewSet
+
+from app.models import Vendor,Form
+
 router = routers.DefaultRouter()
+
 router.register(r'vendors', VendorViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'curriers', CurrierViewSet)
+router.register(r'forms', FormViewSet)
+
+
 
 # from cal.api import CalResource, EventResource
 # cal_resource = CalResource()
 # event_resource = EventResource()
 
 
-from api.resources import VendorResource,OrderResource,CurrierResource
-
-vendor_resource = VendorResource()
-order_resource = OrderResource()
-currier_resource = CurrierResource()
+# from api.resources import VendorResource,OrderResource,CurrierResource
+#
+# vendor_resource = VendorResource()
+# order_resource = OrderResource()
+# currier_resource = CurrierResource()
 
 urlpatterns = patterns('',
     # Admin page
@@ -41,11 +49,14 @@ urlpatterns = patterns('',
     url(r'^app', include('app.urls', namespace='app')),
 
     # # RESTful URLs
-    url(r'^api/', include(vendor_resource.urls)), # /api/vendor/?format=json
-    url(r'^api/', include(order_resource.urls)),
-    url(r'^api/', include(currier_resource.urls)),
+    # url(r'^api/', include(vendor_resource.urls)), # /api/vendor/?format=json
+    # url(r'^api/', include(order_resource.urls)),
+    # url(r'^api/', include(currier_resource.urls)),
 
+    # Django Rest Framework
     url(r'^api_view/', include(router.urls)),
+    url(r'^reg_vends/', FilteredVendorViewSet.as_view(model=Vendor), name='vend-list'),
+    url(r'^get_form/', FilteredFormViewSet.as_view(model=Form), name='get_form-list'),
 
     url(r'^phonegap/', include('phonegap.urls')),
 
