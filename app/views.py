@@ -25,7 +25,6 @@ class IndexView(generic.ListView):
         """Return the last five published polls."""
         return Order.objects.order_by('-pub_date')[:5]
 
-
 class VendorView(generic.DetailView):
     model = Vendor
     template_name = 'polls/registration.html'
