@@ -90,10 +90,17 @@ Ext.define('TransportApp.controller.VendorController', {
             
             progressIndicator.show(); //A progress mask while making Ajax request
             
+            Ext.Ajax.disableCaching = false;
+
             Ext.Ajax.request({
-            url: TransportApp.config.Env.baseApiUrl+'/orders/?format=json',
+            url: TransportApp.config.Env.baseApiUrl+'/orders/',
             method: 'post',
+
+            headers: {  'X-CSRFTOKEN': TransportApp.config.Env.django_token,
+                        'Content-Type': 'application/json' },
+
             params: Ext.JSON.encode(vendor_form.getValues()),
+
             success: function(res){
                 progressIndicator.hide();
                 Ext.Msg.alert('Response', res.toString());

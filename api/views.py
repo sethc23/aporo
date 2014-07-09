@@ -4,11 +4,16 @@ from serializers import VendorSerializer, OrderSerializer, CurrierSerializer
 
 from app.models import Vendor,Order,Currier
 
+from django.views.decorators.csrf import csrf_exempt
+
+
 from django.shortcuts import render
+
+#@csrf_exempt
 def index(request):
     return render(request, 'api/index.html', {})
 
-
+#@csrf_exempt
 class VendorViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -16,6 +21,7 @@ class VendorViewSet(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
 
+#@csrf_exempt
 class OrderViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -23,6 +29,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
+#@csrf_exempt
 class CurrierViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.

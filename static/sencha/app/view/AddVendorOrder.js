@@ -29,6 +29,12 @@ Ext.define(
                     xtype: 'fieldset',
                     instructions: '(All fields are mandatory)',
                     items: [
+//                        {
+//                            id: 'csrfmiddlewaretoken',
+//                            name: 'csrfmiddlewaretoken',
+//                            value: TransportApp.config.Env.django_token,
+//                            xtype: 'hiddenfield'
+//                        },
                         {
                             id: 'fldDeliverAddress',
                             name: 'DeliverAddress',

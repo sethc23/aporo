@@ -51,7 +51,7 @@ urlpatterns = patterns('',
 
     url(r'^login/', include('login.urls')),
 
-    url(r'^minimal_extjs4_app/', include('minimal_extjs4_app.urls')),
+    # url(r'^minimal_extjs4_app/', include('minimal_extjs4_app.urls')),
 
     # url(r'^app/', include('app.urls',namespace='app')),
     # url(r'^api/', include(router.urls)),

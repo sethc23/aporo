@@ -159,6 +159,7 @@ Ext.define('TransportApp.controller.RegistrationController',{
             
             Ext.Ajax.request({
             url: TransportApp.config.Env.baseApiUrl+'/vendors/',
+            header: { 'X-CSRFToken': TransportApp.config.Env.django_token },
             method: 'POST',
             params: Ext.JSON.encode(registration_form.getValues()),
             success: function(res){

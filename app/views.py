@@ -8,13 +8,14 @@ from app.models import Vendor,Order,Currier
 from django.shortcuts import render
 
 from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
+from django.core.context_processors import csrf
+from django.shortcuts import render_to_response
+#@csrf_exempt
 def index(request):
-    return render(request, 'app/index.html', {})
-
-
-
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('app/index.html', c)
+    # return render(request, 'app/index.html', {})
 
 class IndexView(generic.ListView):
     template_name = 'poll/index.html'

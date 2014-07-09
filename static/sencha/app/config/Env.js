@@ -2,15 +2,9 @@ Ext.define("TransportApp.config.Env", {
     statics: {
         logLevel: 'verbose',
         baseApiUrl: 'http://54.191.47.76/api_view',
+//        baseApiUrl: 'http://0.0.0.0/api_view',
+        django_token: TransportApp.csrftoken,
     }
 });
 
-//Ext.Ajax.on('beforerequest', function (conn, options) {
-//   if (!(/^http:.*/.test(options.url) || /^https:.*/.test(options.url))) {
-//     if (typeof(options.headers) == "undefined") {
-//       options.headers = {'X-CSRFToken': Ext.util.Cookies.get('csrftoken')};
-//     } else {
-//       options.headers.extend({'X-CSRFToken': Ext.util.Cookies.get('csrftoken')});
-//     }
-//   }
-//}, this);
+//Ext.Ajax.defaultHeaders({ 'X-CSRFToken': TransportApp.config.Env.django_token });
