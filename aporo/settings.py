@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     #'cal',
     'xmin',
     'phonegap',
-    'login',
+    #'login',
     'corsheaders',
 
 
