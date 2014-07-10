@@ -7,8 +7,7 @@ def currier_reg():
     f_url = 'http://54.191.47.76/api_view/users'
     f_method = 'POST'
     f_input_source = 'form'
-    f_input_types =     [   'password',  # 1
-                            'text',# 2
+    f_input_types =     [   'text',# 2
                             'text',# 3
                             'text',# 4
                             'text',# 5
@@ -19,8 +18,7 @@ def currier_reg():
                             'text',# 10
                             'phone',# 11
                         ]
-    f_input_ids =       [   'user_pass',# 1
-                            'first_name',# 2
+    f_input_ids =       [   'first_name',# 2
                             'last_name',# 3
                             'addr1',# 4
                             'addr2',# 5
@@ -31,8 +29,18 @@ def currier_reg():
                             'emergency_contact_name',# 10
                             'emergency_contact_number',# 11
                         ]
-    f_input_labels =    [   'Password',# 1
-                            'First Name',# 2
+    f_input_reqd =      [   'true',# 2
+                            'true',# 3
+                            'true',# 4
+                            'false',# 5
+                            'true',# 6
+                            'true',# 7
+                            'true',# 8
+                            'true',# 9
+                            'true',# 10
+                            'true',# 11
+                        ]
+    f_input_labels =    [   'First Name',# 2
                             'Last Name',# 3
                             'Address 1',# 4
                             'Address 2',# 5
@@ -43,15 +51,32 @@ def currier_reg():
                             'Emergency Contact Name',# 10
                             'Emergency Contact Number',# 11
                         ]
+
+    f_inputs = []
+    x=len(f_input_types)
+    for i in range(0,x):
+        f_inputs.append({  'input_type'     :   f_input_types[i],
+                            'input_id'       :   f_input_ids[i],
+                            'input_label'    :   f_input_labels[i],
+                            'input_value'    :   '',
+                            'input_required':   f_input_reqd[i]
+                        })
+
+    f_inputs.append({       'input_type'    :   'hidden',
+                            'input_id'      :   'app_user_type',
+                            'input_label'   :   '',
+                            'input_value'   :   'currier',
+                            'input_required':   'true'
+                        })
+
     c = F(name=f_name,
-          additional_forms=f_additional_forms,
           url=f_url,
           method=f_method,
           input_source=f_input_source,
-          input_types=f_input_types,
-          input_ids=f_input_ids,
-          input_labels=f_input_labels,
+          form_inputs=str(f_inputs),
+          additional_forms=f_additional_forms
           )
+
     c.save()
 
 def device_registration():
@@ -69,13 +94,24 @@ def device_registration():
                         'coord_accuracy',
                         'heading',
                         'speed'
-                    ]
+                        ]
+    f_inputs = []
+    x=len(f_input_ids)
+    for i in range(0,x):
+        f_inputs.append({  'input_type'     :   'hidden',
+                            'input_id'      :   f_input_ids[i],
+                            'input_label'   :   '',
+                            'input_value'   :   '',
+                            'input_required':   'true'
+                        })
+
     c = F(name=f_name,
           url=f_url,
           method=f_method,
           input_source=f_input_source,
-          input_ids=f_input_ids,
+          form_inputs=str(f_inputs)
           )
+
     c.save()
 
 def vend_manager_registration():
@@ -84,37 +120,49 @@ def vend_manager_registration():
     f_url = 'http://54.191.47.76/api_view/users'
     f_method = 'POST'
     f_input_source = 'form'
-    f_input_types =     [   'password',# 1
-                            'text',# 2
+    f_input_types =     [   'text',# 2
                             'text',# 3
                             'email',# 7
                             'phone',# 8
                             'text',# 10
                         ]
-    f_input_ids =       [   'user_pass',# 1
-                            'first_name',# 2
+    f_input_ids =       [   'first_name',# 2
                             'last_name',# 3
                             'email',# 7
                             'cell',# 8
                             'lang',# 10
                         ]
-    f_input_labels =    [   'Password',# 1
-                            'First Name',# 2
+    f_input_labels =    [   'First Name',# 2
                             'Last Name',# 3
                             'Email',# 7
                             'Cell',# 8
                             'Preferred Language',# 10
                         ]
+    f_inputs = []
+    x=len(f_input_types)
+    for i in range(0,x):
+        f_inputs.append({  'input_type'     :   f_input_types[i],
+                            'input_id'       :   f_input_ids[i],
+                            'input_label'    :   f_input_labels[i],
+                            'input_value'    :   '',
+                            'input_required':   'true'
+                        })
+
+    f_inputs.append({       'input_type'    :   'hidden',
+                            'input_id'      :   'app_user_type',
+                            'input_label'   :   '',
+                            'input_value'   :   'vendor_manager',
+                            'input_required':   'true'
+                        })
 
     c = F(name=f_name,
-          additional_forms=f_additional_forms,
           url=f_url,
           method=f_method,
           input_source=f_input_source,
-          input_types=f_input_types,
-          input_ids=f_input_ids,
-          input_labels=f_input_labels,
+          form_inputs=str(f_inputs),
+          additional_forms=f_additional_forms
           )
+
     c.save()
 
 def vendor_registration():
@@ -130,13 +178,21 @@ def vendor_registration():
                             'phone',# 8
                             'phone',# 9
                         ]
-    f_input_ids =       [   'vend_name',# 2
+    f_input_ids =       [   'name',# 2
                             'addr1',# 4
                             'addr2',# 5
                             'zip',# 6
                             'email',# 7
                             'phone',# 8
                             'other_phone',# 9
+                        ]
+    f_input_reqd =      [   'true',# 2
+                            'true',# 4
+                            'false',# 5
+                            'true',# 6
+                            'true',# 7
+                            'true',# 8
+                            'false',# 9
                         ]
     f_input_labels =    [   'Vendor Name',# 2
                             'Address 1',# 4
@@ -146,15 +202,23 @@ def vendor_registration():
                             'Phone 1',# 8
                             'Phone 2',# 9
                         ]
+    f_inputs = []
+    x=len(f_input_types)
+    for i in range(0,x):
+        f_inputs.append({  'input_type'     :   f_input_types[i],
+                            'input_id'       :   f_input_ids[i],
+                            'input_label'    :   f_input_labels[i],
+                            'input_value'    :   '',
+                            'input_required':   f_input_reqd[i]
+                        })
 
     c = F(name=f_name,
           url=f_url,
           method=f_method,
           input_source=f_input_source,
-          input_types=f_input_types,
-          input_ids=f_input_ids,
-          input_labels=f_input_labels,
+          form_inputs=str(f_inputs)
           )
+
     c.save()
 
 def vend_associate_registration():
@@ -162,81 +226,172 @@ def vend_associate_registration():
     f_url = 'http://54.191.47.76/api_view/users'
     f_method = 'POST'
     f_input_source = 'form'
+
     f_input_types =     [   'option1',
-                            'password',# 1
                             'text',# 2
                             'text',# 3
                             'email',# 7
                             'phone',# 8
-                            'text',# 10
+                            'text'# 10
                         ]
-    f_input_ids =       [   'vend_id',
-                            'user_pass',# 1
+    f_input_ids =       [   'vendor_id',
                             'first_name',# 2
                             'last_name',# 3
                             'email',# 7
                             'cell',# 8
-                            'lang',# 10
+                            'lang'# 10
                         ]
-    f_input_labels =    [   '',
-                            'Password',# 1
+    f_input_labels =    [   "http://54.191.47.76/reg_vends?format=json",
                             'First Name',# 2
                             'Last Name',# 3
                             'Email',# 7
                             'Cell',# 8
-                            'Preferred Language',# 10
+                            'Preferred Language'# 10
                         ]
+    f_inputs = []
+    x=len(f_input_types)
+    for i in range(0,x):
+        f_inputs.append({  'input_type'     :   f_input_types[i],
+                            'input_id'       :   f_input_ids[i],
+                            'input_label'    :   f_input_labels[i],
+                            'input_value'    :   '',
+                            'input_required' :  'true'})
 
-    f_input_options = [ "{ 'options1': 'http://54.191.47.76/reg_vends' }"]
+    f_inputs.append({       'input_type'    :   'hidden',
+                            'input_id'      :   'app_user_type',
+                            'input_label'   :   '',
+                            'input_value'   :   'vendor_associate',
+                            'input_required' :  'true'})
 
     c = F(name=f_name,
           url=f_url,
           method=f_method,
           input_source=f_input_source,
-          input_types=f_input_types,
-          input_ids=f_input_ids,
-          input_labels=f_input_labels,
-          input_options=f_input_options,
+          form_inputs=str(f_inputs)
           )
     c.save()
 
+def forgot_password():
+    f_name = 'forgot_password'
+    f_url = 'http://54.191.47.76/api_view/users'
+    f_method = 'POST'
+    f_input_source = 'form'
+    f_inputs = []
+    f_inputs.append({       'input_type'     :   'phone',
+                            'input_id'       :   'phone',
+                            'input_label'    :   'Phone',
+                            'input_value'    :   ''})
 
-def load_sample_vendor_data():
-    from app.models import Vendor as V
+    f_inputs.append({       'input_type'     :   'email',
+                            'input_id'       :   'email',
+                            'input_label'    :   'Email',
+                            'input_value'    :   ''})
 
-    c = V(name='Test1',
-          users_self_reg=False)
+    c = F(name=f_name,
+          url=f_url,
+          method=f_method,
+          input_source=f_input_source,
+          form_inputs = str(f_inputs)
+          )
     c.save()
-    c = V(name='Test2',
-          users_self_reg=True)
-    c.save()
-def load_sample_order_data():
-    from app.models import Order as O
-    c = O(pickup_time='9:00',
-          pickup_addr='1 Address',
-          deliv_addr='deliv 1 Address')
-    c.save()
-    c = O(pickup_time='9:50',
-          pickup_addr='2 Address',
-          deliv_addr='deliv 2 Address')
-    c.save()
-def load_sample_currier_data():
-    from app.models import Currier as cur
-    c = cur(first_name='ONEfirstName',
-          last_name='ONElastName')
-    c.save()
-    c = cur(first_name='TWOfirstName',
-          last_name='TWOlastName')
-    c.save()
+
 def load_form_data():
     currier_reg()
     device_registration()
     vend_manager_registration()
     vendor_registration()
     vend_associate_registration()
+    forgot_password()
+
+def load_sample_data():
+    from app.models import App_User,Vendor,Currier,Device,Order
+
+    # a. Make User One
+    # b. Make Vendor Mgr One
+    # c. Make Currier One
+    # d. Make Order One
+    # e. Make Device One
+
+    c = App_User(first_name='ONEfirstName',
+          last_name='ONElastName',
+          app_user_type='vendor_manager'
+          )
+    c.save()
+    ONE_app_user_id = c.app_user_id
+
+    c = Vendor(app_user_id=ONE_app_user_id,
+                name='ONE',
+                addr1='ONE_pickup_addr'
+          )
+    c.save()
+    ONE_vendor_id = c.vendor_id
+    ONE_pickup_addr = c.addr1
+
+    c = Currier(app_user_id=ONE_app_user_id,
+                speed_rating='1.0',
+                worktime_rating='10.0'
+          )
+    c.save()
+    ONE_dg_id = c.dg_id
+
+    c = Order(  vendor_id=ONE_vendor_id,
+                dg_id=ONE_dg_id,
+                web=True,
+                pickup_time='10:00',
+                pickup_addr=ONE_pickup_addr,
+                deliv_addr='ONE_deliv_addr'
+          )
+    c.save()
+
+    c = Device(  dg_id=ONE_dg_id,
+                model='Android',
+                op_sys_ver='Ice Cream'
+            )
+    c.save()
+
+    # a. Make User Two
+    # b. Make Vendor Assoc Two
+    # c. Make Currier Two
+    # d. Make Order Two
+    # e. Make Device Two
+
+    c = App_User(first_name='TWOfirstName',
+          last_name='TWOlastName',
+          app_user_type='vendor_assoc'
+          )
+    c.save()
+    TWO_app_user_id = c.app_user_id
+
+    c = Vendor(app_user_id=TWO_app_user_id,
+                name='TWO',
+                addr1='TWO_pickup_addr'
+          )
+    c.save()
+    TWO_vendor_id = c.vendor_id
+    TWO_pickup_addr = c.addr1
+
+    c = Currier(app_user_id=TWO_app_user_id,
+                speed_rating='2.0',
+                worktime_rating='20.0'
+          )
+    c.save()
+    TWO_dg_id = c.dg_id
+
+    c = Order(  vendor_id=TWO_vendor_id,
+                dg_id=TWO_dg_id,
+                call_in=True,
+                pickup_time='20:00',
+                pickup_addr=TWO_pickup_addr,
+                deliv_addr='TWO_deliv_addr'
+          )
+    c.save()
+
+    c = Device(  dg_id=TWO_dg_id,
+                model='Apple',
+                op_sys_ver='OS 7'
+            )
+    c.save()
 
 def load_all_data():
-    load_sample_vendor_data()
-    load_sample_order_data()
-    load_sample_currier_data()
+    load_sample_data()
     load_form_data()

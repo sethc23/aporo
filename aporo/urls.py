@@ -6,17 +6,19 @@ from django.contrib import admin
 admin.autodiscover()
 
 from rest_framework import routers
-from api.views import VendorViewSet,OrderViewSet,CurrierViewSet,FormViewSet
+from api.views import App_UserViewSet,VendorViewSet,OrderViewSet,CurrierViewSet
+from api.views import FormViewSet,DeviceViewSet
 from api.views import FilteredVendorViewSet,FilteredFormViewSet
 
 from app.models import Vendor,Form
 
 router = routers.DefaultRouter()
-
+router.register(r'users', App_UserViewSet)
 router.register(r'vendors', VendorViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'curriers', CurrierViewSet)
 router.register(r'forms', FormViewSet)
+router.register(r'devices', DeviceViewSet)
 
 
 
@@ -60,7 +62,7 @@ urlpatterns = patterns('',
 
     url(r'^phonegap/', include('phonegap.urls')),
 
-    url(r'^login/', include('login.urls')),
+    #url(r'^login/', include('login.urls')),
 
     # url(r'^minimal_extjs4_app/', include('minimal_extjs4_app.urls')),
 
