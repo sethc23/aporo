@@ -7,7 +7,7 @@ Ext.define('Aporo.controller.MainController', {
             'container[itemId=btnList]' : {
                 activate: function(cmp)
                 {
-                    Ext.getCmp('Viewport').setNavigationBar(false);
+                   Ext.getCmp('Viewport').getNavigationBar().setHidden(true);
                 }
             },
             'button[itemId=MainRegBtn]' : {
@@ -18,19 +18,25 @@ Ext.define('Aporo.controller.MainController', {
             },
             'button[itemId=MainVendorBtn]' : {
                 tap: 'onMainVendorMenuBtnTap'
-            },
+            }
         }
     },
     onMainRegistrationBtnTap: function()
     {
-        Ext.Msg.alert('Notice', 'Main app refactorying is under construction!', Ext.EmptyFn);
+        Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Registration');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.RegistrationView'));
     },
     onMainHelpContactBtnTap: function()
     {
-        Ext.Msg.alert('Notice', 'Main app refactorying is under construction!', Ext.EmptyFn);
+        Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Contact Help');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.ContactHelp'));
     },
     onMainVendorMenuBtnTap: function()
     {
-        Ext.Msg.alert('Notice', 'Main app refactorying is under construction!', Ext.EmptyFn);
+        Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor Menu');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.VendorOrderList'));
     }
 });

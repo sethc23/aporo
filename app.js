@@ -9,19 +9,36 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
-
+//Ext.Loader.setPath('Ext', 'project/Aporo/touch/src/');
 Ext.application({
     name: 'Aporo',
-
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Ext.navigation.View',
+        'Aporo.config.Env'
     ],
 
     views: [
-        'Main'
+        'Main',
+        'ContactHelp',
+        'RegistrationView',
+        'VendorOrderList',
+        'VendorHistory',
+        'AddVendorOrder'
     ],
     controllers: [
-        'MainController'
+        'MainController',
+        'Registration',
+        'Vendors'
+    ],
+    
+    stores: [
+        'VendorOrderHistoryStore'
+    ],
+    
+    models: [
+        'VendorOrderHistoryModel',
+        'RegistrationModel'
     ],
 
     icon: {
@@ -45,7 +62,7 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
+        //Ext.Loader.setPath('Aporo', 'project/Aporo/app');
         // Initialize the main view
         Ext.Viewport.add(Ext.create('Aporo.view.Main'));
     },

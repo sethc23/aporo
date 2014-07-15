@@ -1,5 +1,6 @@
 Ext.define('Aporo.view.Main', {
-    extend: 'Ext.NavigationView',
+    extend: 'Ext.navigation.View',
+    title: 'Home',
     xtype: 'main',
     id: 'Viewport',
     requires: [
@@ -8,6 +9,25 @@ Ext.define('Aporo.view.Main', {
         layout: {
             type: 'card',
             animation: 'slide'
+        },
+        navigationBar: {
+            hidden: true,
+            items: [
+            {
+                xtype: 'button',
+                align: 'right',
+                id: 'addVendorsBtn',
+                hidden: true,
+                text: 'Add Vendors'
+            },
+            {
+                xtype: 'button',
+                align: 'right',
+                id: 'historyBtn',
+                hidden: true,
+                text: 'History'
+            }
+            ]
         },
         items: [
         {
