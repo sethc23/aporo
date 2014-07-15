@@ -22,7 +22,7 @@ aporo
  # Now that can be used to server 
  		
  		1. Copy the index.html and app.json from (/build/production/Aporo) to server path
- 		2. Now also upload resources/ and app.js to server anywhere you like
+ 		2. Now also upload resources/ and app.js to server anywhere you like (also should found at /build/production/Aporo)
  		3. open app.json (firstly uploaded with index.html) and adapt directory changes of app.js and css file (of resources directory) in this file
  		
  		That's all.
