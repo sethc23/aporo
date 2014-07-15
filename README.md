@@ -1,11 +1,11 @@
 aporo
 =====
 
-# Clone or download this to a local directory
+ # Clone or download this to a local directory
 
-# Install Sencha CMD from here http://www.sencha.com/products/sencha-cmd/download
+ # Install Sencha CMD from here http://www.sencha.com/products/sencha-cmd/download
 
-# open a command prompt:
+ # open a command prompt:
  				
  				cd path/to/app
  				sencha web start
