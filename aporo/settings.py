@@ -3,7 +3,6 @@ from os import path as os_path
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -12,6 +11,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.redirects',
+    'django_extensions',
     'app',
     'api',
     'rest_framework',
@@ -20,10 +21,9 @@ INSTALLED_APPS = (
     'phonegap',
     #'login',
     'corsheaders',
+    'registration',
+    'password_reset',
 
-
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
 )
 
 DATABASES = {
@@ -42,6 +42,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -49,25 +50,17 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'aporo.urls'
 WSGI_APPLICATION = 'aporo.wsgi.application'
 
-# Make this unique, and don't share it with anybody.
 SECRET_KEY = 'kj2=wf4vc=t_t3*vpjwuf#y8tp%rgw9ur7*y=v(wxxh^flk_yc'
-
-ADMINS = (
+ADMINS =    (
     # ('superuser', 'superuser@superuser.com'),
-)
+            )
 MANAGERS = ADMINS
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'America/New_York' # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+LANGUAGE_CODE = 'en-us' # http://www.i18nguy.com/unicode/language-identifiers.html
 SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -76,12 +69,26 @@ USE_I18N = True
 # calendars according to the current locale.
 USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
+# from pytz import timezone
+# localtz = timezone('Europe/Lisbon')
+# dt_aware = localtz.localize(dt_unware)
+
+# import dateutil.tz
+# import datetime
+# localtz = dateutil.tz.tzlocal()
+# localoffset = localtz.utcoffset(datetime.datetime.now())
+# UTC_OFFSET_hr = (localoffset.days * 86400 + localoffset.seconds) / 3600
+    # which equals -4
+# UTC_OFFSET_min = (localoffset.days * 86400 + localoffset.seconds) / 60
+
+UTC_OFFSET_hr = -4
+
+DAYS_SCHEDULED_AHEAD = 28
+DG_K_PERIOD = 4
+
+
 PROJECT_ROOT = os_path.dirname(os_path.dirname(__file__))
 STATIC_ROOT = os_path.join(PROJECT_ROOT, 'static/')
 STATIC_URL = '/static/'
@@ -89,9 +96,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = '' # "/var/www/example.com/media/"
 MEDIA_URL = '' # '/media/'
 
-# Django serves static files differently on development server
+# Django serves static files differently on development server.
+# This makes Django treat static files the same for devel or production.
 from sys import argv
-
 try:
     if argv[1] == 'runserver':
         STATIC_ROOT = os_path.join(PROJECT_ROOT, 'static1/')
@@ -103,10 +110,7 @@ try:
 except: pass
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os_path.join(PROJECT_ROOT, 'templates/'), #project-wide templates
+    os_path.join(PROJECT_ROOT, 'templates/'), # project-wide templates, absolute paths
 )
 
 STATICFILES_FINDERS = (
@@ -121,12 +125,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
+LOGGING = { # See http://docs.djangoproject.com/en/dev/topics/logging
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
@@ -134,16 +133,30 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
+            # 'handlers': ['mail_admins'],
+            'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -165,6 +178,10 @@ REST_FRAMEWORK = {
     ]
 }
 
+# SERIALIZATION_MODULES = {
+#     'json': 'wadofstuff.django.serializers.json'
+# }
+
 TASTYPIE_DEFAULT_FORMATS = ['json']
 APPEND_SLASH = True
 TASTYPIE_ALLOW_MISSING_SLASH=False
@@ -172,7 +189,6 @@ TASTYPIE_ALLOW_MISSING_SLASH=False
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ()
 CORS_URLS_REGEX = r'^/api_view/.*$'
-
 CORS_ALLOW_METHODS = (
         'GET',
         'POST',
@@ -181,7 +197,6 @@ CORS_ALLOW_METHODS = (
         'DELETE',
         'OPTIONS'
     )
-
 CORS_ALLOW_HEADERS = (
         'x-requested-with',
         'content-type',
@@ -193,3 +208,8 @@ CORS_ALLOW_HEADERS = (
 CORS_EXPOSE_HEADERS = ()
 CORS_PREFLIGHT_MAX_AGE = 86400
 CORS_ALLOW_CREDENTIALS = True
+
+# CELERY_CACHE_BACKEND = 'dummy'
+# EMAIL_BACKEND = 'kopio.core.mailer.backend.DBBackend'
+# MAILER_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
