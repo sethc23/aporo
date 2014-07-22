@@ -1,0 +1,50 @@
+[
+    {
+        "name": "currier_registration",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/api_view/users",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': \"{'maxlength': '30'}\", 'input_type': 'text', 'input_value': '', 'input_name': 'first_name', 'input_label': 'First Name:', 'input_id': 'id_first_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'last_name', 'input_label': 'Last Name:', 'input_id': 'id_last_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'addr1', 'input_label': 'Address 1:', 'input_id': 'id_addr1', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'addr2', 'input_label': 'Address 2:', 'input_id': 'id_addr2', 'input_required': 'false'}, {'input_attr': {}, 'input_type': 'zip', 'input_value': '', 'input_name': 'zip', 'input_label': 'Zipcode:', 'input_id': 'id_zip', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'email', 'input_value': '', 'input_name': 'email', 'input_label': 'Email:', 'input_id': 'id_email', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'phone', 'input_value': '', 'input_name': 'cell', 'input_label': 'Cell:', 'input_id': 'id_cell', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'lang', 'input_label': 'Preferred Language:', 'input_id': 'id_lang', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'emergency_contact_name', 'input_label': 'Emergency Contact Name:', 'input_id': 'id_emergency_contact_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'phone', 'input_value': '', 'input_name': 'emergency_contact_number', 'input_label': 'Emergency Contact Number:', 'input_id': 'id_emergency_contact_number', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'hidden', 'input_value': 'currier', 'input_name': 'app_user_type', 'input_label': '', 'input_id': 'id_app_user_type', 'input_required': 'true'}]"
+    },
+    {
+        "name": "vendor_manager_registration",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/api_view/users",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'first_name', 'input_label': 'First Name', 'input_id': 'id_first_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'last_name', 'input_label': 'Last Name', 'input_id': 'id_last_name', 'input_required': 'true'}, {'input_attr': \"{'maxlength': '30'}\", 'input_type': 'text', 'input_value': '', 'input_name': 'username', 'input_label': 'Email:', 'input_id': 'id_username', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'hidden', 'input_value': '', 'input_name': 'username', 'input_label': '', 'input_id': 'id_email', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'cell', 'input_label': 'Cell', 'input_id': 'id_cell', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'lang', 'input_label': 'Preferred Language', 'input_id': 'id_lang', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'password', 'input_value': '', 'input_name': 'password1', 'input_label': 'Password:', 'input_id': 'id_password1', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'password', 'input_value': '', 'input_name': 'password2', 'input_label': 'Password (again):', 'input_id': 'id_password2', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'hidden', 'input_value': 'vendor_manager', 'input_name': 'app_user_type', 'input_label': '', 'input_id': 'id_app_user_type', 'input_required': 'true'}]"
+    },
+    {
+        "name": "vendor_mgr_registration",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/api_view/vendors",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'name', 'input_label': 'Business Name:', 'input_id': 'id_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'addr1', 'input_label': 'Address 1:', 'input_id': 'id_addr1', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'addr2', 'input_label': 'Address 2:', 'input_id': 'id_addr2', 'input_required': 'false'}, {'input_attr': {}, 'input_type': 'zip', 'input_value': '', 'input_name': 'zip', 'input_label': 'Zipcode:', 'input_id': 'id_zip', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'email', 'input_value': '', 'input_name': 'email', 'input_label': 'Email:', 'input_id': 'id_email', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'phone', 'input_value': '', 'input_name': 'phone', 'input_label': 'Phone 1:', 'input_id': 'id_phone', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'phone', 'input_value': '', 'input_name': 'other_phone', 'input_label': 'Phone 2:', 'input_id': 'id_other_phone', 'input_required': 'false'}]"
+    },
+    {
+        "name": "vendor_associate_registration",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/api_view/users",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': {}, 'input_type': 'option1', 'input_value': '', 'input_name': 'vendor_id', 'input_label': 'http://54.191.47.76/reg_vends?format=json', 'input_id': 'id_vendor_id', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'first_name', 'input_label': 'First Name:', 'input_id': 'id_first_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'last_name', 'input_label': 'Last Name:', 'input_id': 'id_last_name', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'email', 'input_value': '', 'input_name': 'email', 'input_label': 'Email:', 'input_id': 'id_email', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'phone', 'input_value': '', 'input_name': 'cell', 'input_label': 'Cell:', 'input_id': 'id_cell', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'lang', 'input_label': 'Preferred Language:', 'input_id': 'id_lang', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'hidden', 'input_value': 'vendor_associate', 'input_name': 'app_user_type', 'input_label': '', 'input_id': 'id_app_user_type', 'input_required': 'true'}]"
+    },
+    {
+        "name": "forgot_password",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/api_view/users",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': {}, 'input_type': 'text', 'input_value': '', 'input_name': 'cell_email', 'input_label': 'Cell or Email:', 'input_id': 'id_cell_email', 'input_required': 'true'}]"
+    },
+    {
+        "name": "registration",
+        "additional_forms": "",
+        "url": "http://54.191.47.76/accounts/registration",
+        "method": "POST",
+        "input_source": "",
+        "form_inputs": "[{'input_attr': \"{'maxlength': '30'}\", 'input_type': 'text', 'input_value': '', 'input_name': 'username', 'input_label': 'Email:', 'input_id': 'id_username', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'password', 'input_value': '', 'input_name': 'password1', 'input_label': 'Password:', 'input_id': 'id_password1', 'input_required': 'true'}, {'input_attr': {}, 'input_type': 'password', 'input_value': '', 'input_name': 'password2', 'input_label': 'Password (again):', 'input_id': 'id_password2', 'input_required': 'true'}]"
+    }
+]
