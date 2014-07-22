@@ -170,30 +170,46 @@ class Order(models.Model):
 class Location(models.Model):
     location_id = models.AutoField(max_length=11, primary_key=True)
     loc_num = models.SmallIntegerField(blank=True, null=True, max_length=5)
-    order = models.ForeignKey('Order', related_name='location_order', unique=False)
-    # via order, dg, device
+    order = models.ForeignKey('Order', related_name='location_order', unique=False, blank=True, null=True)
+    currier = models.ForeignKey('Currier', related_name='location_currier', unique=False, blank=True, null=True)
+    tag = models.TextField(blank=True, null=True)
+    call_in = models.BooleanField(default=False)
+    web = models.BooleanField(default=False)
+    web_url = models.TextField(blank=True)
     pickup = models.BooleanField(default=True)
     delivery = models.BooleanField(default=False)
     req_datetime = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
     addr = models.TextField(blank=True)
     cross_street = models.TextField(blank=True)
     end_datetime = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
+    price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    tip = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    comments = models.TextField(blank=True)
     lat = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
     long = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
     batt_level = models.SmallIntegerField(blank=True, null=True, max_length=3)
     dev_updated = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
+
 
     def __unicode__(self):
         return ' '.join([
                 self.location_id,
                 self.loc_num,
                 self.order,
+                self.currier,
+                self.tag,
+                self.call_in,
+                self.web,
+                self.web_url,
                 self.pickup,
                 self.delivery,
                 self.req_datetime,
                 self.addr,
                 self.cross_street,
                 self.end_datetime,
+                self.price,
+                self.tip,
+                self.comments,
                 self.lat,
                 self.long,
                 self.batt_level,
@@ -333,3 +349,40 @@ class Schedule(models.Model):
                 self.total_deliveries,
                 self.pay,
             ])
+
+        [{
+        "Device.JSON": {
+            "is_active": false,
+            "update_frequency": null
+        },
+        "Locations.JSON": [
+            {
+                "addr": "ONE_pickup_addr",
+                "call_in": false,
+                "cross_street": "",
+                "end_datetime": null,
+                "loc_num": 1,
+                "location_id": 1,
+                "price": null,
+                "req_datetime": null,
+                "tag": null,
+                "tip": null,
+                "web": false,
+                "web_url": ""
+            },
+            {
+                "addr": "ONE_deliv_addr",
+                "call_in": false,
+                "cross_street": "",
+                "end_datetime": null,
+                "loc_num": 2,
+                "location_id": 2,
+                "price": null,
+                "req_datetime": null,
+                "tag": null,
+                "tip": null,
+                "web": false,
+                "web_url": ""
+                }
+            ],
+        }]

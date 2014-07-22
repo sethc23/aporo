@@ -94,12 +94,14 @@ def sample_data(request):
     # add locations for order
     l = Location(order_id=ONE_order_id,
                 loc_num=1,
+                currier_id=ONE_dg_id,
                 pickup=True,
                 addr=c.vendor.addr1,
           )
     l.save()
     c = Location(order_id=ONE_order_id,
                  loc_num=2,
+                 currier_id=ONE_dg_id,
                  delivery=True,
                  addr=c.deliv_addr,
           )
@@ -183,6 +185,7 @@ def sample_data(request):
     TWO_order_id = c.order_id
     # add locations
     l = Location(order_id=TWO_order_id,
+                 currier_id=TWO_dg_id,
                 loc_num=3,
                 pickup=True,
                 addr=c.vendor.addr1,
@@ -190,6 +193,7 @@ def sample_data(request):
     l.save()
     c = Location(order_id=TWO_order_id,
                  loc_num=4,
+                 currier_id=TWO_dg_id,
                  delivery=True,
                  addr=c.deliv_addr,
           )

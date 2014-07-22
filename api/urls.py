@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^dg_contracts/$', views.dg_contracts, name='dg_contracts'),
     url(r'^work/$', views.work, name='work'),
     url(r'^device/$', views.device, name='device'),
+    url(r'^update/$', views.update, name='update'),
 )

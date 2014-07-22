@@ -1,7 +1,7 @@
 # from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from app.models import App_User,Vendor,Order,Currier,Form,Device
-from app.models import Contract,Schedule
+from app.models import Contract,Schedule,Location
 
 class App_UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -27,6 +27,9 @@ class ContractSerializer(serializers.HyperlinkedModelSerializer):
 class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Schedule
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Location
 
 # TODO: what serialized objects would perform better if restore_object was defined.  See http://www.django-rest-framework.org/api-guide/serializers#declaring-serializers
 
@@ -57,6 +60,17 @@ class FilteredScheduleSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['start_datetime','start_day','start_time','hour_period','area',
                   'check_in_datetime','check_out_datetime',
                   'total_breaktime','total_deliveries']
+class FilteredLocationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['loc_num','location_id','tag','web','web_url','call_in',
+                  'req_datetime','addr','cross_street','price','tip','end_datetime']
+        # exclude = ['batt_level','currier','dev_updated','lat','long','order']
+class FilteredDeviceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Device
+        fields = ['update_frequency','is_active']
+        # exclude = ['batt_level','currier','dev_updated','lat','long','order']
 
 class CurrierScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -149,8 +149,6 @@ def device(show_post=False,show_resp=False):
     data = {
                 "action" : 'update',
                 "currier_id" : "1",
-                "update_frequency" : "120",
-                "is_active" : "True",
             }
     last_updated = str(DT(2014,07,17,12,45,0).isoformat())
     dev_data = {"model" : "XT926",
@@ -164,8 +162,58 @@ def device(show_post=False,show_resp=False):
                 "heading" : "0.4444",
                 "speed" : "1.508",
                 "last_updated" : last_updated,
+                "update_frequency" : "120",
+                "is_active" : "True",
             }
     data.update({"device":dev_data})
+    all_data = [data]
+    if show_post == True:
+        print '\t\t\tJSON Posted:\n'
+        print json.dumps(all_data, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url)
+    parsed = json.loads(resp)
+    if show_resp == True:
+        print '\t\t\tServer Response:\n'
+        print json.dumps(parsed, indent=4, sort_keys=True)
+    print '\n\t\t\t--> SUCCESS\n'
+    return resp
+
+def order(show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/order/'
+    print '\t\torder','\n\t\t\tURL:',p_url
+    data = {
+                "action" : 'new',
+                "vendor_id" : "1",
+            }
+    last_updated = str(DT(2014,07,17,12,45,0).isoformat())
+    dev_data = {"tag" : "",
+                "web" : "",
+                "req_pickup_time" : "",
+                "deliv_addr" : "",
+                "deliv_cross_street" : "",
+                "deliv_lat" : "",
+                "deliv_long" : "",
+            }
+    data.update({"order":dev_data})
+    all_data = [data]
+    if show_post == True:
+        print '\t\t\tJSON Posted:\n'
+        print json.dumps(all_data, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url)
+    parsed = json.loads(resp)
+    if show_resp == True:
+        print '\t\t\tServer Response:\n'
+        print json.dumps(parsed, indent=4, sort_keys=True)
+    print '\n\t\t\t--> SUCCESS\n'
+    return resp
+
+def update(post_action='get',show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/update/'
+    print '\t\tupdate','\n\t\t\tURL:',p_url
+    data = {
+                "action" : post_action,
+                "currier_id" : "1",
+            }
     all_data = [data]
     if show_post == True:
         print '\t\t\tJSON Posted:\n'
@@ -191,8 +239,9 @@ print '\tBase URL:',BASE_URL,'\n'
 # work(post_action='check_in',show_resp=True)
 # work(post_action='history',show_resp=True)
 # work(post_action='check_out',show_resp=True)
-
-device(show_post=True,show_resp=True)
+#
+# device(show_post=True,show_resp=True)
+update(post_action='get',show_post=True,show_resp=True)
 
 print '\n\tTesting COMPLETE\n'
 

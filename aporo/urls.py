@@ -9,7 +9,7 @@ from rest_framework import routers
 from api.views import App_UserViewSet,VendorViewSet,OrderViewSet,CurrierViewSet
 from api.views import FormViewSet,DeviceViewSet
 from api.views import FilteredVendorViewSet,FilteredFormViewSet
-from api.views import ScheduleViewSet,ContractViewSet
+from api.views import ScheduleViewSet,ContractViewSet,LocationViewSet
 
 from app.models import Vendor,Form
 
@@ -22,6 +22,7 @@ router.register(r'forms', FormViewSet)
 router.register(r'devices', DeviceViewSet)
 router.register(r'contracts', ContractViewSet)
 router.register(r'schedules', ScheduleViewSet)
+router.register(r'locations', LocationViewSet)
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),

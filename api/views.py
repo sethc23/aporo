@@ -2,11 +2,12 @@
 from rest_framework import viewsets
 from rest_framework import filters
 from serializers import App_UserSerializer,VendorSerializer,OrderSerializer,CurrierSerializer
-from serializers import FormSerializer,DeviceSerializer
+from serializers import FormSerializer,DeviceSerializer,FilteredDeviceSerializer
 from serializers import FilteredVendorSerializer, FilteredContractSerializer, FilteredScheduleSerializer
 from serializers import ContractSerializer,ScheduleSerializer,CurrierScheduleSerializer
+from serializers import LocationSerializer,FilteredLocationSerializer
 from app.models import App_User,Vendor,Order,Currier,Form,Device
-from app.models import Contract,Schedule
+from app.models import Contract,Schedule,Location
 
 from django.shortcuts import render
 # from django.views.decorators.csrf import csrf_exempt
@@ -44,6 +45,9 @@ class ScheduleViewSet(viewsets.ModelViewSet):
 class ContractViewSet(viewsets.ModelViewSet):
     queryset = Contract.objects.all()
     serializer_class = ContractSerializer
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
 
 from rest_framework import generics
 
@@ -296,7 +300,7 @@ def work(request):
 
 @api_view(['GET', 'POST'])
 def device(request):
-    # TODO: when authenticating, change dg_id=1 in api.view.work(request)
+    # TODO: when authenticating, change dg_id=1 in api.view.device(request)
     dg_id = 1  # set by "currier_id"
     x = request.DATA[0]
 
@@ -311,10 +315,60 @@ def device(request):
 
         if x['action'].lower()=='update':
             d = Device.objects.filter(currier_id=dg_id)
-            d.update(**x['device'])
-            d.update(**{'is_active':True})
+            p = x['device']
+            p.update({'is_active':True})
             # TODO adjust update frequency here
-            d.update(**{'update_frequency':x['update_frequency']})
+            p.update({'update_frequency':60})
+            d.update(**p)
             return Response(x)
+
+        return Response(x)
+
+@api_view(['GET', 'POST'])
+def order(request):
+    # TODO: when authenticating, change vend_id=1 in api.view.order(request)
+    vendor_id = 1  # set by "currier_id"
+    x = request.DATA[0]
+
+    if request.method == 'GET':
+        d = Order.objects.get(vendor_id=vendor_id)
+        serializer = DeviceSerializer(d)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+
+        # TODO account for an unregistered device posting update
+
+        if x['action'].lower()=='new':
+            o = Order(**x)
+            o.save()
+            return Response(o)
+
+        return Response(x)
+
+@api_view(['GET', 'POST'])
+def update(request):
+    # TODO: when authenticating, change currier_id=1 in api.view.update(request)
+    currier_id = 1  # set by "currier_id"
+    x = request.DATA[0]
+
+    if request.method == 'GET':
+        d = Location.objects.get(currier_id=currier_id)
+        serializer = DeviceSerializer(d)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+
+        # TODO account for an unregistered device posting update
+
+        if x['action'].lower()=='get':
+            d = Device.objects.get(currier_id=currier_id)
+            dev_serializer = FilteredDeviceSerializer(d)
+            l = Location.objects.filter(currier_id=currier_id)
+            loc_serializer = FilteredLocationSerializer(l)
+            z = {'Device.JSON':dev_serializer.data,
+                 'Locations.JSON':loc_serializer.data}
+
+            return Response(z)
 
         return Response(x)

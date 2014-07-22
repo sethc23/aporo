@@ -198,14 +198,41 @@
 
 ######Example Server Response
 	[{
-		“action” 			: “update”,
-		“currier_id” 		: [ currier_id from cookie ],
-		"is_active"			: 	"True",
-		"Locations.JSON"	: {
-			
-		},
-		"update_frequency"	:	"120",
-    }]
+        "Device.JSON": {
+            "is_active": false, 
+            "update_frequency": null
+        }, 
+        "Locations.JSON": [
+            {
+                "addr": "ONE_pickup_addr", 
+                "call_in": false, 
+                "cross_street": "", 
+                "end_datetime": null, 
+                "loc_num": 1, 
+                "location_id": 1, 
+                "price": null, 
+                "req_datetime": null, 
+                "tag": null, 
+                "tip": null, 
+                "web": false, 
+                "web_url": ""
+            }, 
+            {
+                "addr": "ONE_deliv_addr", 
+                "call_in": false, 
+                "cross_street": "", 
+                "end_datetime": null, 
+                "loc_num": 2, 
+                "location_id": 2, 
+                "price": null, 
+                "req_datetime": null, 
+                "tag": null, 
+                "tip": null, 
+                "web": false, 
+                "web_url": ""
+			},
+		],
+	}]
 
 ###DG Check Package Response
 
@@ -234,3 +261,40 @@
 			}]
 
 ######Example Server Response
+
+	[{
+        "Device.JSON": {
+            "is_active": false, 
+            "update_frequency": null
+        }, 
+        "Locations.JSON": [
+            {
+                "addr": "ONE_pickup_addr", 
+                "call_in": false, 
+                "cross_street": "", 
+                "end_datetime": null, 
+                "loc_num": 1, 
+                "location_id": 1, 
+                "price": null, 
+                "req_datetime": null, 
+                "tag": null, 
+                "tip": null, 
+                "web": false, 
+                "web_url": ""
+            }, 
+            {
+                "addr": "ONE_deliv_addr", 
+                "call_in": false, 
+                "cross_street": "", 
+                "end_datetime": null, 
+                "loc_num": 2, 
+                "location_id": 2, 
+                "price": null, 
+                "req_datetime": null, 
+                "tag": null, 
+                "tip": null, 
+                "web": false, 
+                "web_url": ""
+			},
+		],
+	}]
