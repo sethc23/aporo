@@ -177,53 +177,36 @@
 	URL:	api/device/
 	
 	JSON:	[{ 
-				“action” : “update”,
-				“dg_id” : [ dg_id from cookie ],
-			   	“device” :  { 
+				“action” 			: “update”,
+				“currier_id” 		: [ currier_id from cookie ],
+			   	“device” 			:  { 
 					"model" 			: 	"XT926",
 					"platform" 			: 	"Android",
 					"uuid" 				: 	"398923",
 					"op_sys_ver"		: 	"4.2",
 					"battery_level"		: 	"50",
-					"update_frequency"	:	"120",
 					"lat" 				: 	"0.0045",
 					"long" 				: 	"0.8983",
 					"coord_accuracy"	: 	"1.0",
 					"heading" 			: 	"0.4444",
 					"speed" 			: 	"1.508",
 					"last_updated" 		: 	"2014-01-01T15:45:00",
-					"is_active"			: 	"True"  
 				},
+				"is_active"			: 	"True",
+				"update_frequency"	:	"120",
 			},]
 
 ######Example Server Response
 	[{
-        "Device"        :
-        {
-            "update_frequency"      :   "60",
-        },
-        "Itinerary"     :
-        {   "order_id"              :   "",
-            "vendor"                :   "",
-            "dg"                    :   "",
-            "tag"                   :   "",
-            "web"                   :   "",
-            "call_in"               :   "",
-            "req_pickup_time"       :   "",
-            "pickup_time"           :   "",
-            "pickup_date"           :   "",
-            "pickup_addr"           :   "",
-            "check_time"            :   "",
-            "deliv_time"            :   "",
-            "deliv_date"            :   "",
-            "deliv_addr"            :   "",
-            "deliv_zip"             :   "",
-            "deliv_cross_street"    :   "",
-            "price"                 :   "",
-            "tip"                   :   "",
-        }
+		“action” 			: “update”,
+		“currier_id” 		: [ currier_id from cookie ],
+		"is_active"			: 	"True",
+		"Locations.JSON"	: {
+			
+		},
+		"update_frequency"	:	"120",
     }]
-    
+
 ###DG Check Package Response
 
 ######POST Request

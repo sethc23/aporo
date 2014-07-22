@@ -7,6 +7,7 @@ class App_User(models.Model):
     auth_user_key = models.IntegerField(max_length=11, blank=True, null=True)
     vendor = models.ForeignKey('Vendor', related_name='Vendor', unique=False, blank=True, null=True)
     currier = models.ForeignKey('Currier', related_name='Currier', unique=False, blank=True, null=True)
+    device = models.ManyToManyField('Device', related_name='Device', unique=False, blank=True, null=True)
     first_name = models.TextField(blank=True)
     last_name = models.TextField(blank=True)
     addr1 = models.TextField(blank=True)
@@ -29,6 +30,7 @@ class App_User(models.Model):
                 self.auth_user_key,
                 self.vendor,
                 self.currier,
+                self.device,
                 self.first_name,
                 self.last_name,
                 self.addr1,
@@ -46,7 +48,8 @@ class App_User(models.Model):
 class Vendor(models.Model):
     vendor_id = models.AutoField(max_length=11, primary_key=True)
     created = models.DateTimeField(auto_now=True)
-    app_user = models.ForeignKey(App_User, related_name='app_user', unique=False)
+    app_user = models.ForeignKey('App_User', related_name='vendor_app_user', unique=False)
+    device = models.ManyToManyField('Device', related_name='vendor_device', unique=False)
     name = models.TextField(blank=True)
     addr1 = models.TextField(blank=True)
     addr2 = models.TextField(blank=True)
@@ -74,7 +77,8 @@ class Vendor(models.Model):
         return ' '.join([
                 self.vendor_id,
                 self.created,
-                self.app_user_id,
+                self.app_user,
+                self.device,
                 self.name,
                 self.addr1,
                 self.addr2,
@@ -124,9 +128,10 @@ class Currier(models.Model):
 class Order(models.Model):
     order_id = models.AutoField(max_length=11, primary_key=True)
     created = models.DateTimeField(auto_now=True)
-    vendor = models.ForeignKey(Vendor, unique=False)
-    currier = models.ForeignKey('Currier', related_name='order_dg', unique=False, blank=True, null=True)
-    device = models.ForeignKey('Device', related_name='order_device', unique=False, blank=True, null=True)
+    vendor = models.ForeignKey('Vendor', related_name='order_vendor', unique=False, blank=True, null=True)
+    vendor_dev = models.ForeignKey('Device', related_name='order_vendor_dev', unique=False, blank=True, null=True)
+    currier = models.ForeignKey('Currier', related_name='order_currier', unique=False, blank=True, null=True)
+    currier_dev = models.ForeignKey('Device', related_name='order_currier_dev', unique=False, blank=True, null=True)
     tag = models.TextField(blank=True, null=True)
     web = models.BooleanField(default=False)
     web_url = models.TextField(blank=True)
@@ -145,8 +150,9 @@ class Order(models.Model):
                 self.order_id,
                 self.created,
                 self.vendor,
+                self.vendor_dev,
                 self.currier,
-                self.device,
+                self.currier_dev,
                 self.tag,
                 self.web,
                 self.web_url,
@@ -164,7 +170,7 @@ class Order(models.Model):
 class Location(models.Model):
     location_id = models.AutoField(max_length=11, primary_key=True)
     loc_num = models.SmallIntegerField(blank=True, null=True, max_length=5)
-    order = models.ForeignKey(Order, unique=False)
+    order = models.ForeignKey('Order', related_name='location_order', unique=False)
     # via order, dg, device
     pickup = models.BooleanField(default=True)
     delivery = models.BooleanField(default=False)
@@ -197,6 +203,8 @@ class Location(models.Model):
 class Device(models.Model):
     device_id = models.AutoField(max_length=11, primary_key=True)
     created = models.DateTimeField(auto_now=True)
+    currier = models.ForeignKey('Currier', related_name='device_currier', unique=False, blank=True, null=True)
+    vendor = models.ForeignKey('Vendor', related_name='device_vendor', unique=False, blank=True, null=True)
     model = models.TextField(blank=True)
     platform = models.TextField(blank=True)
     uuid = models.TextField(blank=True)
@@ -215,6 +223,8 @@ class Device(models.Model):
         return ' '.join([
                 self.device_id,
                 self.created,
+                self.currier,
+                self.vendor,
                 self.model,
                 self.platform,
                 self.uuid,
@@ -286,8 +296,8 @@ class Contract(models.Model):
 class Schedule(models.Model):
     schedule_id = models.AutoField(max_length=11, primary_key=True)
     created = models.DateTimeField(auto_now=True)
-    contract = models.ForeignKey(Contract, blank=True, null=True, unique=False)
-    currier = models.ForeignKey(Currier, blank=True, null=True, unique=False)
+    contract = models.ForeignKey('Contract', related_name='schedule_contract', blank=True, null=True, unique=False)
+    currier = models.ForeignKey('Currier', related_name='schedule_currier',blank=True, null=True, unique=False)
 
     # TODO (future) consider whether models can be related more efficiently. See here below.
     start_datetime = models.DateTimeField(blank=True, null=True, auto_now=False, auto_now_add=False)

@@ -15,21 +15,23 @@ def form_data(request):
 def sample_data(request):
     from app.models import App_User,Vendor,Currier,Device,Order,Location
 
-    # a. Make User Alpha
-    # b. Make Vendor Mgr Alpha
-    # c. Make User Bravo
-    # c. Make Currier Bravo
-    # d. Make Order Charlie
-    # e. Make Device Delta
+    # . Make User ALPHA
+    # . Make Vendor 1 ("vendor_mgr")
+    # . Device ALPHA
+    # . Make User BRAVO
+    # . Make Currier 1
+    # . Device BRAVO
+    # . Make Order 1
 
+
+    # MAKE VENDOR 1
     a = App_User(first_name='ALPHA',
           last_name='ALPHA',
           app_user_type='vendor_mgr'
           )
     a.save()
-    ONE_app_user_id = a.app_user_id
-
-    c = Vendor(app_user_id=ONE_app_user_id,
+    ONE_vendor_app_user_id = a.app_user_id
+    c = Vendor(app_user_id=ONE_vendor_app_user_id,
                 name='ALPHA BIZ',
                 addr1='ONE_pickup_addr',
                 days='Tue-Thu,Sat-Sun',
@@ -40,36 +42,56 @@ def sample_data(request):
                 )
     c.save()
     ONE_vendor_id = c.vendor_id
-    ONE_pickup_addr = c.addr1
-
+    d = Device( vendor_id=ONE_vendor_id,
+                model='iphone',
+               platform='os7')
+    d.save()
+    ONE_vendor_device_id = d.device_id
+    # add device to vendor entry
+    c.device.add(d.device_id)
+    c.save()
+    # add device to app_user entry
+    a.device.add(d.device_id)
     a.vendor_id = c.vendor_id
     a.save()
 
+    # MAKE CURRIER 1
     a = App_User(first_name='BRAVO',
           last_name='BRAVO',
           app_user_type='dg'
           )
     a.save()
-
-    THIS_app_user_id = a.app_user_id
-
-    c = Currier(app_user_id=THIS_app_user_id,
+    ONE_dg_app_user_id = a.app_user_id
+    c = Currier(app_user_id=ONE_dg_app_user_id,
                 speed_rating='1.0',
                 worktime_rating='10.0'
           )
     c.save()
     ONE_dg_id = c.currier_id
-
+    d = Device( currier_id=ONE_dg_id,
+                model='Samsung Galaxy',
+               platform='Ice Cream')
+    d.save()
+    ONE_dg_device_id = d.device_id
+    # add device to currier entry
+    c.device.add(d.device_id)
+    c.save()
+    # add device to app_user entry
+    a.device.add(d.device_id)
     a.currier_id = c.currier_id
     a.save()
 
+    # MAKE ORDER 1
     c = Order(  vendor_id=ONE_vendor_id,
+                vendor_dev_id=ONE_vendor_device_id,
                 currier_id=ONE_dg_id,
+                currier_dev_id=ONE_dg_device_id,
                 web=True,
                 deliv_addr='ONE_deliv_addr',
           )
     c.save()
     ONE_order_id = c.order_id
+    # add locations for order
     l = Location(order_id=ONE_order_id,
                 loc_num=1,
                 pickup=True,
@@ -83,14 +105,83 @@ def sample_data(request):
           )
     c.save()
 
-    c = Order(  vendor_id=ONE_vendor_id,
-                currier_id=ONE_dg_id,
+    # . Make User CHARLIE
+    # . Make Vendor 2 ("vendor_empl")
+    # . Device CHARLIE
+    # . Make User DELTA
+    # . Make Currier 2
+    # . Device DELTA
+    # . Make Order Two
+
+    # MAKE VENDOR 2
+    a = App_User(first_name='CHARLIE',
+          last_name='CHARLIE',
+          app_user_type='vendor_empl'
+          )
+    a.save()
+    TWO_vendor_app_user_id = a.app_user_id
+    c = Vendor( app_user_id=TWO_vendor_app_user_id,
+                name='Charlie Biz',
+                addr1='TWO_pickup_addr',
+                days='Tue-Thu,Sat-Sun',
+                start_times='11:00 AM, 1:00 AM',
+                end_times='11:00 PM, 8:00 PM',
+                area='Murray Hill',
+                holidays=str({"Labor Day" : "closed"}),
+                )
+    c.save()
+    TWO_vendor_id = c.vendor_id
+    d = Device( vendor_id=TWO_vendor_id,
+                model='Blackberry',
+                platform='something old')
+    d.save()
+    TWO_vendor_device_id = d.device_id
+    # add device to vendor entry
+    c.device.add(d.device_id)
+    c.save()
+    # add device to app_user entry
+    a.device.add(d.device_id)
+    a.vendor_id = c.vendor_id
+    a.save()
+
+    # MAKE CURRIER 2
+    a = App_User(first_name='DELTA',
+          last_name='DELTA',
+          app_user_type='dg'
+          )
+    a.save()
+    TWO_dg_app_user_id = a.app_user_id
+    c = Currier(app_user_id=TWO_dg_app_user_id,
+                speed_rating='1.0',
+                worktime_rating='10.0'
+          )
+    c.save()
+    TWO_dg_id = c.currier_id
+    d = Device( currier_id=TWO_dg_id,
+                model='Samsung Galaxy',
+               platform='Ice Cream')
+    d.save()
+    TWO_dg_device_id = d.device_id
+    # add device to currier entry
+    c.device.add(d.device_id)
+    c.save()
+    # add device to app_user entry
+    a.device.add(d.device_id)
+    a.currier_id = c.currier_id
+    a.save()
+
+    # MAKE ORDER 2
+    c = Order(  vendor_id=TWO_vendor_id,
+                vendor_dev_id=TWO_vendor_device_id,
+                currier_id=TWO_dg_id,
+                currier_dev_id=TWO_dg_device_id,
                 call_in=True,
                 req_pickup_time='11:00',
                 deliv_addr='TWO_deliv_addr'
           )
     c.save()
     TWO_order_id = c.order_id
+    # add locations
     l = Location(order_id=TWO_order_id,
                 loc_num=3,
                 pickup=True,
@@ -103,41 +194,6 @@ def sample_data(request):
                  addr=c.deliv_addr,
           )
     c.save()
-
-    c = Device( model='Android',
-                op_sys_ver='Ice Cream'
-            )
-    c.save()
-
-
-
-    # a. Make User Delta
-    # b. Make Vendor Empl Delta
-    # c. Make Currier Two
-    # d. Make Order Two
-    # e. Make Device Two
-
-    a = App_User(first_name='Delta',
-          last_name='Delta',
-          app_user_type='vendor_empl'
-          )
-    a.save()
-    TWO_app_user_id = a.app_user_id
-
-    c = Vendor( app_user_id=TWO_app_user_id,
-                name='Delta Biz',
-                addr1='TWO_pickup_addr',
-                days='Tue-Thu,Sat-Sun',
-                start_times='11:00 AM, 1:00 AM',
-                end_times='11:00 PM, 8:00 PM',
-                area='Murray Hill',
-                holidays=str({"Labor Day" : "closed"}),
-                )
-    c.save()
-
-    a.vendor_id = c.vendor_id
-    a.save()
-
 
     return render(request, 'management/success.html', {})
 def all_data(request):

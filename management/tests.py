@@ -6,7 +6,15 @@ from urllib2 import urlopen,Request
 from datetime import datetime as DT
 
 THE_PAST = DT(2014,1,2,12,30,0).isoformat()
-BASE_URL = 'http://0.0.0.0:8080'
+
+SERVERS = {'dj_dev' :   'http://0.0.0.0:8080',
+           'local'  :   'http://0.0.0.0',
+           'ec2'    :   'http://54.191.47.76',
+           'ec3'    :   'http://54.186.48.182'}
+
+test_server = 'dj_dev'
+# test_server = 'ec2'
+BASE_URL = SERVERS[test_server]
 
 
 def post_form(f_url, FORM_HTML, BASE_URL):
@@ -141,22 +149,21 @@ def device(show_post=False,show_resp=False):
     data = {
                 "action" : 'update',
                 "currier_id" : "1",
+                "update_frequency" : "120",
+                "is_active" : "True",
             }
     last_updated = str(DT(2014,07,17,12,45,0).isoformat())
-    dev_data = {"currier_id" : "1",
-			    "model" : "XT926",
+    dev_data = {"model" : "XT926",
                 "platform" : "Android",
                 "uuid" : "398923",
                 "op_sys_ver" : "4.2",
                 "battery_level" : "50",
-                "update_frequency" : "120",
                 "lat" : "0.0045",
                 "long" : "0.8983",
                 "coord_accuracy" : "1.0",
                 "heading" : "0.4444",
                 "speed" : "1.508",
                 "last_updated" : last_updated,
-                "is_active" : "True",
             }
     data.update({"device":dev_data})
     all_data = [data]
@@ -171,19 +178,19 @@ def device(show_post=False,show_resp=False):
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-print '\n\tTesting...\n'
+print '\n\tTesting "'+test_server+'"...\n'
 print '\tBase URL:',BASE_URL,'\n'
 
-new_vendor(vend_type='mgr')
-new_vendor(vend_type='empl')
-new_currier()
-schedule(post_action='add',show_resp=False)
-schedule(post_action='remove',show_resp=False)
-schedule(post_action='add',show_resp=True)
-work(post_action='GET',show_resp=True)
-work(post_action='check_in',show_resp=True)
-work(post_action='history',show_resp=True)
-work(post_action='check_out',show_resp=True)
+# new_vendor(vend_type='mgr')
+# new_vendor(vend_type='empl')
+# new_currier()
+# schedule(post_action='add',show_resp=False)
+# schedule(post_action='remove',show_resp=False)
+# schedule(post_action='add',show_resp=True)
+# work(post_action='GET',show_resp=True)
+# work(post_action='check_in',show_resp=True)
+# work(post_action='history',show_resp=True)
+# work(post_action='check_out',show_resp=True)
 
 device(show_post=True,show_resp=True)
 

@@ -297,8 +297,8 @@ def work(request):
 @api_view(['GET', 'POST'])
 def device(request):
     # TODO: when authenticating, change dg_id=1 in api.view.work(request)
-    dg_id = 1
-    x = request.DATA
+    dg_id = 1  # set by "currier_id"
+    x = request.DATA[0]
 
     if request.method == 'GET':
         d = Device.objects.get(currier_id=dg_id)
@@ -307,37 +307,14 @@ def device(request):
 
     elif request.method == 'POST':
 
-        # if an unregistered device is posted ...
+        # TODO account for an unregistered device posting update
 
-        test =  [{
-                    "Device"        :
-                    {
-                        "update_frequency"      :   "60",
-                    },
-                    "Locations.JSON"  :     [
-                        {   "loc_num"           :  "1",
-                            "location_id"       :  "1",
-                            "pickup"            :  "True",
-                            "delivery"          :  "False",
-                            "tag"               :  "",
-                            "web"               :  "",
-                            "web_url"           :  "",
-                            "call_in"           :  "",
-                            "req_datetime"      :  "",
-                            "addr"              :  "",
-                            "cross_street"      :  "",
-                            "price"             :  "",
-                            "tip"               :  "",
-                            "end_datetime"      :  "",
-                            "batt_level"        :  "",
-                            "lat"               :  "",
-                            "long"              :  "",
-                            "dev_updated"       :  "",
-                        },
-                    ],
-                }]
+        if x['action'].lower()=='update':
+            d = Device.objects.filter(currier_id=dg_id)
+            d.update(**x['device'])
+            d.update(**{'is_active':True})
+            # TODO adjust update frequency here
+            d.update(**{'update_frequency':x['update_frequency']})
+            return Response(x)
 
-        # d = Device.objects.get(currier_id=dg_id)
-        # serializer = CurrierScheduleSerializer(k, many=True)
-        # return Response(serializer.data)
-        return Response(test)
+        return Response(x)
