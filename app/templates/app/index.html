@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>TransportApp</title>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" href="/static/sencha/resources/css/sencha-touch.css" type="text/css">
+       <link rel="stylesheet" href="/static/sencha/resources/css/app.css" type="text/css">
+    <!--     <link rel="stylesheet" href="assets/jquery-ui.css" type="text/css">-->
+      
+        <script type="text/javascript" src="/static/sencha/lang/eng.js"></script>
+        
+        <!--<script type="text/javascript" src="touch-2.3.1/sencha-touch-all.js"></script>-->   
+        <script type="text/javascript" src="/static/sencha/touch-2.3.1/sencha-touch-all-debug.js"></script>
+	<!--<script type="text/javascript" src="js/RememberMe.js"></script>-->  
+	 
+	<script type="text/javascript" src="/static/sencha/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/sencha/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="/static/sencha/js/jquery-ui-1.8.7.min.js"></script>
+	<!--<script type="text/javascript" src="js/MainApp.js"></script>--> 
+	<script type="text/javascript" src="/static/sencha/js/Validations/Validations.js"></script>
+    <script>
+        Ext.namespace('TransportApp.csrftoken');
+        TransportApp.csrftoken = "{{ csrf_token }}";
+    </script>
+    <script type="text/javascript" src="/static/sencha/app.js"></script>
+	<!-- <link rel="stylesheet" href="assets/app.css" type="text/css">-->
+
+    <script type="text/javascript" charset="utf-8">
+		
+        function onLoad() 
+	{		
+	    document.addEventListener("deviceready", onDeviceReady, false);		
+	}
+        
+        function onDeviceReady() {
+		// cordova.exec(null, null, "SplashScreen", "hide", []);
+		//document.addEventListener("backbutton",onBackKeyDown, false);
+		//document.addEventListener("offline", onOffline, false);		
+	}
+	
+	function onOffline()
+	{
+		//Ext.Msg.alert("Connection Failed", "Internet connection is not available",  function() {		
+		//	navigator.app.exitApp();  
+		//});			
+	}
+
+	// Handle the back button
+	function onBackKeyDown() { 	
+		//if(TransportApp.Screen == 'LoginView' || TransportApp.Screen == 'RegistrationView' || TransportApp.Screen == 'LaterView')
+		//{
+			//Ext.getCmp("MainView").setActiveItem(Ext.getCmp("TabsView"));
+			//Ext.getCmp("TabsView").setActiveItem(Ext.getCmp("tabProfile"));
+		//	TransportApp.Screen = '';
+		//}		
+	   // e.preventDefault();
+	}
+        </script>
+            
+    </head>
+    <body onload="onLoad()"></body>    
+</html>

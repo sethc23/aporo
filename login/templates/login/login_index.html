@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+var winLogin;
+
+Ext.onReady(function(){
+    Ext.tip.QuickTipManager.init(); //init tooltip
+
+    //create a panel to login
+    var loginFormPanel = Ext.create('Ext.form.Panel', {
+        bodyPadding: 15,
+        defaults: { //applying default settings to all added items
+            anchor: '100%',
+            xtype: 'textfield',
+            vtype: 'alphanum',
+            allowBlank: false,
+        },
+        fieldDefaults: {
+            labelWidth: 80,
+            labelAlign: 'left',
+            msgTarget: 'side',
+        },
+        items: [{
+                name: 'username',
+                fieldLabel: 'User Name',
+                minLength: 3,
+                maxLength: 20,
+            },{
+                name: 'password',
+                fieldLabel: 'Password',
+                inputType: 'password',
+                minLength: 4,
+                maxLength: 16,
+            },
+        ],
+        dockedItems: [
+            {
+                xtype: 'toolbar',
+                dock: 'bottom',
+                items: [
+                    { xtype: 'tbfill' },
+                    {
+                        xtype: 'button',
+                        itemId: 'cancel',
+                        text: 'Cancel',
+                        listeners: {
+                            click: function() {
+                                this.up('form').getForm().reset(); //reset all textfiled
+                            }
+                        }
+                    },
+                    {
+                        xtype: 'button',
+                        itemId: 'submit',
+                        formBind: true,
+                        text: "Submit",
+                        listeners: {
+                            click: function() {
+                                var formPanel = this.up('form');
+                                var user = formPanel.down('textfield[name=username]').getValue();
+                                var pass = formPanel.down('textfield[name=password]').getValue();
+                                if (formPanel.getForm().isValid()) {
+                                    Ext.Ajax.request({
+                                        url: 'editor/request_login', // call method in the django's view
+                                        method: 'POST',
+                                        params: {
+                                            username: user,
+                                            password: pass,
+                                        },
+                                        headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                        success: function (response, opts) {
+                                            <!--var text = response.responseText;-->
+                                            <!--Ext.Msg.alert('Success', text);-->
+                                            var json = Ext.JSON.decode(response.responseText);
+                                            Ext.Msg.alert('Success', json['message']);
+                                        },
+                                        failure: function (response, opts) {
+                                            <!--var text = response.responseText;-->
+                                            <!--Ext.Msg.alert('Failure', text);-->
+                                            var json = Ext.JSON.decode(response.responseText);
+                                            Ext.Msg.alert('Failure', json['message']);
+                                        },
+                                    });
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    });
+
+    //create window to contain panel
+    winLogin = Ext.create('Ext.window.Window', {
+        title: 'Login',
+        closeAction: 'hide',
+        height: 170,
+        width: 360,
+        layout: 'fit',
+        iconCls: 'imgToolBarButtonLogin',
+        resizable: false,
+        draggable: false,
+        modal: true,
+        items: [
+            loginFormPanel,
+        ],
+    });
+    winLogin.center();
+});
+
+</body>
+</html>
