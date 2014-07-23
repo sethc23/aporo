@@ -1,4 +1,4 @@
-﻿Ext.define('TransportApp.view.RegistrationView',{
+Ext.define('Aporo.view.RegistrationView',{
 	extend:"Ext.form.Panel",
 	xtype:'RegistrationView',
 	id:'RegistrationView',
@@ -6,22 +6,7 @@
 					layout:'vbox',
 					//scrollable:null,
 					align: 'center',
-					items: [						
-						{
-							xtype: 'titlebar',							
-							margin:'0 0 10 0',
-                            docked:"top",
-							height:54,
-							title:'TransportApp',
-							 items: [
-									{
-										id: 'btnBackView',
-										itemId: 'btnBackView',								
-										align: 'right',
-										text: 'Back',
-									}
-								]
-						},
+					items: [
 						{
 							id:'IdRegistrationForm',
 							width:'98%',							
@@ -33,7 +18,7 @@
 									id:  'fldVendorName',
 									name: 'VendorName',
 									xtype: 'textfield',
-									placeHolder:strVendorName,
+									placeHolder: 'Vendor Name',
 									margin:'15 5 5 5',
 									required: true
 								},									
@@ -41,7 +26,7 @@
 									id: 'fldAddress',
 									name: 'Address',
 									xtype: 'textfield',
-									placeHolder: strAddress,
+									placeHolder: 'Address',
 									margin:'10 5 0 5',
 									required: true
 								},
@@ -49,7 +34,7 @@
 									id: 'fldPcName',
 									name: 'fldPcName',
 									xtype: 'textfield',
-									placeHolder: strPCName,
+									placeHolder: 'Primary Contact Name',
 									margin:'10 5 0 5',
 									required: true
 								},
@@ -57,7 +42,7 @@
 									id: 'fldPcNumber',
 									name: 'fldPcNumber',
 									xtype: 'numberfield',
-									placeHolder: strPCNumber,
+									placeHolder: 'Primary Contact Number',
 									margin:'10 5 0 5',
 									required: true
 								},
@@ -65,7 +50,7 @@
 									id: 'fldPcEmail',
 									name: 'fldPcEmail',
 									xtype: 'emailfield',
-									placeHolder: strPCEmail,
+									placeHolder: 'Primary Contact Email',
 									cls:'clsTextinput',
 									margin:'10 5 0 5',
 									required: true,
@@ -74,7 +59,7 @@
 									id: 'fldVendorNumber',
 									name: 'fldVendorNumber',
 									xtype: 'numberfield',
-									placeHolder: strVendorNumber,
+									placeHolder: 'Vendor Number',
 									cls:'clsTextinput',
 									margin:'10 5 0 5',
 									required: true
@@ -83,7 +68,7 @@
 									id: 'fldVendorEmail',
 									name: 'fldVendorEmail',
 									xtype: 'textfield',
-									placeHolder: strVendorEmail,
+									placeHolder: 'Vendor Email',
 									cls:'clsTextinput',
 									margin:'10 5 0 5',
 									required: true
@@ -96,56 +81,23 @@
 						margin:'0 0 15 0',
 						items:[
 							{	xtype: 'button',
-								text: strSubmit,
+								text: 'Submit',
 								margin:'15 10 15 10',
 								itemId: 'RegisterBtn',
 								flex:.4,
 								ui: "action"
 							},
 							{	xtype: 'button',
-								text: strCancel,
+								text: 'Cancel',
 								margin:'15 10 15 10',
-								id: 'btCancelRegistration',
+								itemId: 'btCancelRegistration',
 								flex:.4,
 								ui: "action"
 							}
 						]
 						
 						}
-					],
-					listeners: [
-					/*{
-						delegate: "#btnRegister",
-						event: "tap",
-						fn: "OnRegisterButtonTap"
-					},*/
-					{
-						delegate: "#btCancelRegistration",
-						event: "tap",
-						fn: "OnCancelButtonTap"
-					},
-					{	
-						dalegate:'#RegistrationView',
-						 event: 'activeitemchange',  				
-						fn:"OnRegistrationViewactivate"
-					 },
-					 {
-						delegate:'#btnBackView',
-						event: 'tap',  				
-						fn:"OnBackBtn"
-					 },
-				]  
-				},
-			/*OnRegisterButtonTap: function () {
-				//	alert('in functiond');
-				this.fireEvent("RegisterCommand", this);
-			},*/
-			OnCancelButtonTap:function(){					
-				//this.fireEvent("CancelRegisterCommand", this);
-				
-			},
-			OnBackBtn: function () {				
-				this.fireEvent("BackBtnCommand", this);
-			},
+					]
+                    }
 		
 });

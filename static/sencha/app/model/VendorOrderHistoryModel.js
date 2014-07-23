@@ -1,4 +1,4 @@
-﻿Ext.define("TransportApp.model.VendorOrderHistoryModel",{
+﻿Ext.define("Aporo.model.VendorOrderHistoryModel",{
 	extend:"Ext.data.Model",	
 		config:
 			{

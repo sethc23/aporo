@@ -1,5 +1,4 @@
-Ext.define(
-    'TransportApp.view.AddVendorOrder',
+Ext.define('Aporo.view.AddVendorOrder',
     {
         extend: "Ext.form.Panel",
         xtype: 'AddVendorOrder',
@@ -10,36 +9,16 @@ Ext.define(
             align: 'center',
             items: [
                 {
-                    xtype: 'titlebar',
-                    docked: 'top',
-                    width: '100%',
-                    height: '54px',
-                    title: 'Add Vendor Orders',
-                    items: [
-                        {
-                            id: 'backBtnVen',
-                            itemId: 'backBtnVen',
-                            align: 'right',
-                            text: 'Back'
-                        }]
-                },
-                {
                     id: 'IdVendorOrderForm',
                     width: '98%',
                     xtype: 'fieldset',
                     instructions: '(All fields are mandatory)',
                     items: [
-//                        {
-//                            id: 'csrfmiddlewaretoken',
-//                            name: 'csrfmiddlewaretoken',
-//                            value: TransportApp.config.Env.django_token,
-//                            xtype: 'hiddenfield'
-//                        },
                         {
                             id: 'fldDeliverAddress',
                             name: 'DeliverAddress',
                             xtype: 'textfield',
-                            placeHolder: strDeliverAddress,
+                            placeHolder: 'Deliver Address',
                             margin: '15 5 5 5',
                             required: true
                         },
@@ -47,9 +26,8 @@ Ext.define(
                             id: 'fldPickupDate',
                             name: 'fldPickupDate',
                             xtype: 'datepickerfield',
-                            placeHolder: strPickupDate,
                             margin: '10 5 0 5',
-                            value: new Date(),
+                            value: new Date()
                         },
                         {
                             xtype: 'panel',
@@ -60,7 +38,7 @@ Ext.define(
                                     id: 'fldPickupTime',
                                     name: 'fldPickupTime',
                                     xtype: 'textfield',
-                                    placeHolder: strPickupTime,
+                                    placeHolder: 'Pickup Time',
                                     margin: '10 5 0 5',
                                     required: true
 
@@ -102,8 +80,7 @@ Ext.define(
                     items: [
                         {
                             xtype: 'button',
-                            text: strSubmit,
-                            cls: 'ClsSmallButton',
+                            text: 'Submit',
                             margin: '15 10 15 10',
                             itemId: 'saveBtn',
                             flex:
@@ -112,64 +89,13 @@ Ext.define(
                         },
                         {
                             xtype: 'button',
-                            text: strCancel,
-                            cls: 'ClsSmallButton',
+                            text: 'Cancel',
                             margin: '15 10 15 10',
-                            id: 'btCancel',
+                            itemId: 'vendorCancelBtn',
                             flex:
                                 .5,
                             ui: "action"
                         }]
-                }],
-            listeners: [
-                /*{
-                    delegate: "#btnSave",
-                    event: "tap",
-                    fn: "OnSaveButtonTap"
-                },*/
-                {
-                    delegate: "#btCancel",
-                    event: "tap",
-                    fn: "OnCancelButtonTap"
-                },
-                {
-                    delegate: '#AddVendorOrder',
-                    event: 'activeitemchange',
-                    fn: "OnVendorOrderViewactivate"
-                },
-                {
-                    delegate: '#backBtnVen',
-                    event: 'tap',
-                    fn: "OnBackButton"
                 }]
-        },
-        /*OnSaveButtonTap: function ()
-        {
-            alert(
-                'Save Button tap'
-            );
-            this.fireEvent(
-                "AddOrderCommand",
-                this);
-        },*/
-        OnCancelButtonTap: function ()
-        {
-            this.fireEvent(
-                "CancelOrderCommand",
-                this);
-        },
-        OnVendorOrderViewactivate: function (
-            AddVendorOrder,
-            value, oldValue,
-            eOpts)
-        {
-            //alert("Add Vendor order Tap");
-            //Ext.getCmp('fldEmail').blur();	
-        },
-        OnBackButton: function ()
-        {
-            this.fireEvent(
-                "VendorBackButtonCommand",
-                this);
         }
     });

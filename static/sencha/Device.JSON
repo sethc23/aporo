@@ -1,0 +1,17 @@
+[
+    {
+        "model" 			: 	"XT926",
+        "platform" 			: 	"Android",
+        "uuid" 				: 	"398923",
+        "op_sys_ver"		: 	"4.2",
+        "battery_level"		: 	"50",
+        "update_frequency"	:	"120",
+        "lat" 				: 	"0.0045",
+        "long" 				: 	"0.8983",
+        "coord_accuracy"	: 	"1.0",
+        "heading" 			: 	"0.4444",
+        "speed" 			: 	"1.508",
+        "last_updated" 		: 	"2014-01-01T15:45:00",
+        "is_active"			: 	"True"
+    }
+]

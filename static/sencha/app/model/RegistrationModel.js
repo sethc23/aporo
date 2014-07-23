@@ -1,4 +1,4 @@
-Ext.define("TransportApp.model.RegistrationModel",{
+Ext.define("Aporo.model.RegistrationModel",{
 	extend:"Ext.data.Model",	
 		config:
 			{

@@ -1,45 +1,21 @@
-Ext.define('TransportApp.view.ContactHelp',{
-	extend:'Ext.Panel',
-	xtype:'ContactHelp',	
-	scrollable:null,
-    id:'ContactHelp',
-	config:{		
+Ext.define('Aporo.view.ContactHelp', {
+    extend: 'Ext.Container',
+    xtype: 'ContactHelp',
+    title: 'Contact Help',
+    config: {
         layout: {
-            type: 'vbox'
+            type: 'vbox',
+            align: 'center'
         },
-		items:[
-                    {
-                        xtype: 'titlebar',
-                        margin:'0 0 10 0',
-                        height:54,
-                        title:'Contact Help',
-                        items: [
-                            {
-                                id: 'btnBack',
-                                itemId: 'btnBack',
-                                align: 'right',
-                                text: 'Back'
-                            }
-                        ]
-                    },
-                    {
-                        id:"IdPhoneNumber",
-                        itemId:"IdPhoneNumber",
-                        xtype:"label",
-                        cls:'contactInfo',
-                        html: '<div>Conatct Number: <a href="tel:+18005558080">(800) 555-8080</a></div>'
-                    }
-              ],
-        listeners:
-        [
+            items: [
             {
-                delegate:'#btnBack',
-                event: 'tap',
-                fn:"OnBackBtn"
+                id:"IdPhoneNumber",
+                itemId:"IdPhoneNumber",
+                xtype:"label",
+                margin: 20,
+                cls:'contactInfo',
+                html: '<div>Conatct Number: <a href="tel:+18005558080">(800) 555-8080</a></div>'
             }
-        ]
-    },
-    OnBackBtn: function () {
-        this.fireEvent("BackBtnCommand", this);
-    }
-});
+            ]
+        }
+    })
