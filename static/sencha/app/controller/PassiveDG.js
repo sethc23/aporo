@@ -31,15 +31,21 @@ Ext.define('Aporo.controller.PassiveDG', {
         }
     },
 
-    slideLeftTransition: { type: 'slide', direction: 'left' },
-    slideRightTransition: { type: 'slide', direction: 'right' },
+    slideLeftTransition: {
+        type: 'slide',
+        direction: 'left'
+    },
+    slideRightTransition: {
+        type: 'slide',
+        direction: 'right'
+    },
 
     work: null,
 
     /**
      * Actions
      */
-    
+
     onActivate: function() {
         console.log('# onActivate');
 
@@ -93,7 +99,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             useDefaultXhrHeader: false,
             params: Ext.encode({
                 action: 'GET',
-                currier_id: Aporo.app.globals.currier_id
+                currier_id: Aporo.config.Env.currier_id
             }),
 
             success: function(response) {
@@ -116,7 +122,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         this.work = json;
 
         // TODO save to disk via phonegap
-        
+
         this.updateHeader();
     },
 
@@ -143,7 +149,6 @@ Ext.define('Aporo.controller.PassiveDG', {
 
             // (b)  If the current datetime is less than 15 minutes minus “start_datetime”, 
             // then the Header has text “Next Check In:” plus content from Next Work.
-            
             else {
                 var today = new Date(),
                     startDate = new Date(Date.parse(nextWork['start_datetime'])),
@@ -156,8 +161,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                     nextWork['area']
                 ].join('<br />'));
             }
-        }
-        else {
+        } else {
             header.hide();
             checkInNowButton.hide();
 
@@ -168,8 +172,8 @@ Ext.define('Aporo.controller.PassiveDG', {
     /**
      * Helpers
      */
-    
-     nextWork: function() {
+
+    nextWork: function() {
         var nextWork = null;
 
         if (!this.work || !this.work['dg_schedule'] || this.work['dg_schedule'].length == 0) {
@@ -184,8 +188,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                     if (Date.parse(nextWork['start_datetime']) > Date.parse(tasks[i]['start_datetime'])) {
                         nextWork = tasks[i];
                     }
-                }
-                else {
+                } else {
                     nextWork = tasks[i];
                 }
             }
@@ -202,7 +205,7 @@ Ext.define('Aporo.controller.PassiveDG', {
     hasWork: function() {
         // TODO remove this
         // return false;
-        
+
         return this.work && this.work['dg_schedule'] && this.work['dg_schedule'].length > 0;
     }
 });

@@ -10,6 +10,7 @@
     will need to resolve manually.
 */
 //Ext.Loader.setPath('Ext', 'project/Aporo/touch/src/');
+
 Ext.application({
     name: 'Aporo',
 
@@ -43,11 +44,11 @@ Ext.application({
         'ActiveDG',
         'PassiveDG'
     ],
-    
+
     stores: [
         'VendorOrderHistoryStore'
     ],
-    
+
     models: [
         'VendorOrderHistoryModel',
         'RegistrationModel'
@@ -71,13 +72,9 @@ Ext.application({
         '1496x2048': 'resources/startup/1496x2048.png'
     },
 
-    globals: {
-        app_user: 1,
-        currier_id: 1,
-        is_active: false
-    },
-
     launch: function() {
+        Ext.Ajax.setUseDefaultXhrHeader(false);
+
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
         //Ext.Loader.setPath('Aporo', 'project/Aporo/app');

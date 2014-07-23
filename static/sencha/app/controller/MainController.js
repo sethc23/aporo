@@ -1,12 +1,14 @@
 Ext.define('Aporo.controller.MainController', {
     extend: 'Ext.app.Controller',
     config: {
+        platformConfig: {
+
+        },
         refs: {
         },
         control: {
             'container[itemId=btnList]' : {
-                activate: function(cmp)
-                {
+                activate: function(cmp) {
                    Ext.getCmp('Viewport').getNavigationBar().setHidden(true);
                 }
             },

@@ -21,3 +21,6 @@ ehthumbs.db
 Thumbs.db
 
 .sass-cache
+static/sencha/build/archive/
+static/sencha/build/production/Aporo/deltas/
+static/sencha/build/temp/testing/
