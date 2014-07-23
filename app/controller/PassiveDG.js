@@ -49,7 +49,9 @@ Ext.define('Aporo.controller.PassiveDG', {
 
         this.getWorkJSON();
 
-        Ext.getCmp('PassiveDGMenuView').hide();
+        this.getPassiveDGMainView().setMasked({
+            xtype: 'loadmask'
+        });
     },
 
     back: function() {
@@ -102,7 +104,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 var json = Ext.util.JSON.decode(response.responseText);
 
                 me.updateWorkJSON(json);
-                Ext.getCmp('PassiveDGMenuView').show();
+                me.getPassiveDGMainView().setMasked(false);
             },
             failure: function(response) {
                 console.log('failure', response);

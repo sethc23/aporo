@@ -37,11 +37,9 @@ Ext.define('Aporo.controller.ActiveDG', {
     locations: null,
 
     updateJSON: function(fetchDevice) {
-        console.log('#################################################');
-        console.log('# updateJSON');
-        console.log('#################################################');
-
-        this.getActiveDGMenuView().hide();
+        this.getActiveDGMainView().setMasked({
+            xtype: 'loadmask'
+        });
 
         var me = this,
             callback;
@@ -102,14 +100,12 @@ Ext.define('Aporo.controller.ActiveDG', {
     },
 
     showMenu: function() {
-        this.getActiveDGMenuView().show();
+        this.getActiveDGMainView().setMasked(false);
 
         var nextLocation = this.nextLocation(),
             toolbar = this.getActiveDGMenuView().getComponent('toolbarHeader');
 
         if (nextLocation) {
-            // TODO
-            // Handle no data?
             toolbar.setTitle(this.titleForLocation(nextLocation));
         }
     },
@@ -124,10 +120,6 @@ Ext.define('Aporo.controller.ActiveDG', {
 
     back: function() {
         Ext.getCmp('Viewport').pop();
-    },
-
-    backToMenu: function() {
-        Ext.getCmp("ActiveDGMainView").animateActiveItem(Ext.getCmp('ActiveDGMenuView'), this.slideRightTransition);
     },
     
     onCheckPackage: function() {
@@ -149,7 +141,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         // TODO 
         // remove this
-        nextLocation['call_in'] = "True";
+        // nextLocation['call_in'] = "True";
         // nextLocation['web'] = "True";
 
         if (nextLocation['call_in'] == "True") {
@@ -186,11 +178,11 @@ Ext.define('Aporo.controller.ActiveDG', {
     onCallInOrderSubmit: function() {
         console.log('# onCallInOrderSubmit');
 
-        var tagField = Ext.getCmp('CallInOrderView').getComponent('tagField'),
+        var tagField = this.getActiveDGCheckPackage().down('textfield'),
             value = tagField.getValue();
 
         if (!value || value == "") {
-            Ext.Alert('Problem', 'Please enter a tag');
+            Ext.Msg.alert('Problem', 'Please enter a tag');
             return;
         }
 
@@ -219,7 +211,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             console.log(location);
 
             Ext.Msg.alert('Success!', null, function() {
-                this.backToMenu();
+                this.back();
             }, this);
             
             return;
@@ -257,7 +249,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 console.log(location);
 
                 Ext.Msg.alert('Success!', null, function() {
-                    this.backToMenu();
+                    this.back();
                 }, this);
             }, this);
 
@@ -280,7 +272,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             scope: this,
             fn: function(buttonId) {
                 if (buttonId == "back") {
-                    this.backToMenu();
+                    this.back();
                 }
             }
         });
@@ -456,10 +448,10 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         // TODO
         // Remove this
-        json[0]['tag'] = 'test';
+        // json[0]['tag'] = 'test';
         // json[0]['web_url'] = 'url';
-        json[0]['pickup'] = 'True';
-        json[0]['delivery'] = 'True';
+        // json[0]['pickup'] = '';
+        // json[0]['delivery'] = 'True';
 
         this.locations = json;
 
