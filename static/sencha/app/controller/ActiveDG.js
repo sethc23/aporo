@@ -56,6 +56,8 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
+        // Ext.browser.is.PhoneGap
+
         // Only get the local Device.JSON file if specified 
         if (fetchDevice) {
             Ext.Ajax.request({
@@ -65,7 +67,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 useDefaultXhrHeader: false,
 
                 success: function(response) {
-                    var json = Ext.util.JSON.decode(response.responseText);
+                    var json = Ext.decode(response.responseText);
                     
                     // When the user is brought to this page, the application checks the local 
                     // “Device.JSON” file.  The application (A) updates Device.JSON and (B) makes 
@@ -412,7 +414,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             url: Aporo.config.Env.baseApiUrl + 'api/device/',
             method: 'POST',
             useDefaultXhrHeader: false,
-            params: Ext.util.JSON.encode({
+            params: Ext.encode({
                 action: 'update',
                 currier_id: Aporo.app.globals.currier_id,
                 device: device,
@@ -420,7 +422,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 update_frequency: json[0]['update_frequency']
             }),
             success: function(response) {
-                var responseJson = Ext.util.JSON.decode(response.responseText)[0],
+                var responseJson = Ext.decode(response.responseText)[0],
                     device = responseJson['Device'],
                     locations = responseJson['Locations.JSON'];
 

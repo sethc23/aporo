@@ -40,21 +40,21 @@ Ext.define('Aporo.view.PassiveDGMenuView',{
                         text: 'Contracts',  
                         itemId: 'btnContracts',
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     },
                     {
                         xtype: 'button',
                         text: 'Check-in',                                        
                         itemId: 'btnCheckIn',                                            
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     },
                     {
                         xtype: 'button',
                         text: 'History',                                      
                         itemId: 'btnHistory',                                          
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     }
                 ]
             }

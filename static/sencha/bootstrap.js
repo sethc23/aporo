@@ -48,7 +48,27 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "Aporo.config.Env": [],
+  "Aporo.controller.ActiveDG": [],
+  "Aporo.controller.MainController": [],
+  "Aporo.controller.PassiveDG": [],
+  "Aporo.controller.Registration": [],
+  "Aporo.controller.Vendors": [],
+  "Aporo.model.RegistrationModel": [],
+  "Aporo.model.VendorOrderHistoryModel": [],
+  "Aporo.store.VendorOrderHistoryStore": [],
+  "Aporo.view.ActiveDGCheckPackage": [],
+  "Aporo.view.ActiveDGCheckPackageModal": [],
+  "Aporo.view.ActiveDGMainView": [],
+  "Aporo.view.ActiveDGMenuView": [],
+  "Aporo.view.AddVendorOrder": [],
+  "Aporo.view.ContactHelp": [],
   "Aporo.view.Main": [],
+  "Aporo.view.PassiveDGMainView": [],
+  "Aporo.view.PassiveDGMenuView": [],
+  "Aporo.view.RegistrationView": [],
+  "Aporo.view.VendorHistory": [],
+  "Aporo.view.VendorOrderList": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -670,8 +690,50 @@ Ext.ClassManager.addNameAlternateMappings({
   ]
 });
 Ext.ClassManager.addNameAliasMappings({
+  "Aporo.config.Env": [],
+  "Aporo.controller.ActiveDG": [],
+  "Aporo.controller.MainController": [],
+  "Aporo.controller.PassiveDG": [],
+  "Aporo.controller.Registration": [],
+  "Aporo.controller.Vendors": [],
+  "Aporo.model.RegistrationModel": [],
+  "Aporo.model.VendorOrderHistoryModel": [],
+  "Aporo.store.VendorOrderHistoryStore": [],
+  "Aporo.view.ActiveDGCheckPackage": [
+    "widget.ActiveDGCheckPackage"
+  ],
+  "Aporo.view.ActiveDGCheckPackageModal": [
+    "widget.ActiveDGCheckPackageModal"
+  ],
+  "Aporo.view.ActiveDGMainView": [
+    "widget.ActiveDGMainView"
+  ],
+  "Aporo.view.ActiveDGMenuView": [
+    "widget.ActiveDGMenuView"
+  ],
+  "Aporo.view.AddVendorOrder": [
+    "widget.AddVendorOrder"
+  ],
+  "Aporo.view.ContactHelp": [
+    "widget.ContactHelp"
+  ],
   "Aporo.view.Main": [
     "widget.main"
+  ],
+  "Aporo.view.PassiveDGMainView": [
+    "widget.PassiveDGMainView"
+  ],
+  "Aporo.view.PassiveDGMenuView": [
+    "widget.PassiveDGMenuView"
+  ],
+  "Aporo.view.RegistrationView": [
+    "widget.RegistrationView"
+  ],
+  "Aporo.view.VendorHistory": [
+    "widget.VendorHistory"
+  ],
+  "Aporo.view.VendorOrderList": [
+    "widget.VendorOrderList"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],

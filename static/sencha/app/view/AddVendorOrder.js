@@ -71,7 +71,7 @@ Ext.define('Aporo.view.AddVendorOrder',
                                         disabled: false
                                     }
                                 }]
-                        }, ]
+                        }]
                 },
                 {
                     xtype: 'panel',

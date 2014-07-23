@@ -12,6 +12,7 @@
 //Ext.Loader.setPath('Ext', 'project/Aporo/touch/src/');
 Ext.application({
     name: 'Aporo',
+
     requires: [
         'Ext.MessageBox',
         'Ext.navigation.View',

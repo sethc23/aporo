@@ -53,7 +53,7 @@ Ext.define('Aporo.view.RegistrationView',{
 									placeHolder: 'Primary Contact Email',
 									cls:'clsTextinput',
 									margin:'10 5 0 5',
-									required: true,
+									required: true
 								},
 								{
 									id: 'fldVendorNumber',
@@ -72,32 +72,32 @@ Ext.define('Aporo.view.RegistrationView',{
 									cls:'clsTextinput',
 									margin:'10 5 0 5',
 									required: true
-								},
-							],
+								}
+							]
 						},
 						{
-						xtype:'panel',
-						layout:'hbox',
-						margin:'0 0 15 0',
-						items:[
-							{	xtype: 'button',
-								text: 'Submit',
-								margin:'15 10 15 10',
-								itemId: 'RegisterBtn',
-								flex:.4,
-								ui: "action"
-							},
-							{	xtype: 'button',
-								text: 'Cancel',
-								margin:'15 10 15 10',
-								itemId: 'btCancelRegistration',
-								flex:.4,
-								ui: "action"
-							}
-						]
+							xtype:'panel',
+							layout:'hbox',
+							margin:'0 0 15 0',
+							items:[
+								{	xtype: 'button',
+									text: 'Submit',
+									margin:'15 10 15 10',
+									itemId: 'RegisterBtn',
+									flex:.4,
+									ui: "action"
+								},
+								{	xtype: 'button',
+									text: 'Cancel',
+									margin:'15 10 15 10',
+									itemId: 'btCancelRegistration',
+									flex:.4,
+									ui: "action"
+								}
+							]
 						
 						}
 					]
-                    }
+                }
 		
 });

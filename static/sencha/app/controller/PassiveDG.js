@@ -1,10 +1,6 @@
 Ext.define('Aporo.controller.PassiveDG', {
     extend: 'Ext.app.Controller',
 
-    requires: [
-        'Ext.util.JSON'
-    ],
-
     config: {
         refs: {
             PassiveDGMainView: 'PassiveDGMainView',
@@ -95,13 +91,13 @@ Ext.define('Aporo.controller.PassiveDG', {
             url: Aporo.config.Env.baseApiUrl + 'api/work/',
             method: 'GET',
             useDefaultXhrHeader: false,
-            params: Ext.util.JSON.encode({
+            params: Ext.encode({
                 action: 'GET',
                 currier_id: Aporo.app.globals.currier_id
             }),
 
             success: function(response) {
-                var json = Ext.util.JSON.decode(response.responseText);
+                var json = Ext.decode(response.responseText);
 
                 me.updateWorkJSON(json);
                 me.getPassiveDGMainView().setMasked(false);

@@ -24,21 +24,21 @@ Ext.define('Aporo.view.ActiveDGMenuView',{
                         text: 'Check Package',  
                         itemId: 'btnCheckPackage',
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     },
                     {
                         xtype: 'button',
                         text: 'Update Route',                                        
                         itemId: 'btnUpdateRoute',                                            
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     },
                     {
                         xtype: 'button',
                         text: 'Check-out',                                      
                         itemId: 'btnCheckOut',                                          
                         ui: "action",
-                        margin: '2% 15% 0 15%',
+                        margin: '2% 15% 0 15%'
                     }
                 ]
             }
