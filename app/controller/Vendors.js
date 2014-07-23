@@ -73,7 +73,7 @@ Ext.define('Aporo.controller.Vendors', {
             Ext.Ajax.disableCaching = false;
 
             Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl+'/orders/',
+            url: Aporo.config.Env.baseApiUrl+'api_view/orders/',
             useDefaultXhrHeader: false,
             method: 'post',
 

@@ -62,6 +62,22 @@ Ext.define('Aporo.view.Main', {
                 margin: 15,
                 itemId: 'MainVendorBtn',
                 text: 'Vendor Menu'
+            },
+            {
+                xtype: 'button',
+                ui: 'action',
+                width: '70%',
+                margin: 15,
+                itemId: 'ActiveDGBtn',
+                text: 'Active DG Menu'
+            },
+            {
+                xtype: 'button',
+                ui: 'action',
+                width: '70%',
+                margin: 15,
+                itemId: 'PassiveDGBtn',
+                text: 'Passive DG Menu'
             }
             ]
         }

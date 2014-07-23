@@ -42,7 +42,7 @@ Ext.define('Aporo.controller.Registration', {
         progressIndicator.show(); //A progress mask while making Ajax request
             
         Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl+'/vendors/',
+            url: Aporo.config.Env.baseApiUrl+'api_view/vendors/',
             header: { 'X-CSRFToken': Aporo.config.Env.django_token },
             method: 'POST',
             useDefaultXhrHeader: false,

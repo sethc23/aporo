@@ -18,6 +18,12 @@ Ext.define('Aporo.controller.MainController', {
             },
             'button[itemId=MainVendorBtn]' : {
                 tap: 'onMainVendorMenuBtnTap'
+            },
+            'button[itemId=ActiveDGBtn]' : {
+                tap: 'onActiveDGMenuBtnTap'
+            },
+            'button[itemId=PassiveDGBtn]' : {
+                tap: 'onPassiveDGMenuBtnTap'
             }
         }
     },
@@ -38,5 +44,17 @@ Ext.define('Aporo.controller.MainController', {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor Menu');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.VendorOrderList'));
+    },
+    onActiveDGMenuBtnTap: function()
+    {
+        Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Active DG Menu');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.ActiveDGMainView'));
+    },
+    onPassiveDGMenuBtnTap: function()
+    {
+        Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Passive DG Menu');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.PassiveDGMainView'));
     }
 });

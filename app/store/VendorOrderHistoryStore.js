@@ -9,7 +9,7 @@ Ext.define('Aporo.store.VendorOrderHistoryStore',{
 							type: 'ajax',
                             method: 'GET',
                             useDefaultXhrHeader: false,
-							url: Aporo.config.Env.baseApiUrl+'/orders/?format=json',
+							url: Aporo.config.Env.baseApiUrl+'api_view/orders/?format=json',
 							reader: 
 							{
 								type: 'json'

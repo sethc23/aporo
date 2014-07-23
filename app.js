@@ -24,12 +24,23 @@ Ext.application({
         'RegistrationView',
         'VendorOrderList',
         'VendorHistory',
-        'AddVendorOrder'
+        'AddVendorOrder',
+
+        'ActiveDGMainView',
+        'ActiveDGMenuView',
+        'ActiveDGCheckPackage',
+        'ActiveDGCheckPackageModal',
+
+        'PassiveDGMainView',
+        'PassiveDGMenuView'
     ],
+
     controllers: [
         'MainController',
         'Registration',
-        'Vendors'
+        'Vendors',
+        'ActiveDG',
+        'PassiveDG'
     ],
     
     stores: [
@@ -57,6 +68,12 @@ Ext.application({
         '748x1024': 'resources/startup/748x1024.png',
         '1536x2008': 'resources/startup/1536x2008.png',
         '1496x2048': 'resources/startup/1496x2048.png'
+    },
+
+    globals: {
+        app_user: 1,
+        currier_id: 1,
+        is_active: false
     },
 
     launch: function() {
