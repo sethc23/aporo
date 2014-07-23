@@ -109,7 +109,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 me.getPassiveDGMainView().setMasked(false);
             },
             failure: function(response) {
-                console.log('failure', response);
+                Ext.Msg.alert('Error', 'There was a problem fetching Work.JSON');
 
                 me.back();
             }
@@ -121,7 +121,16 @@ Ext.define('Aporo.controller.PassiveDG', {
 
         this.work = json;
 
-        // TODO save to disk via phonegap
+        Aporo.util.FileSystem.saveFile({
+            fileName: 'Work.JSON',
+            data: json,
+            success: function() {
+                console.log('Work.JSON saved');
+            },
+            failure: function(error) {
+                Ext.Msg.alert('Error saving Work.JSON', error.code);
+            }
+        });
 
         this.updateHeader();
     },

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0C1DA4F1-5B78-490F-B2FF-48082A1B4267</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Aporo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0A694D62-25FF-4C10-A887-2B1E4A8CBF40</key>
+		<string>https://github.com/sethc23/aporo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>static/sencha/phonegap/platforms/ios/Aporo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0A694D62-25FF-4C10-A887-2B1E4A8CBF40</key>
+		<string>../../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sethc23/aporo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0A694D62-25FF-4C10-A887-2B1E4A8CBF40</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0A694D62-25FF-4C10-A887-2B1E4A8CBF40</string>
+			<key>IDESourceControlWCCName</key>
+			<string>aporo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

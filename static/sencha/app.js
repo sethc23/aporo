@@ -17,7 +17,8 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'Ext.navigation.View',
-        'Aporo.config.Env'
+        'Aporo.config.Env',
+        'Aporo.util.FileSystem'
     ],
 
     views: [
