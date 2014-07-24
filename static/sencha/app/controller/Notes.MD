@@ -1,0 +1,2 @@
+- battery_level is not possible. Only battery level changes.
+- what is dev_updated?

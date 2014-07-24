@@ -32,31 +32,27 @@
      *                                      //  - "delta" to enable over-the-air delta update for this file
      *                                      //  - "full" means full update will be made when this file changes
      *          "x-bootstrap": true         // (Optional)
-     *                                      // Indicates a development mode only dependency.  
+     *                                      // Indicates a development mode only dependency.
      *                                      // These files will not be copied into the build directory or referenced
      *                                      // in the generate app.json manifest for the micro loader.
      *
      *      }
      */
-    "js": [
-		{
-			"path": "phonegap.js",
-			"remote": true
-		},
-        {
-            "path": "touch/sencha-touch.js",
-            "x-bootstrap": true
-        },
-        {
-            "path": "bootstrap.js",
-            "x-bootstrap": true
-        },
-        {
-            "path": "app.js",
-            "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
+    "js": [{
+        "path": "cordova.js",
+        "remote": true
+    }, {
+        "path": "touch/sencha-touch.js",
+        "x-bootstrap": true
+    }, {
+        "path": "bootstrap.js",
+        "x-bootstrap": true
+    }, {
+        "path": "app.js",
+        "bundle": true,
+        /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
-        }
-    ],
+    }],
 
     /**
      * List of all CSS assets in the right inclusion order.
@@ -74,12 +70,11 @@
      *
      *      }
      */
-    "css": [
-    {
-     "path": "resources/css/cupertino.css",
-    "platform": ["chrome", "safari", "ios", "ios-classic", "android", "firefox"],
-    "Theme": "Cupertino" 
-    }   
+    "css": [{
+            "path": "resources/css/cupertino.css",
+            "platform": ["chrome", "safari", "ios", "ios-classic", "android", "firefox"],
+            "Theme": "Cupertino"
+        }
         /*{
             "path": "resources/css/app.css",
             "update": "delta"
@@ -112,7 +107,7 @@
      * Extra resources to be copied along when build
      */
     "resources": [
-		"config.xml",
+        "config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup"
@@ -134,8 +129,7 @@
     /**
      * List of package names to require for the cmd build process
      */
-    "requires": [
-    ],
+    "requires": [],
 
     /**
      * Uniquely generated id for this application, used as prefix for localStorage keys.

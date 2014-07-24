@@ -121,7 +121,7 @@ Ext.define('Aporo.controller.PassiveDG', {
 
         this.work = json;
 
-        Aporo.util.FileSystem.saveFile({
+        Aporo.util.PhoneGap.saveFile({
             fileName: 'Work.JSON',
             data: json,
             success: function() {

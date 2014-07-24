@@ -18,7 +18,7 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.navigation.View',
         'Aporo.config.Env',
-        'Aporo.util.FileSystem'
+        'Aporo.util.PhoneGap'
     ],
 
     views: [

@@ -75,6 +75,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost/odesk/23-07-2014/Seth%20Chase/aporo/static/sencha/"]]];
 }
 
 - (void)viewDidUnload

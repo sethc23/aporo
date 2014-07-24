@@ -57,7 +57,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.model.RegistrationModel": [],
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
-  "Aporo.util.FileSystem": [],
+  "Aporo.util.PhoneGap": [],
   "Aporo.view.ActiveDGCheckPackage": [],
   "Aporo.view.ActiveDGCheckPackageModal": [],
   "Aporo.view.ActiveDGMainView": [],
@@ -700,7 +700,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.model.RegistrationModel": [],
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
-  "Aporo.util.FileSystem": [],
+  "Aporo.util.PhoneGap": [],
   "Aporo.view.ActiveDGCheckPackage": [
     "widget.ActiveDGCheckPackage"
   ],

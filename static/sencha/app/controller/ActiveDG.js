@@ -66,44 +66,217 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         // Only get the local Device.JSON file if specified 
         if (fetchDevice) {
-            Ext.Ajax.request({
-                // TODO
-                // this needs to be correct URL
-                url: 'Device.JSON',
-                useDefaultXhrHeader: false,
+            var failure = function(error) {
+                me.back();
 
-                success: function(response) {
-                    var json = Ext.decode(response.responseText);
+                if (error) {
+                    Ext.Msg.alert('Error', 'There was a problem:<br /><br />' + error.code);
+                } else {
+                    Ext.Msg.alert('Error', 'Something went wrong. Please try again.');
+                }
+            };
 
+            Aporo.util.PhoneGap.fileExists({
+                fileName: 'Device.JSON',
+                success: function(exists) {
                     // When the user is brought to this page, the application checks the local 
                     // “Device.JSON” file.  The application (A) updates Device.JSON and (B) makes 
                     // a URL post request if either:
-                    // 
-                    // (1) “is_active” is “False”, or
-                    // (2)  the current time is equal to or greater than “last_updated” plus the 
-                    //      number of seconds defined by “update_frequency”.
+                    if (exists) {
+                        me.readDeviceJSON({
+                            success: function(json) {
+                                // (1) “is_active” is “False”, or
+                                // (2)  the current time is equal to or greater than “last_updated” plus the 
+                                //      number of seconds defined by “update_frequency”.
+                                var details = json[0],
+                                    isActive = details['is_active'] == 'True',
+                                    lastUpdated = Date.parse(details['last_updated']),
+                                    requiresUpdate = (Date.now() - lastUpdated) >= parseInt(details['update_frequency']);
 
-                    var details = json[0],
-                        isActive = details['is_active'] == 'True',
-                        lastUpdated = Date.parse(details['last_updated']),
-                        requiresUpdate = (Date.now() - lastUpdated) >= parseInt(details['update_frequency']);
-
-                    if (!isActive || requiresUpdate) {
-                        me.updateDeviceJSON(json, function(success, json) {
+                                if (!isActive || requiresUpdate) {
+                                    me.updateDeviceJSON(json, function(success, json) {
+                                        callback(json);
+                                    });
+                                }
+                            },
+                            failure: failure
+                        });
+                    } else {
+                        me.updateDeviceJSON(null, function(success, json) {
                             callback(json);
                         });
                     }
                 },
-                failure: function(response) {
-                    console.log('failure', response);
-
-                    me.back();
-                    Ext.Msg.alert('Error', 'Something went wrong.');
-                }
+                failure: failure
             });
         } else {
             callback(this.device);
         }
+    },
+
+    readDeviceJSON: function(config) {
+        Aporo.util.PhoneGap.readFile({
+            fileName: 'device.JSON',
+            success: function(json) {
+                config.success(json);
+            },
+            failure: function(error) {
+                config.failure(error);
+            }
+        });
+    },
+
+    updateDeviceJSON: function(json, callback) {
+        console.log('# updateDeviceJSON');
+
+        var me = this;
+
+        // The application updates Device.JSON with device information obtained via the 
+        // PhoneGap library, defines “is_active” as True, and keeps “update_frequency” 
+        // constant.
+
+        if (json) {
+            json = Ext.clone(json);
+        } else {
+            json = me.json || [{}];
+        }
+
+        json[0]['is_active'] = 'True';
+
+        var _callback = function() {
+            me.device = json;
+
+            callback(true, json);
+        };
+
+        if (Ext.browser.is.PhoneGap) {
+            json[0]['model'] = device.model;
+            json[0]['platform'] = device.platform;
+            json[0]['uuid'] = device.uuid;
+            json[0]['op_sys_ver'] = device.version;
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+                json[0]['lat'] = position.coords.latitude;
+                json[0]['long'] = position.coords.longitude;
+                json[0]['coord_accuracy'] = position.coords.accuracy;
+                json[0]['heading'] = position.coords.heading;
+                json[0]['speed'] = position.coords.speed;
+
+                _callback.call(me);
+            }, function(error) {
+                console.log('Error fetching geolocation position:', error);
+
+                _callback.call(me);
+            });
+        } else {
+            _callback();
+        }
+    },
+
+    postDeviceJSONUpdate: function(json, callback) {
+        console.log('# postDeviceJSONUpdate');
+
+        var me = this,
+            device = Ext.clone(json[0]);
+
+        // Remove is_active and update_frequency
+        delete device['is_active'];
+        delete device['update_frequency'];
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/device/',
+            method: 'POST',
+            useDefaultXhrHeader: false,
+            params: Ext.encode({
+                action: 'update',
+                currier_id: Aporo.config.Env.currier_id,
+                device: device,
+                is_active: json[0]['is_active'],
+                update_frequency: json[0]['update_frequency']
+            }),
+            success: function(response) {
+                var responseJson = Ext.decode(response.responseText)[0],
+                    device = responseJson['Device.JSON'],
+                    locations = responseJson['Locations.JSON'];
+
+                // Update the Device.JSON
+                json = Ext.Object.merge(json, device);
+                me.updateDeviceJSON(json, function() {
+                    // Update Locations.JSON
+                    me.updateLocationsJSON(locations, function() {
+                        callback(true);
+                    });
+                });
+            },
+            failure: function(response) {
+                // callback(false);
+                // TODO revert this
+
+                var responseJson = [{
+                    "Device.JSON": {
+                        "update_frequency": "60",
+                        "is_active": "True"
+                    },
+                    "Locations.JSON": [{
+                        "loc_num": 1,
+                        "addr": "ONE_pickup_addr",
+                        "call_in": true,
+                        "pickup": true,
+                        "cross_street": "",
+                        "end_datetime": null,
+                        "location_id": 1,
+                        "price": null,
+                        "req_datetime": null,
+                        "tag": "test",
+                        "tip": null,
+                        "web": false,
+                        "web_url": ""
+                    }]
+                }];
+
+                var device = responseJson[0]['Device.JSON'],
+                    locations = responseJson[0]['Locations.JSON'];
+
+                // Update the Device.JSON
+                json = Ext.Object.merge(json, device);
+                me.updateDeviceJSON(json, function() {
+                    // Update Locations.JSON
+                    me.updateLocationsJSON(locations, function() {
+                        callback(true);
+                    });
+                });
+
+                // TODO revert this end
+            }
+        });
+    },
+
+    updateLocationsJSON: function(json, callback) {
+        console.log('# updateLocationsJSON');
+
+        // TODO
+        // Remove this
+        // json[0]['tag'] = 'test';
+        // json[0]['web_url'] = 'url';
+        // json[0]['pickup'] = '';
+        // json[0]['delivery'] = 'True';
+
+        this.locations = json;
+
+        console.log(json);
+
+        Aporo.util.PhoneGap.saveFile({
+            fileName: 'Locations.JSON',
+            data: json,
+            success: function() {
+                console.log('Locations.JSON saved');
+                callback(true);
+            },
+            failure: function(error) {
+                Ext.Msg.alert('Error saving Locations.JSON', error.code);
+                callback(false);
+            }
+        });
     },
 
     showMenu: function() {
@@ -151,10 +324,10 @@ Ext.define('Aporo.controller.ActiveDG', {
         // nextLocation['call_in'] = "True";
         // nextLocation['web'] = "True";
 
-        if (nextLocation['call_in'] == "True") {
+        if (nextLocation['call_in'] === true || nextLocation['call_in'] === "True") {
             Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Check Package');
             Ext.getCmp('Viewport').push(checkPackageView);
-        } else if (nextLocation['web'] == "True") {
+        } else if (nextLocation['web'] === true || nextLocation['web'] === "True") {
             this.onWebOrder();
         } else {
             // @seth
@@ -183,7 +356,9 @@ Ext.define('Aporo.controller.ActiveDG', {
     onCallInOrderSubmit: function() {
         console.log('# onCallInOrderSubmit');
 
-        var tagField = this.getActiveDGCheckPackage().down('textfield'),
+        var me = this;
+
+        var tagField = me.getActiveDGCheckPackage().down('textfield'),
             value = tagField.getValue();
 
         if (!value || value == "") {
@@ -201,7 +376,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         //            - “end_datetime” with the current time, and
         //            - { batt_level, lat, long, dev_updated } with PhoneGap.
 
-        var locations = this.locationsWithProperties([{
+        var locations = me.locationsWithProperties([{
             key: 'tag',
             value: value
         }, {
@@ -209,21 +384,22 @@ Ext.define('Aporo.controller.ActiveDG', {
             value: null
         }, {
             key: 'pickup',
-            value: 'True'
+            value: "True"
         }]);
 
         if (locations.length > 0) {
             // TODO
-            // update: batt_level, lat, long, dev_updated - via phonegap
+            // update:dev_updated - via phonegap
+            me.updateDeviceJSON(me.json, function(success, json) {
+                var location = locations[0];
+                location['end_datetime'] = me.formattedDate();
 
-            var location = locations[0];
-            location['end_datetime'] = this.formattedDate();
-
-            console.log(location);
-
-            Ext.Msg.alert('Success!', null, function() {
-                this.back();
-            }, this);
+                me.updateLocationsJSON(me.locations, function(success) {
+                    Ext.Msg.alert('Success!', null, function() {
+                        me.back();
+                    }, me);
+                });
+            });
 
             return;
         }
@@ -234,7 +410,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         //            - { batt_level, lat, long, dev_updated } with PhoneGap, and
         //            - “price” and “tip” with user inputs from a form.
 
-        locations = this.locationsWithProperties([{
+        locations = me.locationsWithProperties([{
             key: 'tag',
             value: value
         }, {
@@ -254,18 +430,21 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                 modal.destroy();
 
-                location['price'] = price;
-                location['tip'] = tip;
-                location['end_datetime'] = this.formattedDate();
-
                 // TODO
-                // update: batt_level, lat, long, dev_updated - via phonegap
-                console.log(location);
+                // update: dev_updated - via phonegap
 
-                Ext.Msg.alert('Success!', null, function() {
-                    this.back();
-                }, this);
-            }, this);
+                me.updateDeviceJSON(me.json, function(success, json) {
+                    location['price'] = price;
+                    location['tip'] = tip;
+                    location['end_datetime'] = me.formattedDate();
+
+                    me.updateLocationsJSON(me.locations, function(success) {
+                        Ext.Msg.alert('Success!', null, function() {
+                            me.back();
+                        }, me);
+                    });
+                });
+            }, me);
 
             return;
         }
@@ -282,10 +461,9 @@ Ext.define('Aporo.controller.ActiveDG', {
                 ui: 'action',
                 itemId: 'tryagain'
             }],
-            scope: this,
             fn: function(buttonId) {
                 if (buttonId == "back") {
-                    this.back();
+                    me.back();
                 }
             }
         });
@@ -396,89 +574,6 @@ Ext.define('Aporo.controller.ActiveDG', {
     },
 
     /**
-     * Updating Device.JSON and Locations.JSON
-     */
-
-    updateDeviceJSON: function(json, callback) {
-        console.log('# updateDeviceJSON');
-
-        // TODO
-        // The application updates Device.JSON with device information obtained via the 
-        // PhoneGap library, defines “is_active” as True, and keeps “update_frequency” 
-        // constant.
-
-        var newJson = Ext.clone(json);
-        newJson[0]["is_active"] = "True";
-
-        console.log(newJson);
-
-        this.device = newJson;
-
-        callback(true, json);
-    },
-
-    postDeviceJSONUpdate: function(json, callback) {
-        console.log('# postDeviceJSONUpdate');
-
-        var me = this,
-            device = Ext.clone(json[0]);
-
-        // Remove is_active and update_frequency
-        delete device['is_active'];
-        delete device['update_frequency'];
-
-        Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl + 'api/device/',
-            method: 'POST',
-            useDefaultXhrHeader: false,
-            params: Ext.encode({
-                action: 'update',
-                currier_id: Aporo.config.Env.currier_id,
-                device: device,
-                is_active: json[0]['is_active'],
-                update_frequency: json[0]['update_frequency']
-            }),
-            success: function(response) {
-                var responseJson = Ext.decode(response.responseText)[0],
-                    device = responseJson['Device'],
-                    locations = responseJson['Locations.JSON'];
-
-                // Update the Device.JSON
-                json = Ext.Object.merge(json, device);
-                me.updateDeviceJSON(json, function() {
-                    // Update Locations.JSON
-                    me.updateLocationsJSON(locations, function() {
-                        callback(true);
-                    });
-                });
-            },
-            failure: function(response) {
-                callback(false);
-            }
-        });
-    },
-
-    updateLocationsJSON: function(json, callback) {
-        console.log('# updateLocationsJSON');
-
-        // TODO
-        // The contents of the “Locations” field are to replace the entire contents of 
-        // the locally saved file Locations.JSON.
-        console.log(json);
-
-        // TODO
-        // Remove this
-        // json[0]['tag'] = 'test';
-        // json[0]['web_url'] = 'url';
-        // json[0]['pickup'] = '';
-        // json[0]['delivery'] = 'True';
-
-        this.locations = json;
-
-        callback(true);
-    },
-
-    /**
      * Helpers
      */
 
@@ -549,6 +644,10 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                 if (!value) {
                     if (this.locations[i][key] && this.locations[i][key] != "") {
+                        selected = false;
+                    }
+                } else if (value == "True") {
+                    if (this.locations[i][key] === false || this.locations[i][key] == "false" || !this.locations[i][key]) {
                         selected = false;
                     }
                 } else if (this.locations[i][key] != value) {
