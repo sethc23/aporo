@@ -422,6 +422,8 @@ Ext.define('Aporo.controller.PassiveDG', {
                         for (var i = 0; i < records.length; i++) {
                             records[i].set('changedRegistered', false);
                         }
+
+                        // TODO show success message
                     },
                     failure: function(response) {
                         Ext.Msg.alert('Problem', 'Problem updating all contracts');
