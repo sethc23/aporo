@@ -205,8 +205,6 @@ Ext.define('Aporo.controller.ActiveDG', {
             update_frequency: json[0]['update_frequency']
         };
 
-        console.log(Ext.encode(params));
-
         Ext.Ajax.request({
             url: Aporo.config.Env.baseApiUrl + 'api/device/',
             method: 'POST',
