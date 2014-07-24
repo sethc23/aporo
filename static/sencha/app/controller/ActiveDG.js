@@ -311,7 +311,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         //  - If “call_in” is True: --> user is directed to Call In Order
         //  - If “web” is True:     --> user is directed to Web Order
 
-        var checkPackageView = Ext.create('Aporo.view.ActiveDGCheckPackage'),
+        var checkPackageView = Ext.create('Aporo.view.activeDG.CheckPackage'),
             nextLocation = this.nextLocation();
 
         if (!nextLocation) {
@@ -419,7 +419,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         }]);
 
         if (locations.length > 0) {
-            var modal = Ext.create('Aporo.view.ActiveDGCheckPackageModal'),
+            var modal = Ext.create('Aporo.view.activeDG.CheckPackageModal'),
                 location = locations[0];
 
             Ext.Viewport.add(modal);
@@ -521,7 +521,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             }]);
 
             if (locations.length > 0) {
-                var modal = Ext.create('Aporo.view.ActiveDGCheckPackageModal'),
+                var modal = Ext.create('Aporo.view.activeDG.CheckPackageModal'),
                     location = locations[0];
 
                 Ext.Viewport.add(modal);

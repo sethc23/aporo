@@ -1,14 +1,1 @@
-{
-    "id": "df739d1d-48db-4aef-a70a-337e0d7aa6f8",
-    "js": [{
-        "path": "phonegap.js",
-        "remote": true
-    }, {
-        "path": "app.js"
-    }],
-    "css": [{
-        "path": "resources/css/cupertino.css",
-        "version": "807a8aeaeeaba08b97f916320a1d5fa4cdadacd4",
-        "platform": ["chrome", "safari", "ios", "ios-classic", "android", "firefox"]
-    }]
-}
+{"id":"df739d1d-48db-4aef-a70a-337e0d7aa6f8","js":[{"path":"cordova.js","remote":true},{"path":"app.js","update":"delta","version":"fca48c0ed0b23edc6844430b3eacd3c681de5831"}],"css":[{"path":"resources/css/app.css","version":"ed967e75fff1818f9da1e276ed62579ce4541a29","platform":["chrome","safari","ios","ios-classic","android","firefox"]}]}

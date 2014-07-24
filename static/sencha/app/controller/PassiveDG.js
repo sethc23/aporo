@@ -4,7 +4,9 @@ Ext.define('Aporo.controller.PassiveDG', {
     config: {
         refs: {
             PassiveDGMainView: 'PassiveDGMainView',
-            PassiveDGMenuView: 'PassiveDGMenuView'
+            PassiveDGMenuView: 'PassiveDGMenuView',
+            PassiveDGContracts: 'PassiveDGContracts',
+            PassiveDGHistory: 'PassiveDGHistory'
         },
 
         control: {
@@ -27,6 +29,11 @@ Ext.define('Aporo.controller.PassiveDG', {
             },
             'PassiveDGMainView #btnHistory': {
                 tap: 'onHistory'
+            },
+
+            // Contracts
+            PassiveDGContracts: {
+                activate: 'onContractsActivate'
             }
         }
     },
@@ -41,6 +48,9 @@ Ext.define('Aporo.controller.PassiveDG', {
     },
 
     work: null,
+
+    contracts: null,
+    contractsStore: null,
 
     /**
      * Actions
@@ -73,7 +83,8 @@ Ext.define('Aporo.controller.PassiveDG', {
     },
 
     onContracts: function() {
-        this.back();
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Contracts');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.Contracts'));
     },
 
     onCheckIn: function() {
@@ -81,7 +92,8 @@ Ext.define('Aporo.controller.PassiveDG', {
     },
 
     onHistory: function() {
-        this.back();
+        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('History');
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.History'));
     },
 
     /**
@@ -176,6 +188,79 @@ Ext.define('Aporo.controller.PassiveDG', {
 
             findWorkButton.show();
         }
+    },
+
+    /**
+     * Contracts JSON
+     */
+
+    getContractsJSON: function() {
+        console.log('# getContractsJSON');
+
+        var me = this;
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/dg_contracts/',
+            method: 'GET',
+            useDefaultXhrHeader: false,
+            params: Ext.encode({
+                action: 'GET',
+                currier_id: Aporo.config.Env.currier_id
+            }),
+
+            success: function(response) {
+                var json = Ext.decode(response.responseText);
+
+                me.contractsStore = Ext.create('Ext.data.Store', {
+                    storeId: 'contractsStore',
+                    fields: [
+                        'area',
+                        'contract_id',
+                        'hour_period',
+                        'start_datetime',
+                        'start_day',
+                        'start_time',
+
+                        'curriers',
+
+                        {
+                            name: 'registered',
+                            convert: function(value, record) {
+                                var registered = false,
+                                    curriers = record.get('curriers');
+
+                                for (var i = 0; i < curriers.length; i++) {
+                                    if (curriers[i].currier_id == Aporo.config.Env.currier_id) {
+                                        registered = true;
+                                        break;
+                                    }
+                                }
+                                return registered;
+                            }
+                        }
+                    ],
+                    data: json
+                });
+
+                me.getPassiveDGContracts().setStore(me.contractsStore);
+
+                // me.updateWorkJSON(json);
+                // me.getPassiveDGMainView().setMasked(false);
+            },
+            failure: function(response) {
+                Ext.Msg.alert('Error', 'There was a problem fetching Contracts.JSON');
+
+                me.back();
+            }
+        });
+    },
+
+    /**
+     * Contracts
+     */
+
+    onContractsActivate: function() {
+        this.getContractsJSON();
     },
 
     /**

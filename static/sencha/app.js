@@ -29,13 +29,15 @@ Ext.application({
         'VendorHistory',
         'AddVendorOrder',
 
-        'ActiveDGMainView',
-        'ActiveDGMenuView',
-        'ActiveDGCheckPackage',
-        'ActiveDGCheckPackageModal',
+        'activeDG.MainView',
+        'activeDG.MenuView',
+        'activeDG.CheckPackage',
+        'activeDG.CheckPackageModal',
 
-        'PassiveDGMainView',
-        'PassiveDGMenuView'
+        'passiveDG.MainView',
+        'passiveDG.MenuView',
+        'passiveDG.Contracts',
+        'passiveDG.History'
     ],
 
     controllers: [

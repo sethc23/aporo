@@ -45,7 +45,10 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
+  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
+  "Ext.grid": "touch/packages/sencha-touch-grid/src/grid",
+  "Ext.grid.column.Action": "touch/packages/sencha-touch-grid/src/grid/column/unsupported/Action.js",
+  "Ext.grid.column.CheckColumn": "touch/packages/sencha-touch-grid/src/grid/column/unsupported/CheckColumn.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Aporo.config.Env": [],
@@ -58,18 +61,20 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.ActiveDGCheckPackage": [],
-  "Aporo.view.ActiveDGCheckPackageModal": [],
-  "Aporo.view.ActiveDGMainView": [],
-  "Aporo.view.ActiveDGMenuView": [],
   "Aporo.view.AddVendorOrder": [],
   "Aporo.view.ContactHelp": [],
   "Aporo.view.Main": [],
-  "Aporo.view.PassiveDGMainView": [],
-  "Aporo.view.PassiveDGMenuView": [],
   "Aporo.view.RegistrationView": [],
   "Aporo.view.VendorHistory": [],
   "Aporo.view.VendorOrderList": [],
+  "Aporo.view.activeDG.CheckPackage": [],
+  "Aporo.view.activeDG.CheckPackageModal": [],
+  "Aporo.view.activeDG.MainView": [],
+  "Aporo.view.activeDG.MenuView": [],
+  "Aporo.view.passiveDG.Contracts": [],
+  "Aporo.view.passiveDG.History": [],
+  "Aporo.view.passiveDG.MainView": [],
+  "Aporo.view.passiveDG.MenuView": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -553,6 +558,30 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssAnimation": [],
   "Ext.fx.runner.CssTransition": [],
+  "Ext.grid.Grid": [],
+  "Ext.grid.HeaderContainer": [],
+  "Ext.grid.HeaderGroup": [],
+  "Ext.grid.Row": [],
+  "Ext.grid.column.Action": [
+    "Ext.grid.ActionColumn"
+  ],
+  "Ext.grid.column.Boolean": [],
+  "Ext.grid.column.CheckColumn": [
+    "Ext.ux.CheckColumn"
+  ],
+  "Ext.grid.column.Column": [],
+  "Ext.grid.column.Date": [],
+  "Ext.grid.column.Number": [],
+  "Ext.grid.column.Template": [],
+  "Ext.grid.infinite.Grid": [],
+  "Ext.grid.infinite.Row": [],
+  "Ext.grid.infinite.TemplateRow": [],
+  "Ext.grid.plugin.ColumnResizing": [],
+  "Ext.grid.plugin.Editable": [],
+  "Ext.grid.plugin.MultiSelection": [],
+  "Ext.grid.plugin.PagingToolbar": [],
+  "Ext.grid.plugin.SummaryRow": [],
+  "Ext.grid.plugin.ViewOptions": [],
   "Ext.layout.Abstract": [],
   "Ext.layout.Box": [],
   "Ext.layout.Card": [],
@@ -701,18 +730,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.ActiveDGCheckPackage": [
-    "widget.ActiveDGCheckPackage"
-  ],
-  "Aporo.view.ActiveDGCheckPackageModal": [
-    "widget.ActiveDGCheckPackageModal"
-  ],
-  "Aporo.view.ActiveDGMainView": [
-    "widget.ActiveDGMainView"
-  ],
-  "Aporo.view.ActiveDGMenuView": [
-    "widget.ActiveDGMenuView"
-  ],
   "Aporo.view.AddVendorOrder": [
     "widget.AddVendorOrder"
   ],
@@ -722,12 +739,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.view.Main": [
     "widget.main"
   ],
-  "Aporo.view.PassiveDGMainView": [
-    "widget.PassiveDGMainView"
-  ],
-  "Aporo.view.PassiveDGMenuView": [
-    "widget.PassiveDGMenuView"
-  ],
   "Aporo.view.RegistrationView": [
     "widget.RegistrationView"
   ],
@@ -736,6 +747,30 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Aporo.view.VendorOrderList": [
     "widget.VendorOrderList"
+  ],
+  "Aporo.view.activeDG.CheckPackage": [
+    "widget.ActiveDGCheckPackage"
+  ],
+  "Aporo.view.activeDG.CheckPackageModal": [
+    "widget.ActiveDGCheckPackageModal"
+  ],
+  "Aporo.view.activeDG.MainView": [
+    "widget.ActiveDGMainView"
+  ],
+  "Aporo.view.activeDG.MenuView": [
+    "widget.ActiveDGMenuView"
+  ],
+  "Aporo.view.passiveDG.Contracts": [
+    "widget.PassiveDGContracts"
+  ],
+  "Aporo.view.passiveDG.History": [
+    "widget.PassiveDGHistory"
+  ],
+  "Aporo.view.passiveDG.MainView": [
+    "widget.PassiveDGMainView"
+  ],
+  "Aporo.view.passiveDG.MenuView": [
+    "widget.PassiveDGMenuView"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -1284,6 +1319,66 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.fx.runner.Css": [],
   "Ext.fx.runner.CssAnimation": [],
   "Ext.fx.runner.CssTransition": [],
+  "Ext.grid.Grid": [
+    "widget.grid"
+  ],
+  "Ext.grid.HeaderContainer": [
+    "widget.headercontainer"
+  ],
+  "Ext.grid.HeaderGroup": [
+    "widget.gridheadergroup"
+  ],
+  "Ext.grid.Row": [
+    "widget.gridrow"
+  ],
+  "Ext.grid.column.Action": [
+    "widget.actioncolumn"
+  ],
+  "Ext.grid.column.Boolean": [
+    "widget.booleancolumn"
+  ],
+  "Ext.grid.column.CheckColumn": [
+    "widget.checkcolumn"
+  ],
+  "Ext.grid.column.Column": [
+    "widget.column"
+  ],
+  "Ext.grid.column.Date": [
+    "widget.datecolumn"
+  ],
+  "Ext.grid.column.Number": [
+    "widget.numbercolumn"
+  ],
+  "Ext.grid.column.Template": [
+    "widget.templatecolumn"
+  ],
+  "Ext.grid.infinite.Grid": [
+    "widget.grid"
+  ],
+  "Ext.grid.infinite.Row": [
+    "widget.gridrow"
+  ],
+  "Ext.grid.infinite.TemplateRow": [
+    "widget.listgridrow"
+  ],
+  "Ext.grid.plugin.ColumnResizing": [
+    "plugin.gridcolumnresizing"
+  ],
+  "Ext.grid.plugin.Editable": [
+    "plugin.grideditable"
+  ],
+  "Ext.grid.plugin.MultiSelection": [
+    "plugin.gridmultiselection"
+  ],
+  "Ext.grid.plugin.PagingToolbar": [
+    "plugin.gridpagingtoolbar"
+  ],
+  "Ext.grid.plugin.SummaryRow": [
+    "plugin.gridsummaryrow"
+  ],
+  "Ext.grid.plugin.ViewOptions": [
+    "plugin.gridviewoptions"
+  ],
   "Ext.layout.Abstract": [],
   "Ext.layout.Box": [
     "layout.tablebox"
@@ -1454,6 +1549,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": []
 });
+Ext.setVersion("sencha-touch-grid", "2.3.0");
 
 
 /**
