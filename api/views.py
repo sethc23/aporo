@@ -171,7 +171,7 @@ def dg_contracts(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-
+        x = eval(x.keys()[0])
         #   . receive JSON from DG -- DONE
         #   . create/edit Schedule entries
         #   . update Contract entries
@@ -190,7 +190,7 @@ def dg_contracts(request):
                 serializer = FilteredContractSerializer(k, many=True)
                 return Response(serializer.data)
 
-        dg_id = it['currier_id']
+        dg_id = 1#it['currier_id']
 
         def ACTION_add(add_entries):
             for it in add_entries:
@@ -243,7 +243,7 @@ def dg_contracts(request):
         if add_entries != []:   ACTION_add(add_entries)
         if del_entries != []:   ACTION_remove(del_entries)
 
-        k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=dg_id))
+        k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=str(dg_id)))
         k_serializer = FilteredContractSerializer(k, many=True)
         # t = k_serializer.data[0]['curriers']
         # TODO: redefine FilteredContractSerializer to replace "curriers" field with "is_contracted"
@@ -267,36 +267,36 @@ def work(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
+        it = eval(x.keys()[0])
 
-        for it in x:
-            if it['action'].lower()=='get':
-                k = Currier.objects.get(currier_id=dg_id)
-                serializer = CurrierScheduleSerializer(k)
-                return Response(serializer.data)
-            elif it['action'][:6].lower()=='check_':
-                c = Currier.objects.get(currier_id=dg_id)
-                if it['action'][6:].lower()=='in': c.is_active,i = True,'True'
-                else: c.is_active,i = False,'False'
-                c.save()
-                return Response({"is_active":i})
-            elif it['action'].lower()=='history':
-                now = DT.utcnow().strftime("%Y-%m-%d")
-                s = Schedule.objects.filter( Q(currier_id=dg_id) , Q(check_out_datetime__lt=now) )
-                serializer = FilteredScheduleSerializer(s, many=True)
-                return Response(serializer.data)
+        if it['action'].lower()=='get':
+            k = Currier.objects.get(currier_id=dg_id)
+            serializer = CurrierScheduleSerializer(k)
+            return Response(serializer.data)
+        elif it['action'][:6].lower()=='check_':
+            c = Currier.objects.get(currier_id=dg_id)
+            if it['action'][6:].lower()=='in': c.is_active,i = True,'True'
+            else: c.is_active,i = False,'False'
+            c.save()
+            return Response({"is_active":i})
+        elif it['action'].lower()=='history':
+            now = DT.utcnow().strftime("%Y-%m-%d")
+            s = Schedule.objects.filter( Q(currier_id=dg_id) , Q(check_out_datetime__lt=now) )
+            serializer = FilteredScheduleSerializer(s, many=True)
+            return Response(serializer.data)
 
-            # for testing purposes ...
-            elif it['action'].lower()=='make_old':
-                s = Schedule.objects.filter( Q(currier_id=dg_id) ).iterator()
-                try:
-                    while True == True:
-                        t = s.next()
-                        t.check_out_datetime = DT(2014,1,2,12,30,0)
-                        t.save()
-                        break
-                except StopIteration:
-                    pass
-                return Response({"make_old":"True"})
+        # for testing purposes ...
+        elif it['action'].lower()=='make_old':
+            s = Schedule.objects.filter( Q(currier_id=dg_id) ).iterator()
+            try:
+                while True == True:
+                    t = s.next()
+                    t.check_out_datetime = DT(2014,1,2,12,30,0)
+                    t.save()
+                    break
+            except StopIteration:
+                pass
+            return Response({"make_old":"True"})
 
 @api_view(['GET', 'POST'])
 def device(request):
@@ -310,7 +310,7 @@ def device(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-
+        x = eval(x.keys()[0])
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='update':
@@ -320,7 +320,9 @@ def device(request):
             # TODO adjust update frequency here
             p.update({'update_frequency':60})
             d.update(**p)
-            return Response(x)
+            return Response(d)
+            # serializer = FilteredDeviceSerializer(d)
+            # return Response(serializer.data)
 
         return Response(x)
 
@@ -336,7 +338,7 @@ def order(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-
+        x = eval(x.keys()[0])
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='new':
@@ -358,14 +360,14 @@ def update(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-
+        x = eval(x.keys()[0])
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='get':
             d = Device.objects.get(currier_id=currier_id)
             dev_serializer = FilteredDeviceSerializer(d)
             l = Location.objects.filter(currier_id=currier_id)
-            loc_serializer = FilteredLocationSerializer(l)
+            loc_serializer = LocationSerializer(l)
             z = {'Device.JSON':dev_serializer.data,
                  'Locations.JSON':loc_serializer.data}
 

@@ -23,7 +23,7 @@ class App_User(models.Model):
 
     def __unicode__(self):
         # x = App_User.__doc__.replace('App_User(','').strip('()').split()
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.app_user_id,
                 self.created,
                 self.app_user_type,
@@ -74,7 +74,7 @@ class Vendor(models.Model):
     last_updated = models.DateTimeField(blank=True, auto_now=True, auto_now_add=False)
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.vendor_id,
                 self.created,
                 self.app_user,
@@ -113,7 +113,7 @@ class Currier(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.currier_id,
                 self.created,
                 self.app_user,
@@ -146,7 +146,7 @@ class Order(models.Model):
     comments = models.TextField(blank=True)
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.order_id,
                 self.created,
                 self.vendor,
@@ -192,7 +192,7 @@ class Location(models.Model):
 
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.location_id,
                 self.loc_num,
                 self.order,
@@ -236,7 +236,7 @@ class Device(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.device_id,
                 self.created,
                 self.currier,
@@ -267,7 +267,7 @@ class Form(models.Model):
     form_inputs = models.TextField(blank=True)
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.form_id,
                 self.created,
                 self.name,
@@ -296,7 +296,7 @@ class Contract(models.Model):
         ordering = ['area','-start_datetime']
 
     def __unicode__(self):
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.contract_id,
                 self.start_datetime,
                 self.start_day,
@@ -306,7 +306,7 @@ class Contract(models.Model):
                 self.is_open,
                 self.vendor_units,
                 self.dg_units,
-                self.curriers,
+                self.curriers
             ])
 
 class Schedule(models.Model):
@@ -333,7 +333,7 @@ class Schedule(models.Model):
         # a = ''
         # d = [ a.join( list( self.serializable_value(it) ) ) for it in self.__dict__.iterkeys() ]
         # return a
-        return ' '.join([
+        return ' '.join(str(v) for v in [
                 self.schedule_id,
                 self.created,
                 self.contract,
@@ -349,40 +349,3 @@ class Schedule(models.Model):
                 self.total_deliveries,
                 self.pay,
             ])
-
-        [{
-        "Device.JSON": {
-            "is_active": false,
-            "update_frequency": null
-        },
-        "Locations.JSON": [
-            {
-                "addr": "ONE_pickup_addr",
-                "call_in": false,
-                "cross_street": "",
-                "end_datetime": null,
-                "loc_num": 1,
-                "location_id": 1,
-                "price": null,
-                "req_datetime": null,
-                "tag": null,
-                "tip": null,
-                "web": false,
-                "web_url": ""
-            },
-            {
-                "addr": "ONE_deliv_addr",
-                "call_in": false,
-                "cross_street": "",
-                "end_datetime": null,
-                "loc_num": 2,
-                "location_id": 2,
-                "price": null,
-                "req_datetime": null,
-                "tag": null,
-                "tip": null,
-                "web": false,
-                "web_url": ""
-                }
-            ],
-        }]
