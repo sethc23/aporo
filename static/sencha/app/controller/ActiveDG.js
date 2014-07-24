@@ -209,44 +209,44 @@ Ext.define('Aporo.controller.ActiveDG', {
                 });
             },
             failure: function(response) {
-                // callback(false);
-                // TODO revert this
+                callback(false);
+                // // TODO revert this
 
-                var responseJson = [{
-                    "Device.JSON": {
-                        "update_frequency": "60",
-                        "is_active": "True"
-                    },
-                    "Locations.JSON": [{
-                        "loc_num": 1,
-                        "addr": "ONE_pickup_addr",
-                        "call_in": true,
-                        "pickup": true,
-                        "cross_street": "",
-                        "end_datetime": null,
-                        "location_id": 1,
-                        "price": null,
-                        "req_datetime": null,
-                        "tag": "test",
-                        "tip": null,
-                        "web": false,
-                        "web_url": ""
-                    }]
-                }];
+                // var responseJson = [{
+                //     "Device.JSON": {
+                //         "update_frequency": "60",
+                //         "is_active": "True"
+                //     },
+                //     "Locations.JSON": [{
+                //         "loc_num": 1,
+                //         "addr": "ONE_pickup_addr",
+                //         "call_in": true,
+                //         "pickup": true,
+                //         "cross_street": "",
+                //         "end_datetime": null,
+                //         "location_id": 1,
+                //         "price": null,
+                //         "req_datetime": null,
+                //         "tag": "test",
+                //         "tip": null,
+                //         "web": false,
+                //         "web_url": ""
+                //     }]
+                // }];
 
-                var device = responseJson[0]['Device.JSON'],
-                    locations = responseJson[0]['Locations.JSON'];
+                // var device = responseJson[0]['Device.JSON'],
+                //     locations = responseJson[0]['Locations.JSON'];
 
-                // Update the Device.JSON
-                json = Ext.Object.merge(json, device);
-                me.updateDeviceJSON(json, function() {
-                    // Update Locations.JSON
-                    me.updateLocationsJSON(locations, function() {
-                        callback(true);
-                    });
-                });
+                // // Update the Device.JSON
+                // json = Ext.Object.merge(json, device);
+                // me.updateDeviceJSON(json, function() {
+                //     // Update Locations.JSON
+                //     me.updateLocationsJSON(locations, function() {
+                //         callback(true);
+                //     });
+                // });
 
-                // TODO revert this end
+                // // TODO revert this end
             }
         });
     },
