@@ -44,6 +44,18 @@
 		45D553AB8F3E46F4AB3774FF /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = C17EF4922C2A42D78EF2CCC3 /* CDVFileTransfer.m */; };
 		ED06E40898794801BE595A71 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7647F3767DE413ABDDF8AEE /* CDVLocation.m */; };
 		AABBE06C78F442499BDCAAB9 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6B75DD26642D780140911 /* CDVDevice.m */; };
+		489AD1580F094D3E90E11ED0 /* CDVBarcodeScanner.mm in Resources */ = {isa = PBXBuildFile; fileRef = 33663B4789F4415195D2E14A /* CDVBarcodeScanner.mm */; };
+		5A367BBE3513471C97D4F062 /* CaptureBarcodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B1DCC8B0E54716883A8347 /* CaptureBarcodesViewController.m */; };
+		3F9775147CE2486E81AD720E /* CaptureOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAF18E16A6412FB3F79075 /* CaptureOverlayView.m */; };
+		4B92296663C24E6D95531F77 /* libZXingWidgetLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE18DB1DFE214793B396316F /* libZXingWidgetLibrary.a */; };
+		65E866808D064F07819C3AE3 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 5DDE4B48E97D4FBC9F01453F /* beep-beep.aiff */; };
+		B46226FDC8B04D9B85513C28 /* empty.cpp in Resources */ = {isa = PBXBuildFile; fileRef = 3879E94DEE5646209862A884 /* empty.cpp */; };
+		E0F90CB0239244358B108A0A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E6704597FF49453BA2F51D34 /* libz.dylib */; };
+		FF89D0B64E464CAC8D489261 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 610B90CAF35D430F9729977E /* libc++.dylib */; };
+		104629C7C69C4749BF74CEFC /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 167190772E89407681D9A3E9 /* libiconv.dylib */; };
+		6CB28BBEE89A44599CF297C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D82EA879A444256BDA57D13 /* AVFoundation.framework */; };
+		9F4D35C0F6204C7DAC7D72BA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9340B7C20F154124B8C46A39 /* CoreVideo.framework */; };
+		3B92D4D962D54DCAB82B44CA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF7BC85BC8446E2BCB819BC /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +132,22 @@
 		728FA786751E4024B8D5D096 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "org.apache.cordova.geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		52C6B75DD26642D780140911 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		E223A3B31C904BF781AA60B3 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		33663B4789F4415195D2E14A /* CDVBarcodeScanner.mm */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "CDVBarcodeScanner.mm"; path = "com.phonegap.plugins.barcodescanner/CDVBarcodeScanner.mm"; sourceTree = "<group>"; fileEncoding = 4; };
+		02B1DCC8B0E54716883A8347 /* CaptureBarcodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CaptureBarcodesViewController.m"; path = "com.phonegap.plugins.barcodescanner/CaptureBarcodesViewController.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		8DFAF18E16A6412FB3F79075 /* CaptureOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CaptureOverlayView.m"; path = "com.phonegap.plugins.barcodescanner/CaptureOverlayView.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		BE18DB1DFE214793B396316F /* libZXingWidgetLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libZXingWidgetLibrary.a"; path = "Aporo/Plugins/com.phonegap.plugins.barcodescanner/libZXingWidgetLibrary.a"; sourceTree = "<group>"; fileEncoding = 4; };
+		698060A4E2D14FC399301EA2 /* CDVBarcodeScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVBarcodeScanner.h"; path = "com.phonegap.plugins.barcodescanner/CDVBarcodeScanner.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4FE262AE7094423D82174CA4 /* CaptureBarcodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CaptureBarcodesViewController.h"; path = "com.phonegap.plugins.barcodescanner/CaptureBarcodesViewController.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		822A072B03B64D159EAC6D15 /* CaptureOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CaptureOverlayView.h"; path = "com.phonegap.plugins.barcodescanner/CaptureOverlayView.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		2C62FD92E9C24A19ACE9E21A /* ZXingWidgetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ZXingWidgetController.h"; path = "com.phonegap.plugins.barcodescanner/ZXingWidgetController.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		5DDE4B48E97D4FBC9F01453F /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "beep-beep.aiff"; path = "beep-beep.aiff"; sourceTree = "<group>"; fileEncoding = 4; };
+		3879E94DEE5646209862A884 /* empty.cpp */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "empty.cpp"; path = "empty.cpp"; sourceTree = "<group>"; fileEncoding = 4; };
+		E6704597FF49453BA2F51D34 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		610B90CAF35D430F9729977E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		167190772E89407681D9A3E9 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libiconv.dylib"; path = "usr/lib/libiconv.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		0D82EA879A444256BDA57D13 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AVFoundation.framework"; path = "System/Library/Frameworks/AVFoundation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		9340B7C20F154124B8C46A39 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreVideo.framework"; path = "System/Library/Frameworks/CoreVideo.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		6DF7BC85BC8446E2BCB819BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +160,13 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
+				4B92296663C24E6D95531F77 /* libZXingWidgetLibrary.a in Frameworks */,
+				E0F90CB0239244358B108A0A /* libz.dylib in Frameworks */,
+				FF89D0B64E464CAC8D489261 /* libc++.dylib in Frameworks */,
+				104629C7C69C4749BF74CEFC /* libiconv.dylib in Frameworks */,
+				6CB28BBEE89A44599CF297C3 /* AVFoundation.framework in Frameworks */,
+				9F4D35C0F6204C7DAC7D72BA /* CoreVideo.framework in Frameworks */,
+				3B92D4D962D54DCAB82B44CA /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +248,8 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Aporo-Info.plist */,
+				5DDE4B48E97D4FBC9F01453F /* beep-beep.aiff */,
+				3879E94DEE5646209862A884 /* empty.cpp */,
 			);
 			name = Resources;
 			path = "Aporo/Resources";
@@ -225,6 +262,13 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				BE18DB1DFE214793B396316F /* libZXingWidgetLibrary.a */,
+				E6704597FF49453BA2F51D34 /* libz.dylib */,
+				610B90CAF35D430F9729977E /* libc++.dylib */,
+				167190772E89407681D9A3E9 /* libiconv.dylib */,
+				0D82EA879A444256BDA57D13 /* AVFoundation.framework */,
+				9340B7C20F154124B8C46A39 /* CoreVideo.framework */,
+				6DF7BC85BC8446E2BCB819BC /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,6 +296,13 @@
 				728FA786751E4024B8D5D096 /* CDVLocation.h */,
 				52C6B75DD26642D780140911 /* CDVDevice.m */,
 				E223A3B31C904BF781AA60B3 /* CDVDevice.h */,
+				33663B4789F4415195D2E14A /* CDVBarcodeScanner.mm */,
+				02B1DCC8B0E54716883A8347 /* CaptureBarcodesViewController.m */,
+				8DFAF18E16A6412FB3F79075 /* CaptureOverlayView.m */,
+				698060A4E2D14FC399301EA2 /* CDVBarcodeScanner.h */,
+				4FE262AE7094423D82174CA4 /* CaptureBarcodesViewController.h */,
+				822A072B03B64D159EAC6D15 /* CaptureOverlayView.h */,
+				2C62FD92E9C24A19ACE9E21A /* ZXingWidgetController.h */,
 			);
 			name = Plugins;
 			path = "Aporo/Plugins";
@@ -415,6 +466,8 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				65E866808D064F07819C3AE3 /* beep-beep.aiff in Resources */,
+				B46226FDC8B04D9B85513C28 /* empty.cpp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +505,9 @@
 				45D553AB8F3E46F4AB3774FF /* CDVFileTransfer.m in Sources */,
 				ED06E40898794801BE595A71 /* CDVLocation.m in Sources */,
 				AABBE06C78F442499BDCAAB9 /* CDVDevice.m in Sources */,
+				489AD1580F094D3E90E11ED0 /* CDVBarcodeScanner.mm in Resources */,
+				5A367BBE3513471C97D4F062 /* CaptureBarcodesViewController.m in Sources */,
+				3F9775147CE2486E81AD720E /* CaptureOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +587,10 @@
 				);
 				PRODUCT_NAME = "Aporo";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Aporo/Plugins/com.phonegap.plugins.barcodescanner\"",
+				);
 			};
 			name = Debug;
 		};
@@ -562,6 +622,10 @@
 				);
 				PRODUCT_NAME = "Aporo";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Aporo/Plugins/com.phonegap.plugins.barcodescanner\"",
+				);
 			};
 			name = Release;
 		};

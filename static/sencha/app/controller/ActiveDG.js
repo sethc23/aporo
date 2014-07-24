@@ -205,6 +205,8 @@ Ext.define('Aporo.controller.ActiveDG', {
             update_frequency: json[0]['update_frequency']
         };
 
+        console.log(Ext.encode(params));
+
         Ext.Ajax.request({
             url: Aporo.config.Env.baseApiUrl + 'api/device/',
             method: 'POST',
@@ -610,7 +612,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
             Ext.Msg.show({
                 title: 'Problem',
-                message: 'This order is not recognized',
+                message: 'This order is not recognized.<br />' + url,
                 promptConfig: false,
                 buttons: [{
                     text: 'Cancel',
@@ -630,7 +632,16 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
-        callback.call(me, 'url');
+        var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
+
+        scanner.scan(
+            function(result) {
+                callback.call(me, result.text);
+            },
+            function(error) {
+                Ext.Msg.alert('Scanning Failed', 'Something went wrong. Please try again');
+            }
+        );
     },
 
     /**

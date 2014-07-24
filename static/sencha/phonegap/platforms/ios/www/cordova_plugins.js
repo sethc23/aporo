@@ -194,6 +194,13 @@ module.exports = [
         "clobbers": [
             "device"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js",
+        "id": "com.phonegap.plugins.barcodescanner.barcodescanner",
+        "clobbers": [
+            "plugins.barcodeScanner"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -202,7 +209,8 @@ module.exports.metadata =
     "org.apache.cordova.file": "1.2.0",
     "org.apache.cordova.file-transfer": "0.4.4",
     "org.apache.cordova.geolocation": "0.3.8",
-    "org.apache.cordova.device": "0.2.10"
+    "org.apache.cordova.device": "0.2.10",
+    "com.phonegap.plugins.barcodescanner": "0.6.0"
 }
 // BOTTOM OF METADATA
 });
