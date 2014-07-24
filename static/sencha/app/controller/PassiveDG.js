@@ -34,6 +34,9 @@ Ext.define('Aporo.controller.PassiveDG', {
             // Contracts
             PassiveDGContracts: {
                 activate: 'onContractsActivate'
+            },
+            'PassiveDGContracts #update': {
+                tap: 'onUpdateContracts'
             }
         }
     },
@@ -221,21 +224,25 @@ Ext.define('Aporo.controller.PassiveDG', {
                         'start_day',
                         'start_time',
 
-                        'curriers',
+                        'registered',
+                        'changedRegistered',
 
                         {
-                            name: 'registered',
+                            name: 'curriers',
                             convert: function(value, record) {
                                 var registered = false,
                                     curriers = record.get('curriers');
 
-                                for (var i = 0; i < curriers.length; i++) {
-                                    if (curriers[i].currier_id == Aporo.config.Env.currier_id) {
+                                for (var i = 0; i < value.length; i++) {
+                                    if (value[i].currier_id == Aporo.config.Env.currier_id) {
                                         registered = true;
                                         break;
                                     }
                                 }
-                                return registered;
+
+                                record.set('registered', registered);
+
+                                return value;
                             }
                         }
                     ],
@@ -261,6 +268,60 @@ Ext.define('Aporo.controller.PassiveDG', {
 
     onContractsActivate: function() {
         this.getContractsJSON();
+    },
+
+    onUpdateContracts: function() {
+        var me = this;
+
+        // Get all changed records
+        var records = this.contractsStore.data.filterBy(function(item) {
+            return item.get('changedRegistered');
+        }).items;
+
+        if (records.length == 0) {
+            return;
+        }
+
+        Ext.Msg.confirm('Update', 'Are you sure you want to update all ' + records.length + ' contract(s)?', function(buttonId) {
+            if (buttonId == "yes") {
+                // Make a raw version of the records
+                var rawRecords = [];
+                for (var i = 0; i < records.length; i++) {
+                    var data = records[i].raw;
+
+                    data.action = records[i].get('registered') ? "add" : "remove";
+
+                    rawRecords.push(data);
+                }
+
+                console.log(rawRecords);
+
+                Ext.Ajax.request({
+                    url: Aporo.config.Env.baseApiUrl + 'api/dg_contracts/',
+                    method: 'POST',
+                    useDefaultXhrHeader: false,
+                    params: Ext.encode(rawRecords),
+
+                    success: function(response) {
+                        var json = Ext.decode(response.responseText),
+                            contracts = json[0]['contracts.json'],
+                            work = json[0]['work.json'];
+
+                        me.contractsStore.setData(contracts);
+                        me.updateWorkJSON(work);
+
+                        // Set all as not changed
+                        for (var i = 0; i < records.length; i++) {
+                            records[i].set('changedRegistered', false);
+                        }
+                    },
+                    failure: function(response) {
+                        Ext.Msg.alert('Problem', 'Problem updating all contracts');
+                    }
+                });
+
+            }
+        }, this);
     },
 
     /**

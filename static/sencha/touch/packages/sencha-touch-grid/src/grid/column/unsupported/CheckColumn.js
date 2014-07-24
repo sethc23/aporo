@@ -19,7 +19,7 @@ Build date: 2013-03-11 22:33:40 (aed16176e68b5e8aa1433452b12805c0ad913836)
  * A Column subclass which renders a checkbox in each column cell which toggles the truthiness of the associated data field on click.
  *
  * Example usage:
- * 
+ *
  *    // create the grid
  *    var grid = Ext.create('Ext.grid.Panel', {
  *        ...
@@ -42,6 +42,23 @@ Ext.define('Ext.grid.column.CheckColumn', {
     alias: 'widget.checkcolumn',
 
     /**
+     * @event beforecheckchange
+     * Fires when before checked state of a row changes.
+     * The change may be vetoed by returning `false` from a listener.
+     * @param {Ext.ux.CheckColumn} this CheckColumn
+     * @param {Number} rowIndex The row index
+     * @param {Boolean} checked True if the box is to be checked
+     */
+
+    /**
+     * @event checkchange
+     * Fires when the checked state of a row changes
+     * @param {Ext.ux.CheckColumn} this CheckColumn
+     * @param {Number} rowIndex The row index
+     * @param {Boolean} checked True if the box is now checked
+     */
+
+    /**
      * @cfg
      * @hide
      * Overridden from base class. Must center to line up with editor.
@@ -57,25 +74,6 @@ Ext.define('Ext.grid.column.CheckColumn', {
     tdCls: Ext.baseCSSPrefix + 'grid-cell-checkcolumn',
 
     constructor: function() {
-        this.addEvents(
-            /**
-             * @event beforecheckchange
-             * Fires when before checked state of a row changes.
-             * The change may be vetoed by returning `false` from a listener.
-             * @param {Ext.ux.CheckColumn} this CheckColumn
-             * @param {Number} rowIndex The row index
-             * @param {Boolean} checked True if the box is to be checked
-             */
-            'beforecheckchange',
-            /**
-             * @event checkchange
-             * Fires when the checked state of a row changes
-             * @param {Ext.ux.CheckColumn} this CheckColumn
-             * @param {Number} rowIndex The row index
-             * @param {Boolean} checked True if the box is now checked
-             */
-            'checkchange'
-        );
         this.scope = this;
         this.callParent(arguments);
     },
@@ -153,7 +151,7 @@ Ext.define('Ext.grid.column.CheckColumn', {
 
     // Note: class names are not placed on the prototype bc renderer scope
     // is not in the header.
-    renderer : function(value, meta) {
+    renderer: function(value, meta) {
         var cssPrefix = Ext.baseCSSPrefix,
             cls = [cssPrefix + 'grid-checkcolumn'];
 

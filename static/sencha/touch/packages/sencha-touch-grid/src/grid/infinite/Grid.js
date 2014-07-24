@@ -156,8 +156,12 @@ Ext.define('Ext.grid.infinite.Grid', {
             // We set these two to null to have the cells be updated the first time we translate
             currentX: null,
             currentY: null,
-            rowPositionMap: Ext.create('Ext.util.PositionMap', {minimumHeight: me.getMinimumRowHeight()}),
-            columnPositionMap: Ext.create('Ext.util.PositionMap', {minimumHeight: 20})
+            rowPositionMap: Ext.create('Ext.util.PositionMap', {
+                minimumHeight: me.getMinimumRowHeight()
+            }),
+            columnPositionMap: Ext.create('Ext.util.PositionMap', {
+                minimumHeight: 20
+            })
         });
 
         // We determine the translation methods for headers and items within this List based
@@ -216,8 +220,7 @@ Ext.define('Ext.grid.infinite.Grid', {
 
         if (!storeCount) {
             me.showEmptyText();
-        }
-        else if (me.rowCount) {
+        } else if (me.rowCount) {
             if (y !== me.currentY) {
                 me.handleRowUpdates(y);
             }
@@ -271,8 +274,7 @@ Ext.define('Ext.grid.infinite.Grid', {
                         me.topRenderedIndex--;
                     }
                 }
-            }
-            else {
+            } else {
                 // When we are scrolling to the right
                 bufferDistance = topRenderedIndex + bufferSize - topVisibleIndex;
                 if (bufferDistance < minimumBufferDistance) {
@@ -565,7 +567,9 @@ Ext.define('Ext.grid.infinite.Grid', {
 
     applyStore: function(store) {
         var me = this,
-            bindEvents = Ext.apply({}, me.storeEventHooks, { scope: me }),
+            bindEvents = Ext.apply({}, me.storeEventHooks, {
+                scope: me
+            }),
             proxy, reader;
 
         if (store) {
@@ -600,7 +604,9 @@ Ext.define('Ext.grid.infinite.Grid', {
 
     updateStore: function(newStore, oldStore) {
         var me = this,
-            bindEvents = Ext.apply({}, me.storeEventHooks, { scope: me }),
+            bindEvents = Ext.apply({}, me.storeEventHooks, {
+                scope: me
+            }),
             proxy, reader;
 
         if (oldStore && Ext.isObject(oldStore) && oldStore.isStore) {
@@ -612,8 +618,7 @@ Ext.define('Ext.grid.infinite.Grid', {
 
             if (oldStore.getAutoDestroy()) {
                 oldStore.destroy();
-            }
-            else {
+            } else {
                 proxy = oldStore.getProxy();
                 if (proxy) {
                     reader = proxy.getReader();

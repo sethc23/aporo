@@ -3,6 +3,11 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
     xtype: 'PassiveDGContracts',
     id: 'PassiveDGContracts',
 
+    requires: [
+        'Ext.grid.Grid',
+        'Aporo.extension.column.Checkbox'
+    ],
+
     config: {
         store: null,
         layout: 'card',
@@ -14,7 +19,8 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
                 xtype: 'spacer'
             }, {
                 xtype: 'button',
-                text: 'Update'
+                text: 'Update',
+                itemId: 'update'
             }, {
                 xtype: 'spacer'
             }]
@@ -22,26 +28,44 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
             xtype: 'grid',
             titleBar: false,
 
+            headerContainer: {
+                height: '2.85em'
+            },
+
             columns: [{
-                xtype: 'checkcolumn',
+                xtype: 'checkboxcolumn', //checkboxcolumn
                 text: 'Registered?',
-                // trueText: '<input type="checkbox" checked="checked" />',
-                // falseText: '<input type="checkbox" />',
+                align: 'center',
                 dataIndex: 'registered',
                 width: 120
             }, {
                 text: 'Day',
                 dataIndex: 'start_day',
-                width: 150
+                align: 'center',
+                width: 110
             }, {
                 text: 'Time',
                 dataIndex: 'start_time',
+                align: 'center',
+                align: 'center',
+                sortable: false,
                 width: 100
             }, {
                 text: 'Area',
                 dataIndex: 'area',
                 width: 200
-            }]
+            }],
+
+            listeners: {
+                select: function(grid, record) {
+                    record.set('registered', !record.get('registered'));
+                    record.set('changedRegistered', true);
+
+                    setTimeout(function() {
+                        grid.deselect(record);
+                    }, 100);
+                }
+            }
         }]
     },
 
