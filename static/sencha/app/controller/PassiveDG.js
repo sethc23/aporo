@@ -81,15 +81,11 @@ Ext.define('Aporo.controller.PassiveDG', {
     },
 
     onFindWork: function() {
-        this.back();
+        this.onContracts();
     },
 
     onCheckInNow: function() {
-        Ext.Msg.confirm('Are you sure?', 'Are you sure you want to check-in now?', function(buttonId) {
-            if (buttonId == "yes") {
-                this.back();
-            }
-        }, this);
+        this.onCheckIn();
     },
 
     onContracts: function() {
@@ -98,7 +94,78 @@ Ext.define('Aporo.controller.PassiveDG', {
     },
 
     onCheckIn: function() {
-        this.back();
+        var me = this;
+
+        // The user’s Work.JSON is empty.  If this is the case, then the user is presented with notification 
+        // “No work is scheduled. Please sign up for new Contracts=.”
+        //                                                                      --> directed to Contracts
+
+        if (!me.hasWork()) {
+            Ext.Msg.alert('No work', 'No work is scheduled. Please sign up for new Contracts.', function() {
+                me.onContracts();
+            }, me);
+
+            return;
+        }
+
+        // There is no work scheduled for the user today.  If this is the case, then the user is presented 
+        // with notification “No work scheduled for you today. Check Contracts for new opportunities.” 
+        //                                                                      --> directed to Contracts
+
+        var nextWork = me.nextWork(),
+            startDate = new Date(Date.parse(nextWork['start_datetime'])),
+            today = new Date(),
+            workToday = Math.abs(today.getTime() - startDate.getTime()) < 86400000,
+            canCheckIn = (startDate.getTime() - today.getTime() <= 900000);
+
+        if (!workToday && startDate.getDate() == today.getDate()) {
+            Ext.Msg.alert('No work scheduled today', 'No work scheduled for you today. Check Contracts for new opportunities.', function() {
+                me.onContracts();
+            }, me);
+
+            return;
+        }
+
+        // There is work scheduled for the user today, but check in starts more than 15 minutes from the 
+        // current time.  If this is the case, then the user is presented with notification “Next Check-In 
+        // for Today at (time). Check Contracts for other opportunities,” where “(time)” is “start_time” 
+        // of first entry in Work.JSON minus 15 minutes. 
+        //                                                                --> directed to Passive DG Menu
+
+        if (!canCheckIn) {
+            Ext.Msg.alert('Check-In', 'Next Check-In for today at: ' + Ext.Date.format(startDate, 'G:i') + '<br />Check Contracts for other opportunities.', null);
+
+            return;
+        }
+
+        // If the user is attempting to check in within 15 minutes before, on, or after the “start_datetime” 
+        // of Next Work, then the application makes a URL post request:
+
+        this.getPassiveDGMainView().setMasked({
+            xtype: 'loadmask'
+        });
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/work/',
+            method: 'POST',
+            useDefaultXhrHeader: false,
+            params: Ext.encode({
+                action: 'check_in',
+                currier_id: Aporo.config.Env.currier_id
+            }),
+            scope: this,
+            success: function(response) {
+                this.getPassiveDGMainView().setMasked(false);
+
+                Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Active DG Menu');
+                Ext.getCmp('Viewport').push(Ext.create('Aporo.view.activeDG.MainView'));
+            },
+            failure: function(response) {
+                this.getPassiveDGMainView().setMasked(false);
+
+                Ext.Msg.alert('Error', 'There was a problem checking in.');
+            }
+        });
     },
 
     onHistory: function() {
@@ -150,7 +217,9 @@ Ext.define('Aporo.controller.PassiveDG', {
                 console.log('Work.JSON saved');
             },
             failure: function(error) {
-                Ext.Msg.alert('Error saving Work.JSON', error.code);
+                if (error) {
+                    Ext.Msg.alert('Error', 'Error saving Work.JSON:<br />' + error.code);
+                }
             }
         });
 
@@ -414,9 +483,9 @@ Ext.define('Aporo.controller.PassiveDG', {
         }
 
         // TODO remove this
-        // nextWork['start_datetime'] = "2014-07-27T08:00:00";
-        // nextWork['start_day'] = "Tue, Jul 27";
-        // nextWork['start_time'] = "12:00 PM";
+        nextWork['start_datetime'] = "2014-07-23T18:00:00";
+        nextWork['start_day'] = "Tue, Jul 25";
+        nextWork['start_time'] = "12:00 PM";
 
         return nextWork;
     },

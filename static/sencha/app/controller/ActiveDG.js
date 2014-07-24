@@ -62,18 +62,19 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
-        // Ext.browser.is.PhoneGap
-
         // Only get the local Device.JSON file if specified 
         if (fetchDevice) {
             var failure = function(error) {
-                me.back();
+                // We need to wait until the animation is complete
+                setTimeout(function() {
+                    me.back();
 
-                if (error) {
-                    Ext.Msg.alert('Error', 'There was a problem:<br /><br />' + error.code);
-                } else {
-                    Ext.Msg.alert('Error', 'Something went wrong. Please try again.');
-                }
+                    if (error) {
+                        Ext.Msg.alert('Error', 'There was a problem:<br /><br />' + error.code);
+                    } else {
+                        Ext.Msg.alert('Error', 'Something went wrong. Please try again.');
+                    }
+                }, 500);
             };
 
             Aporo.util.PhoneGap.fileExists({

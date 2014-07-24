@@ -15,7 +15,8 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         saveFile: function(config) {
-            if (!Ext.browser.is.PhoneGap) {
+            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+                config.failure();
                 return;
             }
 
@@ -49,7 +50,8 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         readFile: function(config) {
-            if (!Ext.browser.is.PhoneGap) {
+            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+                config.failure();
                 return;
             }
 
@@ -88,7 +90,8 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         fileExists: function(config) {
-            if (!Ext.browser.is.PhoneGap) {
+            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+                config.failure();
                 return;
             }
 
