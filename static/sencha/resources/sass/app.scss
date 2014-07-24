@@ -4,7 +4,7 @@
 @import 'sencha-touch/cupertino';
 @import 'sencha-touch/cupertino/all';
 
-// Custom code goes here..
-
-// Examples of using the icon mixin:
-// @include icon('user');
+.x-navigationview > div > .x-toolbar-dark.x-toolbar.x-navigation-bar.x-docked-top {
+	padding-top: 20px;
+	height: 70px;
+}
