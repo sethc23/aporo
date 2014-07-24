@@ -37,6 +37,11 @@ Ext.define('Aporo.controller.PassiveDG', {
             },
             'PassiveDGContracts #update': {
                 tap: 'onUpdateContracts'
+            },
+
+            // History
+            PassiveDGHistory: {
+                activate: 'onHistoryActivate'
             }
         }
     },
@@ -54,6 +59,8 @@ Ext.define('Aporo.controller.PassiveDG', {
 
     contracts: null,
     contractsStore: null,
+
+    historyStore: null,
 
     /**
      * Actions
@@ -250,9 +257,6 @@ Ext.define('Aporo.controller.PassiveDG', {
                 });
 
                 me.getPassiveDGContracts().setStore(me.contractsStore);
-
-                // me.updateWorkJSON(json);
-                // me.getPassiveDGMainView().setMasked(false);
             },
             failure: function(response) {
                 Ext.Msg.alert('Error', 'There was a problem fetching Contracts.JSON');
@@ -322,6 +326,66 @@ Ext.define('Aporo.controller.PassiveDG', {
 
             }
         }, this);
+    },
+
+    /**
+     * History JSON
+     */
+
+    getHistoryJSON: function() {
+        console.log('# getHistoryJSON');
+
+        var me = this;
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/work/',
+            method: 'GET',
+            useDefaultXhrHeader: false,
+            params: Ext.encode({
+                action: 'history',
+                currier_id: Aporo.config.Env.currier_id
+            }),
+
+            success: function(response) {
+                var json = Ext.decode(response.responseText);
+
+                me.historyStore = Ext.create('Ext.data.Store', {
+                    storeId: 'historyStore',
+                    fields: [
+                        'area',
+                        'hour_period',
+                        'start_day',
+                        'start_time',
+                        'total_breaktime',
+                        'total_deliveries', {
+                            name: 'check_in_datetime',
+                            type: 'date'
+                        }, {
+                            name: 'check_out_datetime',
+                            type: 'date'
+                        }
+                    ],
+                    data: json['dg_schedule']
+                });
+
+                console.log(json);
+
+                me.getPassiveDGHistory().setStore(me.historyStore);
+            },
+            failure: function(response) {
+                Ext.Msg.alert('Error', 'There was a problem fetching history');
+
+                me.back();
+            }
+        });
+    },
+
+    /**
+     * History
+     */
+
+    onHistoryActivate: function() {
+        this.getHistoryJSON();
     },
 
     /**
