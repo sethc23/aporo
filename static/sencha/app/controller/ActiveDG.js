@@ -605,7 +605,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                             Ext.Msg.alert('Success!');
                         });
                     });
-                }, this);
+                }, me);
 
                 return;
             }
@@ -632,16 +632,19 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
-        var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
-
-        scanner.scan(
-            function(result) {
-                callback.call(me, result.text);
-            },
-            function(error) {
-                Ext.Msg.alert('Scanning Failed', 'Something went wrong. Please try again');
-            }
-        );
+        if (Ext.browser.is.PhoneGap) {
+            var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
+            scanner.scan(
+                function(result) {
+                    callback.call(me, result.text);
+                },
+                function(error) {
+                    Ext.Msg.alert('Scanning Failed', 'Something went wrong. Please try again');
+                }
+            );
+        } else {
+            Ext.Msg.alert('Scanner', 'You must be on a device to run the barcode scanner.');
+        }
     },
 
     /**
