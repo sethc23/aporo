@@ -197,17 +197,21 @@ Ext.define('Aporo.controller.ActiveDG', {
         delete device['is_active'];
         delete device['update_frequency'];
 
+        var params = {
+            action: 'update',
+            currier_id: Aporo.config.Env.currier_id,
+            device: device,
+            is_active: json[0]['is_active'],
+            update_frequency: json[0]['update_frequency']
+        };
+
+        console.log(Ext.encode(params));
+
         Ext.Ajax.request({
             url: Aporo.config.Env.baseApiUrl + 'api/device/',
             method: 'POST',
             useDefaultXhrHeader: false,
-            params: Ext.encode({
-                action: 'update',
-                currier_id: Aporo.config.Env.currier_id,
-                device: device,
-                is_active: json[0]['is_active'],
-                update_frequency: json[0]['update_frequency']
-            }),
+            params: Ext.encode(params),
             success: function(response) {
                 var responseJson = Ext.decode(response.responseText)[0],
                     device = responseJson['Device.JSON'],
