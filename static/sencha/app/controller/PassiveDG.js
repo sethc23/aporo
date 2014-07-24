@@ -177,7 +177,19 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Work JSON
      */
 
-    getWorkJSON: function() {
+    getWork: function(callback) {
+        var me = this;
+
+        if (me.work) {
+            return me.work;
+        }
+
+        me.getWorkJSON(function() {
+            callback.call(me, me.json);
+        });
+    },
+
+    getWorkJSON: function(callback) {
         console.log('# getWorkJSON');
 
         var me = this;
@@ -196,6 +208,10 @@ Ext.define('Aporo.controller.PassiveDG', {
 
                 me.updateWorkJSON(json);
                 me.getPassiveDGMainView().setMasked(false);
+
+                if (callback) {
+                    callback.call(me, json);
+                }
             },
             failure: function(response) {
                 Ext.Msg.alert('Error', 'There was a problem fetching Work.JSON');

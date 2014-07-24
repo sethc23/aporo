@@ -347,7 +347,37 @@ Ext.define('Aporo.controller.ActiveDG', {
     onCheckOut: function() {
         console.log('# onCheckOut');
 
-        this.back();
+        var me = this;
+
+        // If any entries in Locations.JSON have “end_datetime” as null or blank, the user is 
+        // presented with notification “Please deliver all orders before checking out. Contact 
+        // Help if you cannot do so.”                                    
+        //                                                          --> directed to Active DG 
+
+        var locations = me.locationsWithProperties([{
+            key: 'end_datetime',
+            value: null
+        }]);
+
+        if (locations.length > 0) {
+            Ext.Msg.alert('Check-Out', '“Please deliver all orders before checking out. Contact Help if you cannot do so.');
+
+            return;
+        }
+
+        // Else, the current time is compared with [ “start_time” plus “hour_period” minus 15 
+        // minutes ] (“End Time” herein) in Work.JSON.
+
+        // If End Time is greater than the current time, the user is presented with notification 
+        // “You are checking out early. This may affect your pay.  Do you wish to continue?” 
+        // and with options to confirm or go back.
+
+        var controller = Aporo.app.getController('PassiveDG'),
+            work;
+
+        controller.getWork(function(json) {
+            work = json;
+        });
     },
 
     /**
