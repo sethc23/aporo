@@ -16,10 +16,10 @@ Ext.define('Aporo.controller.PassiveDG', {
 
             // Menu
             'PassiveDGMainView #findWorkButton': {
-                tap: 'onFindWork'
+                tap: 'onContracts'
             },
             'PassiveDGMainView #checkInNowButton': {
-                tap: 'onCheckInNow'
+                tap: 'onCheckIn'
             },
             'PassiveDGMainView #btnContracts': {
                 tap: 'onContracts'
@@ -66,9 +66,10 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Actions
      */
 
+    /**
+     * Called when the main view is shown
+     */
     onActivate: function() {
-        console.log('# onActivate');
-
         this.getWorkJSON();
 
         this.getPassiveDGMainView().setMasked({
@@ -76,23 +77,24 @@ Ext.define('Aporo.controller.PassiveDG', {
         });
     },
 
+    /**
+     * Pops the viewport
+     */
     back: function() {
         Ext.getCmp('Viewport').pop();
     },
 
-    onFindWork: function() {
-        this.onContracts();
-    },
-
-    onCheckInNow: function() {
-        this.onCheckIn();
-    },
-
+    /**
+     * Shows the contracts grid
+     */
     onContracts: function() {
         Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Contracts');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.Contracts'));
     },
 
+    /**
+     * Called whent the users attempts to check in using the button
+     */
     onCheckIn: function() {
         var me = this;
 
@@ -141,7 +143,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         // If the user is attempting to check in within 15 minutes before, on, or after the “start_datetime” 
         // of Next Work, then the application makes a URL post request:
 
-        this.getPassiveDGMainView().setMasked({
+        me.getPassiveDGMainView().setMasked({
             xtype: 'loadmask'
         });
 
@@ -153,21 +155,24 @@ Ext.define('Aporo.controller.PassiveDG', {
                 action: 'check_in',
                 currier_id: Aporo.config.Env.currier_id
             }),
-            scope: this,
             success: function(response) {
-                this.getPassiveDGMainView().setMasked(false);
+                me.getPassiveDGMainView().setMasked(false);
 
+                // Move to the ActiveDG view
                 Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Active DG Menu');
                 Ext.getCmp('Viewport').push(Ext.create('Aporo.view.activeDG.MainView'));
             },
             failure: function(response) {
-                this.getPassiveDGMainView().setMasked(false);
+                me.getPassiveDGMainView().setMasked(false);
 
                 Ext.Msg.alert('Error', 'There was a problem checking in.');
             }
         });
     },
 
+    /**
+     * Shows the history grid
+     */
     onHistory: function() {
         Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('History');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.History'));
@@ -177,6 +182,9 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Work JSON
      */
 
+    /**
+     * Returns the work.json. Fetches it from the server if it is not already downloaded.
+     */
     getWork: function(callback) {
         var me = this;
 
@@ -189,9 +197,10 @@ Ext.define('Aporo.controller.PassiveDG', {
         });
     },
 
+    /**
+     * Gets the work JSON from the server
+     */
     getWorkJSON: function(callback) {
-        console.log('# getWorkJSON');
-
         var me = this;
 
         Ext.Ajax.request({
@@ -221,9 +230,10 @@ Ext.define('Aporo.controller.PassiveDG', {
         });
     },
 
+    /**
+     * Updates the local copy of work json
+     */
     updateWorkJSON: function(json) {
-        console.log('# updateWorkJSON', json);
-
         this.work = json;
 
         Aporo.util.PhoneGap.saveFile({
@@ -242,14 +252,18 @@ Ext.define('Aporo.controller.PassiveDG', {
         this.updateHeader();
     },
 
+    /**
+     * Updates the header using the work data
+     */
     updateHeader: function() {
-        var nextWork = this.nextWork(),
+        var me = this,
+            nextWork = me.nextWork(),
             menuView = Ext.getCmp('PassiveDGMenuView'),
             header = menuView.getComponent('header'),
             findWorkButton = menuView.getComponent('findWorkButton'),
             checkInNowButton = menuView.getComponent('checkInNowButton');
 
-        if (this.hasWork()) {
+        if (me.hasWork()) {
             findWorkButton.hide();
             checkInNowButton.hide();
 
@@ -289,9 +303,10 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Contracts JSON
      */
 
+    /**
+     * fetches the data for the contracts grid
+     */
     getContractsJSON: function() {
-        console.log('# getContractsJSON');
-
         var me = this;
 
         Ext.Ajax.request({
@@ -306,6 +321,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             success: function(response) {
                 var json = Ext.decode(response.responseText);
 
+                // Create the contacts store
                 me.contractsStore = Ext.create('Ext.data.Store', {
                     storeId: 'contractsStore',
                     fields: [
@@ -322,6 +338,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                         {
                             name: 'curriers',
                             convert: function(value, record) {
+                                // Get the registered state using the curriers array
                                 var registered = false,
                                     curriers = record.get('curriers');
 
@@ -341,6 +358,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                     data: json
                 });
 
+                // Give the grid the new store
                 me.getPassiveDGContracts().setStore(me.contractsStore);
             },
             failure: function(response) {
@@ -359,11 +377,14 @@ Ext.define('Aporo.controller.PassiveDG', {
         this.getContractsJSON();
     },
 
+    /**
+     * Updates all contracts with the server when anything has been changed
+     */
     onUpdateContracts: function() {
         var me = this;
 
         // Get all changed records
-        var records = this.contractsStore.data.filterBy(function(item) {
+        var records = me.contractsStore.data.filterBy(function(item) {
             return item.get('changedRegistered');
         }).items;
 
@@ -373,7 +394,7 @@ Ext.define('Aporo.controller.PassiveDG', {
 
         Ext.Msg.confirm('Update', 'Are you sure you want to update all ' + records.length + ' contract(s)?', function(buttonId) {
             if (buttonId == "yes") {
-                // Make a raw version of the records
+                // Make a raw version of the records to post to the server
                 var rawRecords = [];
                 for (var i = 0; i < records.length; i++) {
                     var data = records[i].raw;
@@ -382,8 +403,6 @@ Ext.define('Aporo.controller.PassiveDG', {
 
                     rawRecords.push(data);
                 }
-
-                console.log(rawRecords);
 
                 Ext.Ajax.request({
                     url: Aporo.config.Env.baseApiUrl + 'api/dg_contracts/',
@@ -410,16 +429,17 @@ Ext.define('Aporo.controller.PassiveDG', {
                 });
 
             }
-        }, this);
+        }, me);
     },
 
     /**
      * History JSON
      */
 
+    /**
+     * Gets the history data for the grid
+     */
     getHistoryJSON: function() {
-        console.log('# getHistoryJSON');
-
         var me = this;
 
         Ext.Ajax.request({
@@ -434,6 +454,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             success: function(response) {
                 var json = Ext.decode(response.responseText);
 
+                // Create the store for the history grid
                 me.historyStore = Ext.create('Ext.data.Store', {
                     storeId: 'historyStore',
                     fields: [
@@ -453,8 +474,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                     data: json['dg_schedule']
                 });
 
-                console.log(json);
-
+                // Give the history grid the store
                 me.getPassiveDGHistory().setStore(me.historyStore);
             },
             failure: function(response) {
@@ -477,14 +497,18 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Helpers
      */
 
+    /**
+     * Returns the next work
+     */
     nextWork: function() {
-        var nextWork = null;
+        var me = this,
+            nextWork = null;
 
-        if (!this.work || !this.work['dg_schedule'] || this.work['dg_schedule'].length == 0) {
+        if (!me.work || !me.work['dg_schedule'] || me.work['dg_schedule'].length == 0) {
             return nextWork;
         }
 
-        var tasks = this.work['dg_schedule'];
+        var tasks = me.work['dg_schedule'];
         for (var i = 0; i < tasks.length; i++) {
             var endDatetime = tasks[i]['check_in_datetime'];
             if (!endDatetime || endDatetime == '' || endDatetime == 'null') {
@@ -498,18 +522,22 @@ Ext.define('Aporo.controller.PassiveDG', {
             }
         }
 
-        // TODO remove this
-        nextWork['start_datetime'] = "2014-07-23T18:00:00";
-        nextWork['start_day'] = "Tue, Jul 25";
-        nextWork['start_time'] = "12:00 PM";
+        // DEBUG
+        // nextWork['start_datetime'] = "2014-07-23T18:00:00";
+        // nextWork['start_day'] = "Tue, Jul 25";
+        // nextWork['start_time'] = "12:00 PM";
 
         return nextWork;
     },
 
+    /**
+     * Returns false when there is no work
+     */
     hasWork: function() {
-        // TODO remove this
+        // DEBUG
         // return false;
 
-        return this.work && this.work['dg_schedule'] && this.work['dg_schedule'].length > 0;
+        var me = this;
+        return me.work && me.work['dg_schedule'] && me.work['dg_schedule'].length > 0;
     }
 });

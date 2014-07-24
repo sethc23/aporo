@@ -33,7 +33,7 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
             },
 
             columns: [{
-                xtype: 'checkboxcolumn', //checkboxcolumn
+                xtype: 'checkboxcolumn',
                 text: 'Registered?',
                 align: 'center',
                 dataIndex: 'registered',
@@ -61,6 +61,7 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
                     record.set('registered', !record.get('registered'));
                     record.set('changedRegistered', true);
 
+                    // Deselect after 100ms otherwise the user won't see the row selection CSS
                     setTimeout(function() {
                         grid.deselect(record);
                     }, 100);

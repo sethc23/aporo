@@ -16,6 +16,7 @@ Ext.define('Aporo.view.passiveDG.History', {
             titleBar: false,
 
             headerContainer: {
+                // We need to override the height as the normal height is for the default ST theme
                 height: '2.85em'
             },
 

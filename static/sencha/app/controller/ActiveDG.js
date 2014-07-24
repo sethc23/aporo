@@ -42,6 +42,10 @@ Ext.define('Aporo.controller.ActiveDG', {
     device: null,
     locations: null,
 
+    /**
+     * Updates the local Device.JSON with device information.
+     * If fetchDevice is specified, it will use the local Device.JSON when updating.
+     */
     updateJSON: function(fetchDevice) {
         this.getActiveDGMainView().setMasked({
             xtype: 'loadmask'
@@ -50,7 +54,9 @@ Ext.define('Aporo.controller.ActiveDG', {
         var me = this,
             callback;
 
+        // Callback when the Device.JSON file has been updated
         callback = function(json) {
+            // Post the latest Device.JSON to the server
             me.postDeviceJSONUpdate(json, function(success) {
                 if (!success) {
                     me.back();
@@ -77,6 +83,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 }, 500);
             };
 
+            // Check if a Device.JSON file already exists
             Aporo.util.PhoneGap.fileExists({
                 fileName: 'Device.JSON',
                 success: function(exists) {
@@ -103,6 +110,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                             failure: failure
                         });
                     } else {
+                        // Update the local Device.JSON file
                         me.updateDeviceJSON(null, function(success, json) {
                             callback(json);
                         });
@@ -111,10 +119,13 @@ Ext.define('Aporo.controller.ActiveDG', {
                 failure: failure
             });
         } else {
-            callback(this.device);
+            callback(me.device);
         }
     },
 
+    /**
+     * Reads the Device.JSON from the filesystem
+     */
     readDeviceJSON: function(config) {
         Aporo.util.PhoneGap.readFile({
             fileName: 'device.JSON',
@@ -127,9 +138,10 @@ Ext.define('Aporo.controller.ActiveDG', {
         });
     },
 
+    /**
+     * Updates Device.JSON on the filesystem
+     */
     updateDeviceJSON: function(json, callback) {
-        console.log('# updateDeviceJSON');
-
         var me = this;
 
         // The application updates Device.JSON with device information obtained via the 
@@ -151,11 +163,13 @@ Ext.define('Aporo.controller.ActiveDG', {
         };
 
         if (Ext.browser.is.PhoneGap) {
+            // Standard device information
             json[0]['model'] = device.model;
             json[0]['platform'] = device.platform;
             json[0]['uuid'] = device.uuid;
             json[0]['op_sys_ver'] = device.version;
 
+            // Geolocation data requires a callback
             navigator.geolocation.getCurrentPosition(function(position) {
                 json[0]['lat'] = position.coords.latitude;
                 json[0]['long'] = position.coords.longitude;
@@ -165,8 +179,6 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                 _callback.call(me);
             }, function(error) {
-                console.log('Error fetching geolocation position:', error);
-
                 _callback.call(me);
             });
         } else {
@@ -174,9 +186,10 @@ Ext.define('Aporo.controller.ActiveDG', {
         }
     },
 
+    /**
+     * Posts the curent Device.JSON to the server
+     */
     postDeviceJSONUpdate: function(json, callback) {
-        console.log('# postDeviceJSONUpdate');
-
         var me = this,
             device = Ext.clone(json[0]);
 
@@ -211,7 +224,9 @@ Ext.define('Aporo.controller.ActiveDG', {
             },
             failure: function(response) {
                 callback(false);
-                // // TODO revert this
+
+                // DEBUG
+                // Used when the server is down
 
                 // var responseJson = [{
                 //     "Device.JSON": {
@@ -247,16 +262,16 @@ Ext.define('Aporo.controller.ActiveDG', {
                 //     });
                 // });
 
-                // // TODO revert this end
+                // /DEBUG
             }
         });
     },
 
+    /**
+     * Updates the local Locations.JSON file with specified data.
+     */
     updateLocationsJSON: function(json, callback) {
-        console.log('# updateLocationsJSON');
-
-        // TODO
-        // Remove this
+        // DEBUG
         // json[0]['tag'] = 'test';
         // json[0]['web_url'] = 'url';
         // json[0]['pickup'] = '';
@@ -264,13 +279,11 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         this.locations = json;
 
-        console.log(json);
-
+        // Save the file to the device
         Aporo.util.PhoneGap.saveFile({
             fileName: 'Locations.JSON',
             data: json,
             success: function() {
-                console.log('Locations.JSON saved');
                 callback(true);
             },
             failure: function(error) {
@@ -278,17 +291,6 @@ Ext.define('Aporo.controller.ActiveDG', {
                 callback(false);
             }
         });
-    },
-
-    showMenu: function() {
-        this.getActiveDGMainView().setMasked(false);
-
-        var nextLocation = this.nextLocation(),
-            toolbar = this.getActiveDGMenuView().getComponent('toolbarHeader');
-
-        if (nextLocation) {
-            toolbar.setTitle(this.titleForLocation(nextLocation));
-        }
     },
 
     /**
@@ -299,29 +301,44 @@ Ext.define('Aporo.controller.ActiveDG', {
         this.updateJSON(true);
     },
 
+    /**
+     * Shows the ActiveDG menu
+     */
+    showMenu: function() {
+        var me = this;
+
+        me.getActiveDGMainView().setMasked(false);
+
+        var nextLocation = me.nextLocation(),
+            toolbar = me.getActiveDGMenuView().getComponent('toolbarHeader');
+
+        if (nextLocation) {
+            toolbar.setTitle(me.titleForLocation(nextLocation));
+        }
+    },
+
     back: function() {
         Ext.getCmp('Viewport').pop();
     },
 
+    /**
+     * When the user engages the “Check Package” button, the application directs the user to a
+     * particular view depending on the contents of Next Location.
+     */
     onCheckPackage: function() {
-        console.log('# onCheckPackage');
-
-        // When the user engages the “Check Package” button, the application directs the user to a 
-        // particular view depending on the contents of Next Location.
-        // 
         //  - If “call_in” is True: --> user is directed to Call In Order
         //  - If “web” is True:     --> user is directed to Web Order
 
-        var checkPackageView = Ext.create('Aporo.view.activeDG.CheckPackage'),
-            nextLocation = this.nextLocation();
+        var me = this,
+            checkPackageView = Ext.create('Aporo.view.activeDG.CheckPackage'),
+            nextLocation = me.nextLocation();
 
         if (!nextLocation) {
             Ext.Msg.alert('No location found!');
             return;
         }
 
-        // TODO 
-        // remove this
+        // DEBUG
         // nextLocation['call_in'] = "True";
         // nextLocation['web'] = "True";
 
@@ -329,24 +346,24 @@ Ext.define('Aporo.controller.ActiveDG', {
             Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Check Package');
             Ext.getCmp('Viewport').push(checkPackageView);
         } else if (nextLocation['web'] === true || nextLocation['web'] === "True") {
-            this.onWebOrder();
+            me.onWebOrder();
         } else {
-            // @seth
-            // This should probably have a better error message
             Ext.Msg.alert('Problem', 'Next location was neither call_in or web');
             return;
         }
     },
 
+    /**
+     * Update the Device.JSON file
+     */
     onUpdateRoute: function() {
-        console.log('# onUpdateRoute');
-
         this.updateJSON(false);
     },
 
+    /**
+     * Checkout of the current job
+     */
     onCheckOut: function() {
-        console.log('# onCheckOut');
-
         var me = this;
 
         // If any entries in Locations.JSON have “end_datetime” as null or blank, the user is 
@@ -385,8 +402,6 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
 
     onCallInOrderSubmit: function() {
-        console.log('# onCallInOrderSubmit');
-
         var me = this;
 
         var tagField = me.getActiveDGCheckPackage().down('textfield'),
@@ -480,6 +495,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             return;
         }
 
+        // the order is not recognised, so show an alert
         Ext.Msg.show({
             title: 'Problem',
             message: 'This order is not recognized',
@@ -500,8 +516,13 @@ Ext.define('Aporo.controller.ActiveDG', {
         });
     },
 
+    /**
+     * Prompts a barcode scanner using PhoneGap
+     */
     onWebOrder: function() {
-        // TODO open barcode reader with phonegap
+        var me = this;
+
+        // Method which is called when the barcode has returned a QR code URL
         var callback = function(QR_url) {
             // Otherwise, the application updates the first entry in the local Locations.JSON where: 
             //     1. “web_url” equals “QR_url”, 
@@ -513,7 +534,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             //            - “end_datetime” with the current time, and
             //            - { batt_level, lat, long, dev_updated } with PhoneGap.
 
-            var locations = this.locationsWithProperties([{
+            var locations = me.locationsWithProperties([{
                 key: 'web_url',
                 value: QR_url
             }, {
@@ -523,16 +544,21 @@ Ext.define('Aporo.controller.ActiveDG', {
                 key: 'pickup',
                 value: 'True'
             }]);
+
             if (locations.length > 0) {
-                // TODO
-                // update: batt_level, lat, long, dev_updated - via phonegap
-
                 var location = locations[0];
-                location['end_datetime'] = this.formattedDate();
+                location['end_datetime'] = me.formattedDate();
 
-                console.log(location);
+                // TODO
+                // update:dev_updated - via phonegap
+                me.updateDeviceJSON(me.json, function(success, json) {
+                    var location = locations[0];
+                    location['end_datetime'] = me.formattedDate();
 
-                Ext.Msg.alert('Success!');
+                    me.updateLocationsJSON(me.locations, function(success) {
+                        Ext.Msg.alert('Success!');
+                    });
+                });
 
                 return;
             }
@@ -543,7 +569,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             //            - { batt_level, lat, long, dev_updated } with PhoneGap, and
             //            - “price” and “tip” with user inputs from a form.
 
-            locations = this.locationsWithProperties([{
+            locations = me.locationsWithProperties([{
                 key: 'web_url',
                 value: QR_url
             }, {
@@ -563,15 +589,18 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                     modal.destroy();
 
-                    location['price'] = price;
-                    location['tip'] = tip;
-                    location['end_datetime'] = this.formattedDate();
-
                     // TODO
-                    // update: batt_level, lat, long, dev_updated - via phonegap
-                    console.log(location);
+                    // update: dev_updated - via phonegap
 
-                    Ext.Msg.alert('Success!');
+                    me.updateDeviceJSON(me.json, function(success, json) {
+                        location['price'] = price;
+                        location['tip'] = tip;
+                        location['end_datetime'] = me.formattedDate();
+
+                        me.updateLocationsJSON(me.locations, function(success) {
+                            Ext.Msg.alert('Success!');
+                        });
+                    });
                 }, this);
 
                 return;
@@ -589,10 +618,8 @@ Ext.define('Aporo.controller.ActiveDG', {
                     ui: 'action',
                     itemId: 'tryagain'
                 }],
-                scope: this,
                 fn: function(buttonId) {
                     if (buttonId == "tryagain") {
-                        var me = this;
                         setTimeout(function() {
                             me.onWebOrder();
                         }, 500);
@@ -601,13 +628,16 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
-        callback.call(this, 'url');
+        callback.call(me, 'url');
     },
 
     /**
      * Helpers
      */
 
+    /**
+     * Returns a formatted date
+     */
     formattedDate: function() {
         function ISODateString(d) {
             function pad(n) {
@@ -620,22 +650,26 @@ Ext.define('Aporo.controller.ActiveDG', {
         return ISODateString(new Date());
     },
 
+    /**
+     * REturns the next location for the user
+     */
     nextLocation: function() {
-        var nextLocation = null;
+        var nextLocation = null,
+            me = this;
 
-        if (!this.locations) {
+        if (!me.locations) {
             return nextLocation;
         }
 
-        for (var i = 0; i < this.locations.length; i++) {
-            var endDatetime = this.locations[i]['end_datetime'];
+        for (var i = 0; i < me.locations.length; i++) {
+            var endDatetime = me.locations[i]['end_datetime'];
             if (!endDatetime || endDatetime == '') {
                 if (nextLocation) {
-                    if (parseInt(nextLocation['loc_num']) > parseInt(this.locations[i]['loc_num'])) {
-                        nextLocation = this.locations[i];
+                    if (parseInt(nextLocation['loc_num']) > parseInt(me.locations[i]['loc_num'])) {
+                        nextLocation = me.locations[i];
                     }
                 } else {
-                    nextLocation = this.locations[i];
+                    nextLocation = me.locations[i];
                 }
             }
         }
@@ -643,30 +677,38 @@ Ext.define('Aporo.controller.ActiveDG', {
         return nextLocation;
     },
 
+    /**
+     * Returns all locations for a tag
+     */
     locationsForTag: function(tag) {
-        var locations = [];
+        var locations = [],
+            me = this;
 
-        if (!this.locations) {
+        if (!me.locations) {
             return locations;
         }
 
-        for (var i = 0; i < this.locations.length; i++) {
-            if (this.locations[i]['tag'] == tag) {
-                locations.push(this.locations[i]);
+        for (var i = 0; i < me.locations.length; i++) {
+            if (me.locations[i]['tag'] == tag) {
+                locations.push(me.locations[i]);
             }
         }
 
         return locations;
     },
 
+    /**
+     * Returns all locations with specified properties
+     */
     locationsWithProperties: function(properties) {
-        var locations = [];
+        var locations = [],
+            me = this;
 
-        if (!this.locations) {
+        if (!me.locations) {
             return locations;
         }
 
-        for (var i = 0; i < this.locations.length; i++) {
+        for (var i = 0; i < me.locations.length; i++) {
             var selected = true;
 
             for (var j = 0; j < properties.length; j++) {
@@ -674,20 +716,20 @@ Ext.define('Aporo.controller.ActiveDG', {
                     value = properties[j]['value'];
 
                 if (!value) {
-                    if (this.locations[i][key] && this.locations[i][key] != "") {
+                    if (me.locations[i][key] && me.locations[i][key] != "") {
                         selected = false;
                     }
                 } else if (value == "True") {
-                    if (this.locations[i][key] === false || this.locations[i][key] == "false" || !this.locations[i][key]) {
+                    if (me.locations[i][key] === false || me.locations[i][key] == "false" || !me.locations[i][key]) {
                         selected = false;
                     }
-                } else if (this.locations[i][key] != value) {
+                } else if (me.locations[i][key] != value) {
                     selected = false;
                 }
             }
 
             if (selected) {
-                locations.push(this.locations[i]);
+                locations.push(me.locations[i]);
                 break;
             }
         }
@@ -695,6 +737,9 @@ Ext.define('Aporo.controller.ActiveDG', {
         return locations;
     },
 
+    /**
+     * Returns the menu title for a location
+     */
     titleForLocation: function(location) {
         var title = null;
 
