@@ -57,6 +57,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.controller.PassiveDG": [],
   "Aporo.controller.Registration": [],
   "Aporo.controller.Vendors": [],
+  "Aporo.extension.column.Checkbox": [],
   "Aporo.model.RegistrationModel": [],
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
@@ -726,6 +727,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.controller.PassiveDG": [],
   "Aporo.controller.Registration": [],
   "Aporo.controller.Vendors": [],
+  "Aporo.extension.column.Checkbox": [
+    "widget.checkboxcolumn"
+  ],
   "Aporo.model.RegistrationModel": [],
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
