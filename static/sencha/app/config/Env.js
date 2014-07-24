@@ -5,8 +5,8 @@ Ext.define("Aporo.config.Env", {
         is_active: false,
 
         logLevel: 'verbose',
-        baseApiUrl: 'http://54.191.47.76/',
-        //        baseApiUrl: 'http://0.0.0.0/api_view',
+        // baseApiUrl: 'http://54.191.47.76/',
+        baseApiUrl: 'http://0.0.0.0:8080/',
         django_token: typeof Aporo == "undefined" ? null : Aporo.csrftoken
     }
 });
