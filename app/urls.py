@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='app/sencha_index.html')),
+    url(r'^build$', TemplateView.as_view(template_name='app/sencha_build_index.html')),
     url(r'^forms/', TemplateView.as_view(template_name='app/form_index.html')),
 )
 
