@@ -13,9 +13,15 @@ SERVERS = {'dj_dev' :   'http://0.0.0.0:8080',
            'ec3'    :   'http://54.186.48.182'}
 
 test_server = 'dj_dev'
+# test_server = 'local'
 # test_server = 'ec2'
 BASE_URL = SERVERS[test_server]
 
+def adjust_json_for_sencha(data):
+    # When Django receives post url requests from the Sencha app,
+    # all the data is delivered in the first key of a dictionary.
+    # The value for the key is null.
+    return { str(data[0]): '' }
 
 def post_form(f_url, FORM_HTML, BASE_URL):
     from mechanize import Browser,_form
@@ -28,16 +34,31 @@ def post_form(f_url, FORM_HTML, BASE_URL):
     x=br.response().read()
     print x
 
-def post_json(all_data,p_url):
-    json_data = json.dumps(all_data)
+def post_json(all_data,p_url,show_post=False,show_resp=False):
+    adj_data = adjust_json_for_sencha(all_data)
+
+    if show_post == True:
+        print '\t\t\tJSON Posted:\n'
+        print json.dumps(adj_data, indent=4, sort_keys=True)
+
+    json_data = json.dumps(adj_data)
     headers = {'Content-type': 'application/json'}
     req = Request(p_url, json_data, headers)
     f = urlopen(req)
     response = f.read()
     f.close()
+
+    if show_resp == True:
+        parsed = json.loads(response)
+        print '\t\t\tServer Response:\n'
+        print json.dumps(parsed, indent=4, sort_keys=True)
+
     return response
 
-def new_currier():
+def new_currier(show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/new_currier/'
+    print '\t\tnew currier','\n\t\t\tURL:',p_url
+
     data = [{"app_user_type":"dg",
             "first_name":"John10",
             "last_name":"Smith10",
@@ -50,12 +71,14 @@ def new_currier():
             "emergency_contact_name":"Mama John",
             "emergency_contact_number":"555-555-5555",
             }]
-    p_url = BASE_URL+'/api/new_currier/'
-    resp = post_json(data,p_url)
-    print '\t\tnew currier','\n\t\t\tURL:',p_url,'\n\t\t\t--> SUCCESS\n'
+
+    resp = post_json(data,p_url,show_post,show_resp)
+    print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-def new_vendor(vend_type='mgr'):
+def new_vendor(vend_type='mgr',show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/new_vendor/'
+    print '\t\tnew vendor',vend_type,'\n\t\t\tURL:',p_url
 
     data = [{"app_user_type":"vend_"+vend_type,
             "first_name":"John10",
@@ -78,11 +101,14 @@ def new_vendor(vend_type='mgr'):
             }]
 
     p_url = BASE_URL+'/api/new_vendor/'
-    resp = post_json(data,p_url)
-    print '\t\tnew vendor',vend_type,'\n\t\t\tURL:',p_url,'\n\t\t\t--> SUCCESS\n'
+    resp = post_json(data,p_url,show_post,show_resp)
+
+    print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-def schedule(post_action='add',show_resp=False):
+def schedule(post_action='add',show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/dg_contracts/'
+    print '\t\tschedule, with post-action:',post_action.upper(),'\n\t\t\tURL:',p_url
 
     # get first DG
     g_url = BASE_URL+'/api_view/curriers/?format=json'
@@ -110,17 +136,15 @@ def schedule(post_action='add',show_resp=False):
                      })
         all_data.append(data)
 
-    p_url = BASE_URL+'/api/dg_contracts/'
-    resp = post_json(all_data,p_url)
-    parsed = json.loads(resp)
-    print '\t\tschedule, with post-action:',post_action.upper(),'\n\t\t\tURL:',p_url
-    if show_resp == True:
-        print '\t\t\tServer Response:\n'
-        print json.dumps(parsed, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url,show_post,show_resp)
+
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-def work(post_action='history',show_resp=False):
+def work(post_action='history',show_post=False,show_resp=False):
+    p_url = BASE_URL+'/api/work/'
+    print '\n\t\twork',post_action,'\n\t\t\tURL:',p_url
+
     if post_action=='history':
         data = [{
                 "currier_id" : "1",
@@ -133,21 +157,16 @@ def work(post_action='history',show_resp=False):
                 "currier_id" : "1",
                 "action" : post_action
             }]
-    p_url = BASE_URL+'/api/work/'
-    resp = post_json(data,p_url)
-    parsed = json.loads(resp)
-    print '\n\t\twork',post_action,'\n\t\t\tURL:',p_url
-    if show_resp == True:
-        print '\t\t\tServer Response:\n'
-        print json.dumps(parsed, indent=4, sort_keys=True)
+
+    resp = post_json(data,p_url,show_post,show_resp)
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-def device(show_post=False,show_resp=False):
+def device(post_action='update',show_post=False,show_resp=False):
     p_url = BASE_URL+'/api/device/'
     print '\t\tdevice','\n\t\t\tURL:',p_url
     data = {
-                "action" : 'update',
+                "action" : post_action,
                 "currier_id" : "1",
             }
     last_updated = str(DT(2014,07,17,12,45,0).isoformat())
@@ -167,14 +186,7 @@ def device(show_post=False,show_resp=False):
             }
     data.update({"device":dev_data})
     all_data = [data]
-    if show_post == True:
-        print '\t\t\tJSON Posted:\n'
-        print json.dumps(all_data, indent=4, sort_keys=True)
-    resp = post_json(all_data,p_url)
-    parsed = json.loads(resp)
-    if show_resp == True:
-        print '\t\t\tServer Response:\n'
-        print json.dumps(parsed, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url,show_post,show_resp)
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
@@ -185,7 +197,6 @@ def order(show_post=False,show_resp=False):
                 "action" : 'new',
                 "vendor_id" : "1",
             }
-    last_updated = str(DT(2014,07,17,12,45,0).isoformat())
     dev_data = {"tag" : "",
                 "web" : "",
                 "req_pickup_time" : "",
@@ -196,14 +207,7 @@ def order(show_post=False,show_resp=False):
             }
     data.update({"order":dev_data})
     all_data = [data]
-    if show_post == True:
-        print '\t\t\tJSON Posted:\n'
-        print json.dumps(all_data, indent=4, sort_keys=True)
-    resp = post_json(all_data,p_url)
-    parsed = json.loads(resp)
-    if show_resp == True:
-        print '\t\t\tServer Response:\n'
-        print json.dumps(parsed, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url,show_post,show_resp)
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
@@ -215,33 +219,26 @@ def update(post_action='get',show_post=False,show_resp=False):
                 "currier_id" : "1",
             }
     all_data = [data]
-    if show_post == True:
-        print '\t\t\tJSON Posted:\n'
-        print json.dumps(all_data, indent=4, sort_keys=True)
-    resp = post_json(all_data,p_url)
-    parsed = json.loads(resp)
-    if show_resp == True:
-        print '\t\t\tServer Response:\n'
-        print json.dumps(parsed, indent=4, sort_keys=True)
+    resp = post_json(all_data,p_url,show_post,show_resp)
+
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
 print '\n\tTesting "'+test_server+'"...\n'
 print '\tBase URL:',BASE_URL,'\n'
 
-# new_vendor(vend_type='mgr')
-# new_vendor(vend_type='empl')
-# new_currier()
-# schedule(post_action='add',show_resp=False)
-# schedule(post_action='remove',show_resp=False)
-# schedule(post_action='add',show_resp=True)
-# work(post_action='GET',show_resp=True)
-# work(post_action='check_in',show_resp=True)
-# work(post_action='history',show_resp=True)
-# work(post_action='check_out',show_resp=True)
-#
-# device(show_post=True,show_resp=True)
-update(post_action='get',show_post=True,show_resp=True)
+new_vendor(vend_type='mgr')
+new_vendor(vend_type='empl')
+new_currier()
+schedule(post_action='add',show_resp=False)
+schedule(post_action='remove',show_resp=False)
+schedule(post_action='add',show_resp=True)
+work(post_action='GET',show_resp=True)
+work(post_action='check_in',show_resp=True)
+work(post_action='history',show_resp=True)
+work(post_action='check_out',show_resp=True)
+device(post_action='update',show_post=True,show_resp=True)
+# update(post_action='update',show_post=True,show_resp=True)
 
 print '\n\tTesting COMPLETE\n'
 

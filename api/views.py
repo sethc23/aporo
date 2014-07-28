@@ -82,10 +82,11 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+def get_sencha_json(request_data):
+    return eval(request_data.keys()[0].replace('null','"null"'))
+
 @api_view(['GET', 'POST'])
 def new_currier(request):
-
-    x = request.DATA[0]
 
     if request.method == 'GET':
         snippets = App_User.objects.all()
@@ -93,6 +94,9 @@ def new_currier(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
+
+        x = get_sencha_json(request.DATA)
+
         serializer = App_UserSerializer(data=x) # NOTE:  only 1 data pt here
         if serializer.is_valid():
             c = serializer.save()
@@ -128,7 +132,8 @@ def new_vendor(request):
         #   3. append app_user_id to vendor data, save vendor data, get vendor_id
         #   4. get user
 
-        x = request.DATA[0]
+        x = get_sencha_json(request.DATA)
+
         user_data,vend_data={},{}
         for k,v in x.iteritems():
             if k.find('biz') != -1: vend_data.update({ k[4:]:v })
@@ -171,7 +176,9 @@ def dg_contracts(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        x = eval(x.keys()[0])
+
+        x = [get_sencha_json(request.DATA)]
+
         #   . receive JSON from DG -- DONE
         #   . create/edit Schedule entries
         #   . update Contract entries
@@ -259,7 +266,6 @@ def work(request):
 
     # TODO: when authenticating, change dg_id=1 in api.view.work(request)
     dg_id = 1
-    x = request.DATA
 
     if request.method == 'GET':
         k = Currier.objects.get(currier_id=dg_id)
@@ -267,7 +273,7 @@ def work(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        it = eval(x.keys()[0])
+        it = get_sencha_json(request.DATA)
 
         if it['action'].lower()=='get':
             k = Currier.objects.get(currier_id=dg_id)
@@ -302,7 +308,6 @@ def work(request):
 def device(request):
     # TODO: when authenticating, change dg_id=1 in api.view.device(request)
     dg_id = 1  # set by "currier_id"
-    x = request.DATA[0]
 
     if request.method == 'GET':
         d = Device.objects.get(currier_id=dg_id)
@@ -310,7 +315,7 @@ def device(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        x = eval(x.keys()[0])
+        x = get_sencha_json(request.DATA)
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='update':
@@ -320,7 +325,15 @@ def device(request):
             # TODO adjust update frequency here
             p.update({'update_frequency':60})
             d.update(**p)
-            return Response(d)
+
+            # d = Device.objects.get(currier_id=currier_id)
+            dev_serializer = FilteredDeviceSerializer(d, context={'request': request}, many=True)
+            l = Location.objects.filter(currier_id=dg_id)
+            loc_serializer = LocationSerializer(l, context={'request': request}, many=True)
+            z = {'Device.JSON':dev_serializer.data[0],
+                 'Locations.JSON':loc_serializer.data}
+
+            return Response(z)
             # serializer = FilteredDeviceSerializer(d)
             # return Response(serializer.data)
 
@@ -352,7 +365,6 @@ def order(request):
 def update(request):
     # TODO: when authenticating, change currier_id=1 in api.view.update(request)
     currier_id = 1  # set by "currier_id"
-    x = request.DATA[0]
 
     if request.method == 'GET':
         d = Location.objects.get(currier_id=currier_id)
@@ -360,10 +372,10 @@ def update(request):
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        x = eval(x.keys()[0])
+        x = get_sencha_json(request.DATA)
         # TODO account for an unregistered device posting update
 
-        if x['action'].lower()=='get':
+        if x['action'].lower()=='update':
             d = Device.objects.get(currier_id=currier_id)
             dev_serializer = FilteredDeviceSerializer(d)
             l = Location.objects.filter(currier_id=currier_id)
