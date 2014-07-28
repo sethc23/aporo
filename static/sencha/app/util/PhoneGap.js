@@ -19,7 +19,6 @@ Ext.define('Aporo.util.PhoneGap', {
             }
 
             var callback = function(info) {
-                alert('Change! ' + info.level + ' - ' + info.isPlugged);
                 Aporo.util.PhoneGap.batteryLevel = info.level;
                 Aporo.util.PhoneGap.batteryPluggedIn = info.isPlugged;
             };

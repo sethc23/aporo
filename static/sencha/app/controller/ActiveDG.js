@@ -177,6 +177,10 @@ Ext.define('Aporo.controller.ActiveDG', {
             json['uuid'] = device.uuid;
             json['op_sys_ver'] = device.version;
 
+            if (Aporo.util.PhoneGap.batteryLevel) {
+                json['battery_level'] = Aporo.util.PhoneGap.batteryLevel;
+            }
+
             // Geolocation data requires a callback
             navigator.geolocation.getCurrentPosition(function(position) {
                 json['lat'] = position.coords.latitude;
