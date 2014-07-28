@@ -4,10 +4,10 @@ Ext.define('Aporo.extension.column.Checkbox', {
 
     defaultRenderer: function(value) {
         if (!value || value === false) {
-            return '<input type="checkbox" />';
+            return '<div class="checkbox"></div>';
         }
 
-        return '<input type="checkbox" checked="checked" />';
+        return '<div class="checkbox checked"></div>';
     },
 
     updateCell: function(cell, record, content) {
