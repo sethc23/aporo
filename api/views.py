@@ -163,13 +163,13 @@ from datetime import datetime as DT
 
 @api_view(['GET', 'POST'])
 def dg_contracts(request):
-
+    dg_id = 1#it['currier_id']
     x = request.DATA
     # TODO: schedules(request.method=='GET') needs user authentication
     if request.method == 'GET':
         try:
             it = x[0]
-            k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=it['currier_id']))
+            k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=str(dg_id)))
         except:
             k = Contract.objects.filter(is_open=True)
         serializer = FilteredContractSerializer(k, many=True)
@@ -177,8 +177,8 @@ def dg_contracts(request):
 
     elif request.method == 'POST':
 
-        x = [get_sencha_json(request.DATA)]
-
+        x = get_sencha_json(request.DATA)
+        if type(x)!=list: x=[x]
         #   . receive JSON from DG -- DONE
         #   . create/edit Schedule entries
         #   . update Contract entries
@@ -193,11 +193,11 @@ def dg_contracts(request):
                 del it['action']
                 del_entries.append(it)
             elif it['action'].lower()=='get':   # function always returns this ...
-                k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=it['currier_id']))
+                k = Contract.objects.filter(Q(is_open=True) | Q(curriers__in=str(dg_id)))
                 serializer = FilteredContractSerializer(k, many=True)
                 return Response(serializer.data)
 
-        dg_id = 1#it['currier_id']
+
 
         def ACTION_add(add_entries):
             for it in add_entries:
@@ -324,7 +324,8 @@ def device(request):
             p.update({'is_active':True})
             # TODO adjust update frequency here
             p.update({'update_frequency':60})
-            d.update(**p)
+            for k,v in p.iteritems():
+                if v != 'null': d.update(**{k:v})
 
             # d = Device.objects.get(currier_id=currier_id)
             dev_serializer = FilteredDeviceSerializer(d, context={'request': request}, many=True)
@@ -343,23 +344,59 @@ def device(request):
 def order(request):
     # TODO: when authenticating, change vend_id=1 in api.view.order(request)
     vendor_id = 1  # set by "currier_id"
-    x = request.DATA[0]
 
     if request.method == 'GET':
         d = Order.objects.get(vendor_id=vendor_id)
-        serializer = DeviceSerializer(d)
+        serializer = OrderSerializer(d)
         return Response(serializer.data)
 
     elif request.method == 'POST':
-        x = eval(x.keys()[0])
-        # TODO account for an unregistered device posting update
 
-        if x['action'].lower()=='new':
-            o = Order(**x)
-            o.save()
-            return Response(o)
+        x = get_sencha_json(request.DATA)
+        vendor_id = x['vendor_id']
+        if x.keys().count('Orders.JSON')==0:
+            if x['action'].lower()=='get':
+                d = Order.objects.filter(vendor_id=str(vendor_id))
+                serializer = OrderSerializer(d)
+                return Response(serializer.data)
+        else:
+            orders_json = x['Orders.JSON']
 
-        return Response(x)
+        add_entries,del_entries = [],[]
+        for it in orders_json:
+            if it['action'].lower()=='add':
+                del it['action']
+                add_entries.append(it)
+            elif it['action'].lower()=='remove':
+                del it['action']
+                del_entries.append(it)
+
+        def ACTION_add(add_entries):
+            for it in add_entries:
+                o = Order(      vendor_id=str(vendor_id),
+                                call_in=it['call_in'],
+                                web=it['web'],
+                                req_pickup_time=it['req_pickup_time'],
+                                deliv_addr=it['deliv_addr'],
+                                deliv_cross_street=it['deliv_cross_street'],
+                                price=eval(str(it['price'])),
+                                comment=it['comment'])
+                o.save()
+                # TODO add celery task in api.views.order for getting coordinates/injecting into algo
+        def ACTION_remove(del_entries):
+            for it in del_entries:
+                o = Order.objects.get(order_id=str(it['order_id']))
+                o.delete()
+
+        # TODO add comments feature to vendor orders
+
+        if add_entries != []:   ACTION_add(add_entries)
+        if del_entries != []:   ACTION_remove(del_entries)
+
+        o = Order.objects.filter(vendor_id=str(vendor_id))
+        o_serializer = OrderSerializer(o, many=True)
+        all_data = {"Orders.JSON" : o_serializer.data}
+        return Response(all_data)
 
 @api_view(['GET', 'POST'])
 def update(request):

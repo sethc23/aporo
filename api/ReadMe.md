@@ -298,3 +298,75 @@
 			},
 		],
 	}]
+
+###Vendor: Load Vendor Menu
+
+######POST Request where action is "add"
+
+	{
+	"	{'Orders.JSON': 
+				[{'comment': '5th Floor', 
+                    'web': 'False', 
+                    'req_pickup_time': '2014-07-28T13:52:22.722884', 
+                    'call_in': 'True', 
+                    'deliv_addr': 'Order_Deliv_one_hour', 
+                    'action': 'add', 
+                    'deliv_cross_street': '', 
+                    'price': '20.00'}, 
+                 {'comment': '10th Floor', 
+                    'web': 'True', 
+                    'req_pickup_time': '2014-07-28T14:52:22.722924', 
+                    'call_in': 'False', 
+                    'deliv_addr': 'Order_Deliv_two_hour', 
+                    'action': 'add', 
+                    'deliv_cross_street': '', 
+                    'price': '25.00'}
+                ], 
+    	'vendor_id': '1'}
+    ": ""
+	}
+######Example Server Response
+	
+	{
+    	"Orders.JSON": [
+        	{
+            "call_in": true, 
+            "comment": "5th Floor", 
+            "created": "2014-07-28T12:52:22", 
+            "currier": null, 
+            "currier_dev": null, 
+            "deliv_addr": "Order_Deliv_one_hour", 
+            "deliv_cross_street": "", 
+            "deliv_lat": null, 
+            "deliv_long": null, 
+            "price": 20.0, 
+            "req_pickup_time": "2014-07-28T13:52:22", 
+            "tag": null, 
+            "tip": null, 
+            "url": "/api_view/orders/5/", 
+            "vendor": "/api_view/vendors/1/", 
+            "vendor_dev": null, 
+            "web": true, 
+            "web_url": ""},
+        	{
+            "call_in": true, 
+            "comment": "10th Floor", 
+            "created": "2014-07-28T12:52:22", 
+            "currier": null, 
+            "currier_dev": null, 
+            "deliv_addr": "Order_Deliv_two_hour", 
+            "deliv_cross_street": "", 
+            "deliv_lat": null, 
+            "deliv_long": null, 
+            "price": 25.0, 
+            "req_pickup_time": "2014-07-28T14:52:22", 
+            "tag": null, 
+            "tip": null, 
+            "url": "/api_view/orders/6/", 
+            "vendor": "/api_view/vendors/1/", 
+            "vendor_dev": null, 
+            "web": true, 
+            "web_url": ""
+        	}
+    	]
+	}

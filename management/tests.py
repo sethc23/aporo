@@ -2,6 +2,7 @@
 
 import json
 from urllib2 import urlopen,Request
+from datetime import timedelta
 
 from datetime import datetime as DT
 
@@ -12,8 +13,8 @@ SERVERS = {'dj_dev' :   'http://0.0.0.0:8080',
            'ec2'    :   'http://54.191.47.76',
            'ec3'    :   'http://54.186.48.182'}
 
-test_server = 'dj_dev'
-# test_server = 'local'
+# test_server = 'dj_dev'
+test_server = 'local'
 # test_server = 'ec2'
 BASE_URL = SERVERS[test_server]
 
@@ -33,6 +34,15 @@ def post_form(f_url, FORM_HTML, BASE_URL):
     br.submit()
     x=br.response().read()
     print x
+
+def get_json(p_url,show_resp=False):
+    g_url = p_url+'?format=json'
+    response = urlopen(g_url).read()
+    if show_resp == True:
+        parsed = json.loads(response)
+        print '\t\t\tServer Response to GET request:\n'
+        print json.dumps(parsed, indent=4, sort_keys=True)
+    return response
 
 def post_json(all_data,p_url,show_post=False,show_resp=False):
     adj_data = adjust_json_for_sencha(all_data)
@@ -190,26 +200,62 @@ def device(post_action='update',show_post=False,show_resp=False):
     print '\n\t\t\t--> SUCCESS\n'
     return resp
 
-def order(show_post=False,show_resp=False):
+def order(post_action='get',show_post=False,show_resp=False):
     p_url = BASE_URL+'/api/order/'
-    print '\t\torder','\n\t\t\tURL:',p_url
-    data = {
-                "action" : 'new',
-                "vendor_id" : "1",
-            }
-    dev_data = {"tag" : "",
-                "web" : "",
-                "req_pickup_time" : "",
-                "deliv_addr" : "",
-                "deliv_cross_street" : "",
-                "deliv_lat" : "",
-                "deliv_long" : "",
-            }
-    data.update({"order":dev_data})
+    print '\t\torder',post_action,'\n\t\t\tURL:',p_url
+    data = {"vendor_id" : "1",
+            'action': 'get'}
     all_data = [data]
-    resp = post_json(all_data,p_url,show_post,show_resp)
-    print '\n\t\t\t--> SUCCESS\n'
-    return resp
+    if post_action.lower()=='get':
+        resp = post_json(all_data,p_url,show_post=False,show_resp=True)
+        print '\n\t\t\t--> SUCCESS\n'
+        return resp
+    else:
+        resp = post_json(all_data,p_url,show_post=False,show_resp=False)
+        P = json.loads(resp)
+        data = { "vendor_id" : "1" }
+        dev_data = []
+        if post_action=='remove':
+            for i in range(0,len(P)):   # W[0]['url'][W[0]['url'][:-1].rfind('/')+1:-1]
+                order_id = P[i]['url'][P[i]['url'][:-1].rfind('/')+1:-1]
+                time_soon = DT.now() + timedelta(hours=1,minutes=5*i)
+                dev_data.append({"action" : 'remove',
+                            "order_id" : order_id,
+                            "call_in" : "True",
+                            "web" : "False",
+                            "req_pickup_time" : time_soon.isoformat(),
+                            "deliv_addr" : "Order_Deliv_one_hour",
+                            "deliv_cross_street" : "",
+                            "price" : "20.00",
+                            "comment" : "5th Floor",
+                            })
+        elif post_action=='add':
+            time_in_one_hour = DT.now() + timedelta(hours=1)
+            dev_data.append({"action" : 'add',
+                            "call_in" : "True",
+                            "web" : "False",
+                            "req_pickup_time" : time_in_one_hour.isoformat(),
+                            "deliv_addr" : "Order_Deliv_one_hour",
+                            "deliv_cross_street" : "",
+                            "price" : "20.00",
+                            "comment" : "5th Floor",
+                            })
+            time_in_two_hour = DT.now() + timedelta(hours=2)
+            dev_data.append({"action" : 'add',
+                        "call_in" : "False",
+                        "web" : "True",
+                        "req_pickup_time" : time_in_two_hour.isoformat(),
+                        "deliv_addr" : "Order_Deliv_two_hour",
+                        "deliv_cross_street" : "",
+                        "price" : "25.00",
+                        "comment" : "10th Floor",
+                        })
+
+        data.update({"Orders.JSON":dev_data})
+        all_data = [data]
+        resp = post_json(all_data,p_url,show_post,show_resp)
+        print '\n\t\t\t--> SUCCESS\n'
+        return resp
 
 def update(post_action='get',show_post=False,show_resp=False):
     p_url = BASE_URL+'/api/update/'
@@ -238,7 +284,11 @@ work(post_action='check_in',show_resp=True)
 work(post_action='history',show_resp=True)
 work(post_action='check_out',show_resp=True)
 device(post_action='update',show_post=True,show_resp=True)
-# update(post_action='update',show_post=True,show_resp=True)
+## update(post_action='update',show_post=True,show_resp=True)
+order(post_action='get',show_post=True,show_resp=True)
+order(post_action='add',show_resp=False)
+order(post_action='remove',show_resp=False)
+order(post_action='add',show_post=True,show_resp=True)
 
 print '\n\tTesting COMPLETE\n'
 

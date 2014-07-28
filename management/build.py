@@ -4,7 +4,7 @@ from os import system as os_system
 from time import sleep as delay
 
 print '\n\tRe-Building Content and Testing...\n'
-os_chdir('/Users/sethchase/Dropbox/BD_Scripts/django/aporo')
+os_chdir('/Users/sethchase/Dropbox/BD_Scripts/django/Dropbox/aporo')
 os_system('bin/python manage.py reset_db --noinput')
 os_system('bin/python manage.py syncdb --noinput')
 

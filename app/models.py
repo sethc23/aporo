@@ -23,7 +23,7 @@ class App_User(models.Model):
 
     def __unicode__(self):
         # x = App_User.__doc__.replace('App_User(','').strip('()').split()
-        return ' '.join(str(v) for v in [
+        return ' '.join([
                 self.app_user_id,
                 self.created,
                 self.app_user_type,
@@ -74,7 +74,7 @@ class Vendor(models.Model):
     last_updated = models.DateTimeField(blank=True, auto_now=True, auto_now_add=False)
 
     def __unicode__(self):
-        return ' '.join(str(v) for v in [
+        return ' '.join([
                 self.vendor_id,
                 self.created,
                 self.app_user,
@@ -113,7 +113,7 @@ class Currier(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return ' '.join(str(v) for v in [
+        return ' '.join([
                 self.currier_id,
                 self.created,
                 self.app_user,
@@ -136,18 +136,19 @@ class Order(models.Model):
     web = models.BooleanField(default=False)
     web_url = models.TextField(blank=True)
     call_in = models.BooleanField(default=False)
-    req_pickup_time = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
+    req_pickup_time = models.DateTimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
     deliv_addr = models.TextField(blank=True)
     deliv_cross_street = models.TextField(blank=True)
-    deliv_lat = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
-    deliv_long = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
-    price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
-    tip = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
-    comments = models.TextField(blank=True)
+    deliv_lat = models.FloatField(blank=True, null=True)
+    deliv_long = models.FloatField(blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    tip = models.FloatField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return ' '.join(str(v) for v in [
-                self.order_id,
+        return ' '.join([
+                str(self.order_id),
+                # TODO need to figure out why __unicode__ does not always work (e.g., order(post_action='add'))
                 self.created,
                 self.vendor,
                 self.vendor_dev,
@@ -164,7 +165,7 @@ class Order(models.Model):
                 self.deliv_long,
                 self.price,
                 self.tip,
-                self.comments,
+                self.comment
             ])
 
 class Location(models.Model):
@@ -185,14 +186,14 @@ class Location(models.Model):
     price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
     tip = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
     comments = models.TextField(blank=True)
-    lat = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
-    long = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=5)
+    lat = models.FloatField(blank=True, null=True)
+    long = models.FloatField(blank=True, null=True)
     batt_level = models.SmallIntegerField(blank=True, null=True, max_length=3)
     dev_updated = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
 
 
     def __unicode__(self):
-        return ' '.join(str(v) for v in [
+        return ' '.join([
                 self.location_id,
                 self.loc_num,
                 self.order,
@@ -236,7 +237,7 @@ class Device(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return ' '.join(str(v) for v in [
+        return ' '.join([
                 self.device_id,
                 self.created,
                 self.currier,

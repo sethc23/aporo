@@ -1,7 +1,11 @@
+from datetime import timedelta
+from datetime import datetime as DT
+
 from django.shortcuts import render
 from forms import save_form
 from forms import currier_reg,user_registration,vend_manager_registration
 from forms import vendor_mgr_registration,vend_empl_registration,forgot_password
+
 
 def form_data(request):
     save_form(*currier_reg())
@@ -22,6 +26,7 @@ def sample_data(request):
     # . Make Currier 1
     # . Device BRAVO
     # . Make Order 1
+    # . - add locations
 
 
     # MAKE VENDOR 1
@@ -58,7 +63,7 @@ def sample_data(request):
     # MAKE CURRIER 1
     a = App_User(first_name='BRAVO',
           last_name='BRAVO',
-          app_user_type='dg'
+          app_user_type='currier'
           )
     a.save()
     ONE_dg_app_user_id = a.app_user_id
@@ -95,6 +100,8 @@ def sample_data(request):
     l = Location(order_id=ONE_order_id,
                 loc_num=1,
                 currier_id=ONE_dg_id,
+                web=True,
+                call_in=False,
                 pickup=True,
                 addr=c.vendor.addr1,
           )
@@ -102,6 +109,8 @@ def sample_data(request):
     c = Location(order_id=ONE_order_id,
                  loc_num=2,
                  currier_id=ONE_dg_id,
+                 web=True,
+                 call_in=False,
                  delivery=True,
                  addr=c.deliv_addr,
           )
@@ -149,7 +158,7 @@ def sample_data(request):
     # MAKE CURRIER 2
     a = App_User(first_name='DELTA',
           last_name='DELTA',
-          app_user_type='dg'
+          app_user_type='currier'
           )
     a.save()
     TWO_dg_app_user_id = a.app_user_id
@@ -173,12 +182,13 @@ def sample_data(request):
     a.save()
 
     # MAKE ORDER 2
+    time_in_90 = DT.now() + timedelta(hours=1,minutes=30)
     c = Order(  vendor_id=TWO_vendor_id,
                 vendor_dev_id=TWO_vendor_device_id,
                 currier_id=TWO_dg_id,
                 currier_dev_id=TWO_dg_device_id,
                 call_in=True,
-                req_pickup_time='11:00',
+                req_pickup_time=time_in_90.isoformat(),
                 deliv_addr='TWO_deliv_addr'
           )
     c.save()
@@ -186,6 +196,8 @@ def sample_data(request):
     # add locations
     l = Location(order_id=TWO_order_id,
                  currier_id=TWO_dg_id,
+                 web=False,
+                 call_in=True,
                 loc_num=3,
                 pickup=True,
                 addr=c.vendor.addr1,
@@ -194,6 +206,8 @@ def sample_data(request):
     c = Location(order_id=TWO_order_id,
                  loc_num=4,
                  currier_id=TWO_dg_id,
+                 web=False,
+                 call_in=True,
                  delivery=True,
                  addr=c.deliv_addr,
           )
