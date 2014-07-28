@@ -433,6 +433,10 @@ Ext.define('Aporo.controller.PassiveDG', {
                     rawRecords.push(data);
                 }
 
+                me.getPassiveDGContracts().setMasked({
+                    xtype: 'loadmask'
+                });
+
                 Ext.Ajax.request({
                     url: Aporo.config.Env.baseApiUrl + 'api/dg_contracts/',
                     method: 'POST',
@@ -440,6 +444,8 @@ Ext.define('Aporo.controller.PassiveDG', {
                     params: Ext.encode(rawRecords),
 
                     success: function(response) {
+                        me.getPassiveDGContracts().setMasked(false);
+
                         var json = Ext.decode(response.responseText),
                             contracts = json['contracts.json'],
                             work = json['work.json'];
@@ -447,12 +453,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                         me.contractsStore.setData(contracts);
                         me.updateWorkJSON(work);
 
-                        // Set all as not changed
-                        for (var i = 0; i < records.length; i++) {
-                            records[i].set('changedRegistered', false);
-                        }
-
-                        // TODO show success message
+                        Ext.Msg.alert('Success', 'Contracts updated!');
                     },
                     failure: function(response) {
                         Ext.Msg.alert('Problem', 'Problem updating all contracts');
