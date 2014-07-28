@@ -1,8 +1,8 @@
 # Specific Folders #
 ####################
-bin/
-include/
-lib/
+/Aporo/bin/
+/Aporo/include/
+/Aporo/lib/
 
 
 # Specific Files #

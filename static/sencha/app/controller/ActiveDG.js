@@ -127,6 +127,14 @@ Ext.define('Aporo.controller.ActiveDG', {
      * Reads the Device.JSON from the filesystem
      */
     readDeviceJSON: function(config) {
+        if (!Aporo.util.PhoneGap.is()) {
+            Ext.Msg.alert('Error', 'Canont read Device.JSON as you are not running inside PhoneGap', function() {
+                config.success([{}]);
+            }, this);
+
+            return;
+        }
+
         Aporo.util.PhoneGap.readFile({
             fileName: 'device.JSON',
             success: function(json) {
@@ -162,7 +170,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             callback(true, json);
         };
 
-        if (Ext.browser.is.PhoneGap) {
+        if (Aporo.util.PhoneGap.is()) {
             // Standard device information
             json[0]['model'] = device.model;
             json[0]['platform'] = device.platform;

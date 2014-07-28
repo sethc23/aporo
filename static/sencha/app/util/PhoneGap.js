@@ -2,6 +2,14 @@ Ext.define('Aporo.util.PhoneGap', {
     extend: 'Ext.Evented',
 
     statics: {
+        is: function() {
+            if (Ext.browser.is.PhoneGap && typeof device != "undefined") {
+                return true;
+            }
+
+            return false;
+        },
+
         /**
          * Aporo.util.PhoneGap.saveFile({
          *     fileName: 'Work.JSON',
@@ -91,7 +99,7 @@ Ext.define('Aporo.util.PhoneGap', {
          */
         fileExists: function(config) {
             if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
-                config.failure();
+                config.success(true);
                 return;
             }
 
