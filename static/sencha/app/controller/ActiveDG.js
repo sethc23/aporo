@@ -128,7 +128,7 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert('Error', 'Canont read Device.JSON as you are not running inside PhoneGap', function() {
+            Ext.Msg.alert('Error', 'Cannot read Device.JSON as you are not running inside PhoneGap', function() {
                 config.success({});
             }, this);
 
@@ -294,7 +294,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         this.locations = json;
 
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert('Error', 'Canont save Locations.JSON as you are not running inside PhoneGap', function() {
+            Ext.Msg.alert('Error', 'Cannot save Locations.JSON as you are not running inside PhoneGap', function() {
                 callback(true);
             }, this);
 
