@@ -241,7 +241,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             fileName: 'Work.JSON',
             data: json,
             success: function() {
-                console.log('Work.JSON saved');
+
             },
             failure: function(error) {
                 if (error) {
@@ -441,8 +441,8 @@ Ext.define('Aporo.controller.PassiveDG', {
 
                     success: function(response) {
                         var json = Ext.decode(response.responseText),
-                            contracts = json[0]['contracts.json'],
-                            work = json[0]['work.json'];
+                            contracts = json['contracts.json'],
+                            work = json['work.json'];
 
                         me.contractsStore.setData(contracts);
                         me.updateWorkJSON(work);

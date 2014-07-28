@@ -96,7 +96,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                                 // (1) “is_active” is “False”, or
                                 // (2)  the current time is equal to or greater than “last_updated” plus the 
                                 //      number of seconds defined by “update_frequency”.
-                                var details = json[0],
+                                var details = json,
                                     isActive = details['is_active'] == 'True',
                                     lastUpdated = Date.parse(details['last_updated']),
                                     requiresUpdate = (Date.now() - lastUpdated) >= parseInt(details['update_frequency']);
@@ -129,7 +129,7 @@ Ext.define('Aporo.controller.ActiveDG', {
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
             Ext.Msg.alert('Error', 'Canont read Device.JSON as you are not running inside PhoneGap', function() {
-                config.success([{}]);
+                config.success({});
             }, this);
 
             return;

@@ -76,6 +76,7 @@ Ext.application({
     },
 
     launch: function() {
+        Aporo.util.PhoneGap.startBatteryListener();
         Ext.Ajax.setUseDefaultXhrHeader(false);
 
         // Destroy the #appLoadingIndicator element
