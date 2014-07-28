@@ -27,3 +27,6 @@ static/sencha/build/production/
 static/sencha/phonegap/platforms/ios/Aporo.xcodeproj/project.xcworkspace/xcuserdata
 static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphoneos
 static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator
+static/sencha/phonegap/platforms/ios/CordovaLib/build/CordovaLib.build
+static/sencha/phonegap/platforms/ios/build
+static/sencha/phonegap/platforms/ios/CordovaLib
