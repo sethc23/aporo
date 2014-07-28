@@ -81,6 +81,7 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
         //Ext.Loader.setPath('Aporo', 'project/Aporo/app');
+
         // Initialize the main view
         Ext.Viewport.add(Ext.create('Aporo.view.Main'));
     },
