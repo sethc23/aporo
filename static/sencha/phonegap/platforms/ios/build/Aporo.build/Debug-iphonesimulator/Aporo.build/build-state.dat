@@ -326,8 +326,8 @@ t1397312625
 s20812
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist
-c0000000053D6B6AA0000000000000A0D
-t1406580394
+c0000000053D6B8160000000000000A0D
+t1406580758
 s2573
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Prefix.pch
@@ -669,11 +669,11 @@ t1406148618
 s45
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app
-t1406580396
+t1406580761
 s1224
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM
-t1406560856
+t1406580396
 s102
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo
@@ -713,7 +713,7 @@ t1406148618
 s10394
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Info.plist
-t1406580395
+t1406580760
 s1271
 
 N/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/MainViewController.nib
@@ -1093,7 +1093,7 @@ s6286748
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesc363932bee86b941^e140942bee86b941^---0#1#1#--18"Check dependencies36"2D956302-BA44-4F86-A0BC-105BE57CAE2A-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies18b4f498ef86b941^ad6af598ef86b941^---0#1#1#--18"Check dependencies36"3D5B29EC-A385-4104-834A-5EE2D0E792E5-
 
 CCompileC build/Aporo.build/Debug-iphonesimulator/Aporo.build/Objects-normal/i386/AppDelegate.o /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Classes/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s427841421.223057
@@ -1859,14 +1859,14 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection48"Copy bu
 bFBF25687-7921-4902-9B88-06502479B12D
 
 CGenerateDSYMFile /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo
-s428273196.227028
-e428273196.599563
+s428273561.763218
+e428273562.555268
 r1
 xGenerateDSYMFile
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection136"Generate /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM77"GenerateDSYMFile build/emulator/Aporo.app.dSYM build/emulator/Aporo.app/Aporod23a3a2cee86b941^7c7d992cee86b941^---0#0#1#-19%DVTDocumentLocation2@137"file:///Users/rdougan/Development/odesk/23-07-2014/Seth%20Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM/0000000000000000^1434"GenerateDSYMFile build/emulator/Aporo.app.dSYM build/emulator/Aporo.app/Aporo    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools:/Users/rdougan/.rvm/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo -o /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM36"081A5A2D-68F5-4565-B062-D95245909B29-
-bC5C90776-1309-4703-A0C9-3197727D3008
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection136"Generate /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM93"[1mGenerateDSYMFile[0m [1mbuild/emulator/Aporo.app.dSYM[0m build/emulator/Aporo.app/Aporo7688c399ef86b941^f6268e9aef86b941^---0#0#1#-19%DVTDocumentLocation2@137"file:///Users/rdougan/Development/odesk/23-07-2014/Seth%20Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM/0000000000000000^1254"[1mGenerateDSYMFile[0m [1mbuild/emulator/Aporo.app.dSYM[0m build/emulator/Aporo.app/Aporo    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo -o /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app.dSYM36"9DAABAA1-5BD5-43CD-A8A7-8B84C2FD636F-
+b521066A9-1C51-4FE0-BCA7-F187FD6FF3EB
 
 CLd /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Aporo normal i386
 s428224326.554909
@@ -1978,28 +1978,28 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Link /
 bECFD4CC1-6234-401B-8E27-9E7A328771D6
 
 CPhaseScriptExecution Copy\ www\ directory /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh
-s428273195.583000
-e428273196.213326
+s428273560.964426
+e428273561.723455
 r1
 xPhaseScriptExecution
 xCopy www directory
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh
 o
-oreal	0m0.605s
-ouser	0m0.135s
-osys	0m0.219s
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Run custom shell script 'Copy www directory'128"PhaseScriptExecution Copy\ www\ directory build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh90a3952bee86b941^629d362cee86b941^-42"real	0m0.605suser	0m0.135ssys	0m0.219s3(21%IDEActivityLogMessage2@14"real	0m0.605s-428273196#1#14#-0#-----2@14"user	0m0.135s-428273196#15#14#-0#-----2@13"sys	0m0.219s-428273196#29#13#-0#-----0#0#1#--441"PhaseScriptExecution Copy\ www\ directory build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    /bin/sh -c \"/Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh\"36"1FFD23BA-8914-4E28-97A2-B008C1B9B883-
-bC5C90776-1309-4703-A0C9-3197727D3008
+oreal	0m0.722s
+ouser	0m0.168s
+osys	0m0.282s
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Run custom shell script 'Copy www directory'136"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sha2b8f798ef86b941^ce34b999ef86b941^-42"real	0m0.722suser	0m0.168ssys	0m0.282s3(21%IDEActivityLogMessage2@14"real	0m0.722s-428273561#1#14#-0#-----2@14"user	0m0.168s-428273561#15#14#-0#-----2@13"sys	0m0.282s-428273561#29#13#-0#-----0#0#1#--449"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    /bin/sh -c \"/Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator/Aporo.build/Script-304B58A110DAC018002A0835.sh\"36"4E9A68A8-FAD8-4F8E-8145-F0E0E43F598D-
+b521066A9-1C51-4FE0-BCA7-F187FD6FF3EB
 
 CProcessInfoPlistFile /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Info.plist /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist
-s428273195.579688
-e428273195.582138
+s428273560.959653
+e428273560.963039
 r1
 xProcessInfoPlistFile
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Info.plist
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection128"Process /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist79"ProcessInfoPlistFile build/emulator/Aporo.app/Info.plist Aporo/Aporo-Info.plist03b1942bee86b941^9607952bee86b941^---0#0#1#-19%DVTDocumentLocation2@129"file:///Users/rdougan/Development/odesk/23-07-2014/Seth%20Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist0000000000000000^1569"ProcessInfoPlistFile build/emulator/Aporo.app/Info.plist Aporo/Aporo-Info.plist    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools:/Users/rdougan/.rvm/bin"    builtin-infoPlistUtility /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist -genpkginfo /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Info.plist36"C667D49A-D262-466F-88BB-33CE60629535-
-bC5C90776-1309-4703-A0C9-3197727D3008
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection128"Process /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist95"[1mProcessInfoPlistFile[0m build/emulator/Aporo.app/Info.plist [1mAporo/Aporo-Info.plist[0ma113f698ef86b941^3389f698ef86b941^---0#0#1#-19%DVTDocumentLocation2@129"file:///Users/rdougan/Development/odesk/23-07-2014/Seth%20Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist0000000000000000^1389"[1mProcessInfoPlistFile[0m build/emulator/Aporo.app/Info.plist [1mAporo/Aporo-Info.plist[0m    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"    builtin-infoPlistUtility /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/Aporo/Aporo-Info.plist -genpkginfo /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app/Info.plist36"D02B10EA-A1B7-4C94-A979-389A5D5E28FF-
+b521066A9-1C51-4FE0-BCA7-F187FD6FF3EB
 
 CProcessPCH /var/folders/yw/791qzm99775dk8pks9txzthm0000gn/C/com.apple.DeveloperTools/5.1.1-5B1008/Xcode/SharedPrecompiledHeaders/Aporo-Prefix-fhrgcnibbhojpdfcbpuwkxozguwe/Aporo-Prefix.pch.pch Aporo/Aporo-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s427841420.950290
@@ -2062,11 +2062,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection33"Precomp
 b11047721-A6A9-4E6E-B0CC-ED270ACA0FEA
 
 CTouch /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app
-s428273196.600444
-e428273196.607537
+s428273562.556713
+e428273562.569671
 r1
 xTouch
 x/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection128"Touch /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app30"Touch build/emulator/Aporo.appf2ce992cee86b941^72899b2cee86b941^---0#0#1#--1171"Touch build/emulator/Aporo.app    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools:/Users/rdougan/.rvm/bin"    /usr/bin/touch -c /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app36"D811D448-52CD-493D-BFD2-3385C5ABD1A7-
-bC5C90776-1309-4703-A0C9-3197727D3008
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection128"Touch /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app38"[1mTouch[0m build/emulator/Aporo.app8c9f8e9aef86b941^7cd6919aef86b941^---0#0#1#--983"[1mTouch[0m build/emulator/Aporo.app    cd "/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/ios"    export PATH="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547/bin:/Users/rdougan/.rvm/gems/ruby-1.9.3-p547@global/bin:/Users/rdougan/.rvm/rubies/ruby-1.9.3-p547/bin:/usr/local/heroku/bin:/Users/rdougan/bin/Sencha/Cmd/5.0.0.160:/Users/rdougan/bin/Sencha/Cmd/4.0.4.84:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/rdougan/bin:/Users/rdougan/.rvm/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/Applications/Android Studio.app/sdk/tools:/Applications/Android Studio.app/sdk/platform-tools"    /usr/bin/touch -c /Users/rdougan/Development/odesk/23-07-2014/Seth\ Chase/aporo/static/sencha/phonegap/platforms/ios/build/emulator/Aporo.app36"699F50A7-3E0C-4565-B4BE-3C88B21C5371-
+b521066A9-1C51-4FE0-BCA7-F187FD6FF3EB
 
