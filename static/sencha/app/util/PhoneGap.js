@@ -2,12 +2,30 @@ Ext.define('Aporo.util.PhoneGap', {
     extend: 'Ext.Evented',
 
     statics: {
+        batteryLevel: null,
+        batteryPluggedIn: null,
+
         is: function() {
             if (Ext.browser.is.PhoneGap && typeof device != "undefined") {
                 return true;
             }
 
             return false;
+        },
+
+        startBatteryListener: function() {
+            if (!Aporo.util.PhoneGap.is()) {
+                return;
+            }
+
+            var callback = function(info) {
+                Aporo.util.PhoneGap.batteryLevel = info.level;
+                Aporo.util.PhoneGap.batteryPluggedIn = info.isPlugged;
+            };
+
+            window.addEventListener('batterystatus', callback, false);
+            window.addEventListener('batterylow', callback, false);
+            window.addEventListener('batterycritical', callback, false);
         },
 
         /**
@@ -23,7 +41,7 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         saveFile: function(config) {
-            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+            if (!Aporo.util.PhoneGap.is()) {
                 config.failure();
                 return;
             }
@@ -58,7 +76,7 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         readFile: function(config) {
-            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+            if (!Aporo.util.PhoneGap.is()) {
                 config.failure();
                 return;
             }
@@ -98,7 +116,7 @@ Ext.define('Aporo.util.PhoneGap', {
          * });
          */
         fileExists: function(config) {
-            if (Ext.browser.is.Chrome || !Ext.browser.is.PhoneGap) {
+            if (!Aporo.util.PhoneGap.is()) {
                 config.success(true);
                 return;
             }

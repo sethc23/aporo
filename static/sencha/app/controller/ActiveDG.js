@@ -96,7 +96,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                                 // (1) “is_active” is “False”, or
                                 // (2)  the current time is equal to or greater than “last_updated” plus the 
                                 //      number of seconds defined by “update_frequency”.
-                                var details = json[0],
+                                var details = json,
                                     isActive = details['is_active'] == 'True',
                                     lastUpdated = Date.parse(details['last_updated']),
                                     requiresUpdate = (Date.now() - lastUpdated) >= parseInt(details['update_frequency']);
@@ -128,8 +128,8 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert('Error', 'Canont read Device.JSON as you are not running inside PhoneGap', function() {
-                config.success([{}]);
+            Ext.Msg.alert('Error', 'Cannot read Device.JSON as you are not running inside PhoneGap', function() {
+                config.success({});
             }, this);
 
             return;
@@ -159,10 +159,10 @@ Ext.define('Aporo.controller.ActiveDG', {
         if (json) {
             json = Ext.clone(json);
         } else {
-            json = me.json || [{}];
+            json = me.json || {};
         }
 
-        json[0]['is_active'] = 'True';
+        json['is_active'] = 'True';
 
         var _callback = function() {
             me.device = json;
@@ -172,18 +172,22 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         if (Aporo.util.PhoneGap.is()) {
             // Standard device information
-            json[0]['model'] = device.model;
-            json[0]['platform'] = device.platform;
-            json[0]['uuid'] = device.uuid;
-            json[0]['op_sys_ver'] = device.version;
+            json['model'] = device.model;
+            json['platform'] = device.platform;
+            json['uuid'] = device.uuid;
+            json['op_sys_ver'] = device.version;
+
+            if (Aporo.util.PhoneGap.batteryLevel) {
+                json['battery_level'] = Aporo.util.PhoneGap.batteryLevel;
+            }
 
             // Geolocation data requires a callback
             navigator.geolocation.getCurrentPosition(function(position) {
-                json[0]['lat'] = position.coords.latitude;
-                json[0]['long'] = position.coords.longitude;
-                json[0]['coord_accuracy'] = position.coords.accuracy;
-                json[0]['heading'] = position.coords.heading;
-                json[0]['speed'] = position.coords.speed;
+                json['lat'] = position.coords.latitude;
+                json['long'] = position.coords.longitude;
+                json['coord_accuracy'] = position.coords.accuracy;
+                json['heading'] = position.coords.heading;
+                json['speed'] = position.coords.speed;
 
                 _callback.call(me);
             }, function(error) {
@@ -199,7 +203,7 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     postDeviceJSONUpdate: function(json, callback) {
         var me = this,
-            device = Ext.clone(json[0]);
+            device = Ext.clone(json);
 
         // Remove is_active and update_frequency
         delete device['is_active'];
@@ -209,11 +213,9 @@ Ext.define('Aporo.controller.ActiveDG', {
             action: 'update',
             currier_id: Aporo.config.Env.currier_id,
             device: device,
-            is_active: json[0]['is_active'],
-            update_frequency: json[0]['update_frequency']
+            is_active: json['is_active'],
+            update_frequency: json['update_frequency']
         };
-
-        console.log(Ext.encode(params));
 
         Ext.Ajax.request({
             url: Aporo.config.Env.baseApiUrl + 'api/device/',
@@ -221,7 +223,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             useDefaultXhrHeader: false,
             params: Ext.encode(params),
             success: function(response) {
-                var responseJson = Ext.decode(response.responseText)[0],
+                var responseJson = Ext.decode(response.responseText),
                     device = responseJson['Device.JSON'],
                     locations = responseJson['Locations.JSON'];
 
@@ -291,6 +293,14 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         this.locations = json;
 
+        if (!Aporo.util.PhoneGap.is()) {
+            Ext.Msg.alert('Error', 'Cannot save Locations.JSON as you are not running inside PhoneGap', function() {
+                callback(true);
+            }, this);
+
+            return;
+        }
+
         // Save the file to the device
         Aporo.util.PhoneGap.saveFile({
             fileName: 'Locations.JSON',
@@ -299,7 +309,10 @@ Ext.define('Aporo.controller.ActiveDG', {
                 callback(true);
             },
             failure: function(error) {
-                Ext.Msg.alert('Error saving Locations.JSON', error.code);
+                if (error) {
+                    Ext.Msg.alert('Error saving Locations.JSON', error.code);
+                }
+
                 callback(false);
             }
         });

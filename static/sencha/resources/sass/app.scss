@@ -8,3 +8,17 @@
 	padding-top: 20px;
 	height: 70px;
 }
+
+.checkbox {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	@include box-shadow(#eee 0 0 1px 1px inset);
+
+	&.checked {
+		background: $ios7-blue;
+		@include box-shadow(#fff 0 0 0 1px inset);
+	}
+}

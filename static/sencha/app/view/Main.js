@@ -3,8 +3,7 @@ Ext.define('Aporo.view.Main', {
     title: 'Home',
     xtype: 'main',
     id: 'Viewport',
-    requires: [
-    ],
+    requires: [],
     config: {
         layout: {
             type: 'card',
@@ -12,25 +11,21 @@ Ext.define('Aporo.view.Main', {
         },
         navigationBar: {
             hidden: true,
-            items: [
-            {
+            items: [{
                 xtype: 'button',
                 align: 'right',
                 id: 'addVendorsBtn',
                 hidden: true,
                 text: 'Add Vendors'
-            },
-            {
+            }, {
                 xtype: 'button',
                 align: 'right',
                 id: 'historyBtn',
                 hidden: true,
                 text: 'History'
-            }
-            ]
+            }]
         },
-        items: [
-        {
+        items: [{
             xtype: 'container',
             itemId: 'btnList',
             layout: {
@@ -38,49 +33,48 @@ Ext.define('Aporo.view.Main', {
                 pack: 'center',
                 align: 'middle'
             },
-            items: [
-            {
+            items: [{
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'MainRegBtn',
                 text: 'Registration'
-            },
-            {
+            }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'MainHelpBtn',
                 text: 'Contact Help'
-            },
-            {
+            }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'MainVendorBtn',
                 text: 'Vendor Menu'
-            },
-            {
+            }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'ActiveDGBtn',
                 text: 'Active DG Menu'
-            },
-            {
+            }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'PassiveDGBtn',
                 text: 'Passive DG Menu'
-            }
-            ]
+            }]
+        }]
+    },
+
+    onBackButtonTap: function() {
+        if (this.fireEvent('beforepop', this) !== false) {
+            this.callParent(arguments);
         }
-        ]
     }
 });

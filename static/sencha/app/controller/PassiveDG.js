@@ -33,7 +33,8 @@ Ext.define('Aporo.controller.PassiveDG', {
 
             // Contracts
             PassiveDGContracts: {
-                activate: 'onContractsActivate'
+                activate: 'onContractsActivate',
+                deactivate: 'onContractsDeactivate'
             },
             'PassiveDGContracts #update': {
                 tap: 'onUpdateContracts'
@@ -240,7 +241,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             fileName: 'Work.JSON',
             data: json,
             success: function() {
-                console.log('Work.JSON saved');
+
             },
             failure: function(error) {
                 if (error) {
@@ -375,6 +376,36 @@ Ext.define('Aporo.controller.PassiveDG', {
 
     onContractsActivate: function() {
         this.getContractsJSON();
+
+        Ext.getCmp('Viewport').on('beforepop', this.onBeforePop, this);
+    },
+
+    onContractsDeactivate: function() {
+        Ext.getCmp('Viewport').un('beforepop', this.onBeforePop, this);
+    },
+
+    onBeforePop: function() {
+        var records = this.changedRecords();
+
+        if (records.length > 0) {
+            Ext.Msg.confirm('Updated Contracts', 'If you go back, all updated contracts will be lost. Are you sure you want to do this?', function(buttonId) {
+                if (buttonId == "yes") {
+                    Ext.getCmp('Viewport').pop();
+                }
+            }, this);
+
+            return false;
+        }
+
+        return true;
+    },
+
+    changedRecords: function() {
+        var records = this.contractsStore.data.filterBy(function(item) {
+            return item.get('changedRegistered');
+        }).items;
+
+        return records;
     },
 
     /**
@@ -384,9 +415,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         var me = this;
 
         // Get all changed records
-        var records = me.contractsStore.data.filterBy(function(item) {
-            return item.get('changedRegistered');
-        }).items;
+        var records = me.changedRecords();
 
         if (records.length == 0) {
             return;
@@ -404,6 +433,10 @@ Ext.define('Aporo.controller.PassiveDG', {
                     rawRecords.push(data);
                 }
 
+                me.getPassiveDGContracts().setMasked({
+                    xtype: 'loadmask'
+                });
+
                 Ext.Ajax.request({
                     url: Aporo.config.Env.baseApiUrl + 'api/dg_contracts/',
                     method: 'POST',
@@ -411,19 +444,16 @@ Ext.define('Aporo.controller.PassiveDG', {
                     params: Ext.encode(rawRecords),
 
                     success: function(response) {
+                        me.getPassiveDGContracts().setMasked(false);
+
                         var json = Ext.decode(response.responseText),
-                            contracts = json[0]['contracts.json'],
-                            work = json[0]['work.json'];
+                            contracts = json['contracts.json'],
+                            work = json['work.json'];
 
                         me.contractsStore.setData(contracts);
                         me.updateWorkJSON(work);
 
-                        // Set all as not changed
-                        for (var i = 0; i < records.length; i++) {
-                            records[i].set('changedRegistered', false);
-                        }
-
-                        // TODO show success message
+                        Ext.Msg.alert('Success', 'Contracts updated!');
                     },
                     failure: function(response) {
                         Ext.Msg.alert('Problem', 'Problem updating all contracts');
