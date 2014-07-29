@@ -20,3 +20,27 @@ x = urlopen(g_url).read()
 print '\t\tContracts Populated by Vendor'
 
 print '\n\tLoading COMPLETE'
+
+    URL: base_url + /api/order
+
+    JSON:
+        {
+            "url": "http://aporo.ngrok.com/api_view/orders/1/",
+            "created": "2014-07-29T16:05:24",
+            "vendor": "http://aporo.ngrok.com/api_view/vendors/1/",
+            "vendor_dev": "http://aporo.ngrok.com/api_view/devices/1/",
+            "currier": "http://aporo.ngrok.com/api_view/curriers/1/",
+            "currier_dev": "http://aporo.ngrok.com/api_view/devices/2/",
+            "tag": null,
+            "web": true,
+            "web_url": "",
+            "call_in": false,
+            "req_pickup_time": null,
+            "deliv_addr": "ONE_deliv_addr",
+            "deliv_cross_street": "",
+            "deliv_lat": null,
+            "deliv_long": null,
+            "price": null,
+            "tip": null,
+            "comment": null
+        }
