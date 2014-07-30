@@ -72,7 +72,12 @@
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/res/xml/config.xml \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/res/xml/preferences.xml \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable/icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable/launcher_icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable/share_via_barcode.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable/shopper_icon.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-hdpi/icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-hdpi/launcher_icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-hdpi/shopper_icon.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-land-hdpi/screen.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-land-ldpi/screen.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
@@ -84,4 +89,6 @@
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-port-mdpi/screen.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-xhdpi/launcher_icon.png \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-xxhdpi/launcher_icon.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/AndroidManifest.xml \

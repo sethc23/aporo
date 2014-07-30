@@ -63,11 +63,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.AddVendorOrder": [],
   "Aporo.view.ContactHelp": [],
   "Aporo.view.Main": [],
   "Aporo.view.RegistrationView": [],
-  "Aporo.view.VendorHistory": [],
   "Aporo.view.activeDG.CheckPackage": [],
   "Aporo.view.activeDG.CheckPackageModal": [],
   "Aporo.view.activeDG.MainView": [],
@@ -740,9 +738,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.AddVendorOrder": [
-    "widget.AddVendorOrder"
-  ],
   "Aporo.view.ContactHelp": [
     "widget.ContactHelp"
   ],
@@ -751,9 +746,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Aporo.view.RegistrationView": [
     "widget.RegistrationView"
-  ],
-  "Aporo.view.VendorHistory": [
-    "widget.VendorHistory"
   ],
   "Aporo.view.activeDG.CheckPackage": [
     "widget.ActiveDGCheckPackage"

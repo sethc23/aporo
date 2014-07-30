@@ -184,6 +184,9 @@ Ext.define('Aporo.controller.ActiveDG', {
                 _callback.call(me);
             }, function(error) {
                 _callback.call(me);
+            }, {
+                enableHighAccuracy: true,
+                timeout: 5000
             });
         } else {
             _callback();
