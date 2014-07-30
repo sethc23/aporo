@@ -37,7 +37,6 @@ class FilteredCurrierSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Currier
         fields = ['currier_id']
-
 class FilteredVendorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vendor
@@ -53,7 +52,6 @@ class FilteredContractSerializer(serializers.HyperlinkedModelSerializer):
     #     b = a.transform_dg_id(obj=c_obj, value=c_value)
     #     # (k_serializer,dg_id)
     #     return b
-
 class FilteredScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Schedule
@@ -71,6 +69,12 @@ class FilteredDeviceSerializer(serializers.HyperlinkedModelSerializer):
         model = Device
         fields = ['update_frequency','is_active']
         # exclude = ['batt_level','currier','dev_updated','lat','long','order']
+class FilteredOrderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Order
+        # fields = ['update_frequency','is_active']
+        exclude = ['vendor','vendor_dev','currier','currier_dev',
+                   'web_url','deliv_lat','deliv_long']
 
 class CurrierScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -78,3 +82,4 @@ class CurrierScheduleSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['dg_schedule']
 
     dg_schedule = FilteredScheduleSerializer(many=True)
+

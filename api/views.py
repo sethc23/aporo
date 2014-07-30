@@ -3,7 +3,8 @@ from rest_framework import viewsets
 from rest_framework import filters
 from serializers import App_UserSerializer,VendorSerializer,OrderSerializer,CurrierSerializer
 from serializers import FormSerializer,DeviceSerializer,FilteredDeviceSerializer
-from serializers import FilteredVendorSerializer, FilteredContractSerializer, FilteredScheduleSerializer
+from serializers import FilteredVendorSerializer, FilteredContractSerializer
+from serializers import FilteredScheduleSerializer,FilteredOrderSerializer
 from serializers import ContractSerializer,ScheduleSerializer,CurrierScheduleSerializer
 from serializers import LocationSerializer,FilteredLocationSerializer
 from app.models import App_User,Vendor,Order,Currier,Form,Device
@@ -281,8 +282,11 @@ def work(request):
             return Response(serializer.data)
         elif it['action'][:6].lower()=='check_':
             c = Currier.objects.get(currier_id=dg_id)
-            if it['action'][6:].lower()=='in': c.is_active,i = True,'True'
-            else: c.is_active,i = False,'False'
+            if it['action'][6:].lower()=='in':
+                c.is_active,i = True,'True'
+                # TODO update relevant schedule object
+            else:
+                c.is_active,i = False,'False'
             c.save()
             return Response({"is_active":i})
         elif it['action'].lower()=='history':
@@ -346,8 +350,8 @@ def order(request):
     vendor_id = 1  # set by "currier_id"
 
     if request.method == 'GET':
-        d = Order.objects.get(vendor_id=vendor_id)
-        serializer = OrderSerializer(d)
+        d = Order.objects.filter(vendor_id=str(vendor_id))
+        serializer = FilteredOrderSerializer(d, context={'request': request}, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -357,7 +361,7 @@ def order(request):
         if x.keys().count('Orders.JSON')==0:
             if x['action'].lower()=='get':
                 d = Order.objects.filter(vendor_id=str(vendor_id))
-                serializer = OrderSerializer(d)
+                serializer = OrderSerializer(d, context={'request': request}, many=True)
                 return Response(serializer.data)
         else:
             orders_json = x['Orders.JSON']
@@ -394,7 +398,7 @@ def order(request):
         if del_entries != []:   ACTION_remove(del_entries)
 
         o = Order.objects.filter(vendor_id=str(vendor_id))
-        o_serializer = OrderSerializer(o, many=True)
+        o_serializer = OrderSerializer(o, context={'request': request}, many=True)
         all_data = {"Orders.JSON" : o_serializer.data}
         return Response(all_data)
 

@@ -91,8 +91,9 @@ def sample_data(request):
                 vendor_dev_id=ONE_vendor_device_id,
                 currier_id=ONE_dg_id,
                 currier_dev_id=ONE_dg_device_id,
-                web=True,
+                call_in =True,
                 deliv_addr='ONE_deliv_addr',
+                tag='TAG1'
           )
     c.save()
     ONE_order_id = c.order_id
@@ -100,19 +101,21 @@ def sample_data(request):
     l = Location(order_id=ONE_order_id,
                 loc_num=1,
                 currier_id=ONE_dg_id,
-                web=True,
-                call_in=False,
+                web=c.web,
+                call_in=c.call_in,
                 pickup=True,
                 addr=c.vendor.addr1,
+                tag=c.tag,
           )
     l.save()
     c = Location(order_id=ONE_order_id,
                  loc_num=2,
                  currier_id=ONE_dg_id,
-                 web=True,
-                 call_in=False,
+                 web=c.web,
+                 call_in=c.call_in,
                  delivery=True,
                  addr=c.deliv_addr,
+                 tag=c.tag,
           )
     c.save()
 
@@ -187,29 +190,32 @@ def sample_data(request):
                 vendor_dev_id=TWO_vendor_device_id,
                 currier_id=TWO_dg_id,
                 currier_dev_id=TWO_dg_device_id,
-                call_in=True,
+                web=True,
                 req_pickup_time=time_in_90.isoformat(),
-                deliv_addr='TWO_deliv_addr'
+                deliv_addr='TWO_deliv_addr',
+                tag='TAG2'
           )
     c.save()
     TWO_order_id = c.order_id
     # add locations
     l = Location(order_id=TWO_order_id,
                  currier_id=TWO_dg_id,
-                 web=False,
-                 call_in=True,
-                loc_num=3,
-                pickup=True,
-                addr=c.vendor.addr1,
+                 web=c.web,
+                 call_in=c.call_in,
+                 loc_num=3,
+                 pickup=True,
+                 addr=c.vendor.addr1,
+                 tag=c.tag,
           )
     l.save()
     c = Location(order_id=TWO_order_id,
                  loc_num=4,
                  currier_id=TWO_dg_id,
-                 web=False,
-                 call_in=True,
+                 web=c.web,
+                 call_in=c.call_in,
                  delivery=True,
                  addr=c.deliv_addr,
+                 tag=c.tag,
           )
     c.save()
 

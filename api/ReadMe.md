@@ -301,6 +301,26 @@
 
 ###Vendor: Load Vendor Menu
 
+######Example Server Response for GET Request
+
+    URL:    base_url + /api/order
+    
+    JSON:   [
+                {
+                    "url": "http://aporo.ngrok.com/api_view/orders/1/", 
+                    "created": "2014-07-29T16:05:24", 
+                    "tag": null, 
+                    "web": true, 
+                    "call_in": false, 
+                    "req_pickup_time": null, 
+                    "deliv_addr": "ONE_deliv_addr", 
+                    "deliv_cross_street": "", 
+                    "price": null, 
+                    "tip": null, 
+                    "comment": null
+                },
+            ]
+
 ######POST Request where action is "add"
 
 	{
