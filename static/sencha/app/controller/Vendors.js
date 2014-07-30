@@ -2,95 +2,165 @@ Ext.define('Aporo.controller.Vendors', {
     extend: 'Ext.app.Controller',
     config: {
         refs: {
+            VendorMainView: 'VendorMainView',
+            VendorNewOrder: 'VendorNewOrder',
+            VendorHistory: 'VendorHistory',
+
+            VendorNewOrderContinueButton: 'VendorNewOrder #continueButton'
         },
         control: {
-            VendorOrderList: {
-                activate: 'onVendorOrderListActivate',
-                deactivate: 'onVendorOrderListDeactivate'
+            VendorMainView: {
+                activate: 'onVendorOrderListActivate'
             },
-            'button[id=addVendorsBtn]': {
-                
+
+            'VendorMainView #newOrderButton': {
+                tap: 'onNewOrder'
             },
-            'button[id=historyBtn]': {
-                tap: 'onHistoryBtn'
+            'VendorMainView #historyButton': {
+                tap: 'onHistory'
             },
-            'button[id=addVendorsBtn]': {
-                tap: 'onAddVendorsBtn'
+            'VendorMainView #quitButton': {
+                tap: 'onQuit'
             },
-            'button[itemId=vendorCancelBtn]': {
-                tap: 'onVendorFormCancel'
+
+            'VendorMainView grid': {
+                itemtap: 'onGridItemTap'
             },
-            'button[itemId=saveBtn]': {
-                tap: 'onVendorSave'
+
+            // New Order
+            'VendorNewOrder #cancelOrderButton': {
+                tap: 'onCancelOrder'
+            },
+            'VendorNewOrder #continueButton': {
+                tap: 'onContinue'
             }
         }
     },
-    onVendorOrderListActivate: function(cmp)
-    {
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor Menu');
-        Ext.getCmp('addVendorsBtn').setHidden(false);
-        Ext.getCmp('historyBtn').setHidden(false);
-    },
-    onVendorOrderListDeactivate: function(cmp)
-    {
-        Ext.getCmp('addVendorsBtn').setHidden(true);
-        Ext.getCmp('historyBtn').setHidden(true);
-    },
-    
-    onHistoryBtn: function()
-    {
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor History');
-        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.VendorHistory'));
-    },
-    onAddVendorsBtn: function()
-    {
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Add Vendor Orders');
-        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.AddVendorOrder'));
-    },
-    onVendorFormCancel: function()
-    {
+
+    /**
+     * Pops the viewport
+     */
+    back: function() {
         Ext.getCmp('Viewport').pop();
     },
-    onVendorSave: function()
-    {
-        var vendor_form = Ext.getCmp('AddVendorOrder');  //Getting DOM query of FormPanel
-             var data = vendor_form.getValues(); //Full form data as object
-             for(var key in data)
-             {
-                if(data[key]=='')
-                {
-                    Ext.Msg.alert('Warning', 'Please do not leave any field as blank');
-                    return;
-                }
-             }
-             
-            var progressIndicator = Ext.Viewport.add(Ext.create("Ext.ProgressIndicator", {
-                loadingText: 'Please wait'
-            }));
-            
-            progressIndicator.show(); //A progress mask while making Ajax request
-            
-            Ext.Ajax.disableCaching = false;
 
-            Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl+'api_view/orders/',
+    onVendorOrderListActivate: function() {
+        this.getVendorJSON();
+    },
+
+    onVendorOrderListDeactivate: function() {
+
+    },
+
+    getVendorJSON: function() {
+        var me = this;
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/order/',
+            method: 'GET',
             useDefaultXhrHeader: false,
-            method: 'post',
+            params: Ext.encode({
+                action: 'GET',
+                vendor_id: Aporo.config.Env.vendor_id
+            }),
 
-            headers: {  'X-CSRFTOKEN': Aporo.config.Env.django_token,
-                        'Content-Type': 'application/json' },
+            success: function(response) {
+                var json = Ext.decode(response.responseText);
 
-            params: Ext.JSON.encode(vendor_form.getValues()),
+                // Create the vendor store
+                me.vendorStore = Ext.create('Ext.data.Store', {
+                    storeId: 'vendorStore',
+                    fields: [
+                        'req_pickup_time',
+                        'tag',
+                        'deliv_addr',
 
-            success: function(res){
-                progressIndicator.hide();
-                Ext.Msg.alert('Response', res.toString());
+                        'type',
+
+                        {
+                            name: 'web',
+                            convert: function(value, record) {
+                                record.set('type', (value == "True" || value === true) ? 'Web' : 'User');
+                            }
+                        }
+                    ],
+                    data: json
+                });
+
+                // Give the grid the new store
+                me.getVendorMainView().setStore(me.vendorStore);
             },
-            failure: function(e)
-            {
-                e = Ext.JSON.decode(e.responseText);
-                Ext.Msg.alert("Error", e.detail);
-                progressIndicator.hide();
+            failure: function(response) {
+                Ext.Msg.alert('Error', 'There was a problem fetching Vendors');
+
+                me.back();
+            }
+        });
+    },
+
+    onGridItemTap: function(grid, index, el, record, e) {
+        if (e.target.className == "button") {
+            this.onNewOrder(record.raw);
+        }
+
+        setTimeout(function() {
+            grid.deselect(record);
+        }, 500);
+    },
+
+    onNewOrder: function(values) {
+        var view = Ext.create('Aporo.view.vendor.NewOrder');
+
+        Ext.getCmp('Viewport').push(view);
+
+        view.setValues(values ? values : {});
+    },
+
+    onHistory: function() {
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.vendor.History'));
+    },
+
+    onQuit: function() {
+
+    },
+
+    onCancelOrder: function() {
+        Ext.getCmp('Viewport').pop();
+    },
+
+    onContinue: function() {
+        var me = this,
+            values = me.getVendorNewOrder().getValues() || {};
+
+        me.getVendorNewOrder().setMasked({
+            xtype: 'loadmask',
+            message: 'Loading...'
+        });
+
+        me.getVendorNewOrderContinueButton().setDisabled(true);
+
+        values['action'] = 'update';
+        values['vendor_id'] = Aporo.config.Env.vendor_id;
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/order/',
+            method: 'POST',
+            useDefaultXhrHeader: false,
+            params: Ext.encode(values),
+
+            success: function(response) {
+                me.getVendorNewOrder().setMasked(false);
+                me.getVendorNewOrderContinueButton().setDisabled(false);
+
+                Ext.Msg.alert('Success', 'New order created', function() {
+                    me.back();
+                }, me);
+            },
+            failure: function(response) {
+                me.getVendorNewOrder().setMasked(false);
+                me.getVendorNewOrderContinueButton().setDisabled(false);
+
+                Ext.Msg.alert('Error', 'There was a problem creating the new order');
             }
         });
     }

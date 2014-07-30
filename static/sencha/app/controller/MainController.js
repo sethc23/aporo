@@ -40,8 +40,7 @@ Ext.define('Aporo.controller.MainController', {
     },
     onMainVendorMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor Menu');
-        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.VendorOrderList'));
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.vendor.MainView'));
     },
     onActiveDGMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
