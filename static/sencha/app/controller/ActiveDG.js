@@ -335,8 +335,12 @@ Ext.define('Aporo.controller.ActiveDG', {
         var me = this;
 
         me.getActiveDGMainView().setMasked(false);
+        me.updateTitle();
+    },
 
-        var nextLocation = me.nextLocation(),
+    updateTitle: function() {
+        var me = this,
+            nextLocation = me.nextLocation(),
             toolbar = me.getActiveDGMenuView().getComponent('toolbarHeader');
 
         if (nextLocation) {
@@ -472,6 +476,8 @@ Ext.define('Aporo.controller.ActiveDG', {
                 me.updateLocationsJSON(me.locations, function(success) {
                     Ext.Msg.alert('Success!', null, function() {
                         me.back();
+
+                        me.updateTitle();
                     }, me);
                 });
             });
@@ -516,6 +522,8 @@ Ext.define('Aporo.controller.ActiveDG', {
                     me.updateLocationsJSON(me.locations, function(success) {
                         Ext.Msg.alert('Success!', null, function() {
                             me.back();
+
+                            me.updateTitle();
                         }, me);
                     });
                 });
@@ -586,6 +594,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                     me.updateLocationsJSON(me.locations, function(success) {
                         Ext.Msg.alert('Success!');
+                        me.updateTitle();
                     });
                 });
 
@@ -628,6 +637,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                         me.updateLocationsJSON(me.locations, function(success) {
                             Ext.Msg.alert('Success!');
+                            me.updateTitle();
                         });
                     });
                 }, me);
