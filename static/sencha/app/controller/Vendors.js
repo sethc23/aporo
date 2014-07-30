@@ -91,8 +91,7 @@ Ext.define('Aporo.controller.Vendors', {
                 me.getVendorMainView().setStore(me.vendorStore);
             },
             failure: function(response) {
-                Ext.Msg.alert('Error', 'There was a problem fetching Vendors');
-
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_FETCHING_VENDORS);
                 me.back();
             }
         });
@@ -152,7 +151,7 @@ Ext.define('Aporo.controller.Vendors', {
                 me.getVendorNewOrder().setMasked(false);
                 me.getVendorNewOrderContinueButton().setDisabled(false);
 
-                Ext.Msg.alert('Success', 'New order created', function() {
+                Ext.Msg.alert(l.SUCCESS, l.NEW_ORDER_CREATED, function() {
                     me.back();
                 }, me);
             },
@@ -160,7 +159,7 @@ Ext.define('Aporo.controller.Vendors', {
                 me.getVendorNewOrder().setMasked(false);
                 me.getVendorNewOrderContinueButton().setDisabled(false);
 
-                Ext.Msg.alert('Error', 'There was a problem creating the new order');
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_CREATING_NEW_ORDER);
             }
         });
     }

@@ -14,7 +14,7 @@ Ext.define('Aporo.view.ContactHelp', {
             xtype: "label",
             margin: 20,
             cls: 'contactInfo',
-            html: '<div>Conatct Number: <a href="tel:+18005558080">(800) 555-8080</a></div>'
+            html: '<div>' + l.CONTACT_NUMBER + ': <a href="tel:+18005558080">(800) 555-8080</a></div>'
         }]
     }
 })

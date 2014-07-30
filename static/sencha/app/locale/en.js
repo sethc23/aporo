@@ -7,10 +7,11 @@ var l = {
     PROBLEM: 'Problem',
     UPDATE: 'Update',
     SUBMIT: 'Submit',
-    SOMETHING_WENT_WRONG: 'Something went wrong. Please try again.',
+    CANCEL: 'Cancel',
     GO_BACK: 'Go Back',
     TRY_AGAIN: 'Try Again',
     CONTINUE: 'Continue',
+    SOMETHING_WENT_WRONG: 'Something went wrong. Please try again.',
 
     REGISTERED: 'Registered?',
     DAY: 'Day',
@@ -31,6 +32,8 @@ var l = {
     DELIVERY_CROSS_STREET: 'Delivery Cross St.',
     COMMENT: 'Comment',
 
+    PLEASE_COMPLETE_ALL_FIELDS: 'Please complete all fields',
+
     /**
      * Main menu
      */
@@ -39,6 +42,17 @@ var l = {
     VENDOR_MENU: 'Vendor Menu',
     ACTIVE_DG_MENU: 'Active DG Menu',
     PASSIVE_DG_MENU: 'Passive DG Menu',
+    ADD_VENDORS: 'Add Vendors',
+
+    /**
+     * Registration
+     */
+    VENDOR_NAME: 'Vendor Name',
+    VENDOR_NUMBER: 'Vendor Number',
+    VENDOR_EMAIL: 'Vendor Email',
+    PRIMARY_CONTACT_NAME: 'Primary Contact Name',
+    PRIMARY_CONTACT_NUMBER: 'Primary Contact Number',
+    PRIMARY_CONTACT_EMAIL: 'Primary Contact Email',
 
     /**
      * Vendor
@@ -46,6 +60,10 @@ var l = {
     NEW_ORDER: 'New Order',
     CANCEL_ORDER: 'Cancel Order',
     LOG_OUT_QUIT: 'Log Out/Quit',
+
+    PROBLEM_FETCHING_VENDORS: 'There was a problem fetching Vendors',
+    NEW_ORDER_CREATED: 'New order created',
+    PROBLEM_CREATING_NEW_ORDER: 'There was a problem creating the new order',
 
     /**
      * Active DG Menu

@@ -16,13 +16,13 @@ Ext.define('Aporo.view.Main', {
                 align: 'right',
                 id: 'addVendorsBtn',
                 hidden: true,
-                text: 'Add Vendors'
+                text: l.ADD_VENDORS
             }, {
                 xtype: 'button',
                 align: 'right',
                 id: 'historyBtn',
                 hidden: true,
-                text: 'History'
+                text: l.HISTORY
             }]
         },
         items: [{

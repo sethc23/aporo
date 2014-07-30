@@ -1,58 +1,50 @@
 Ext.define('Aporo.controller.Registration', {
     extend: 'Ext.app.Controller',
     config: {
-        refs: {
-        },
         control: {
-            RegistrationView: {
-                activate: 'onRegistrationViewActivate'
-            },
             'button[itemId=btCancelRegistration]': {
                 tap: 'onRegistrationCancel'
             },
-            'button[itemId=RegisterBtn]' : {
+            'button[itemId=RegisterBtn]': {
                 tap: 'onRegisterButtonTap'
             }
         }
     },
-    onRegistrationViewActivate: function(cmp)
-    {},
-    onRegistrationCancel: function()
-    {
+
+    onRegistrationCancel: function() {
         Ext.getCmp('Viewport').pop();
     },
-    
-    onRegisterButtonTap: function()
-    {
-        var registration_form = Ext.getCmp('RegistrationView');  //Getting DOM query of FormPanel
-        var data = registration_form.getValues(); //Full form data as object
-        for(var key in data)
-        {
-            if(data[key]=='')
-            {
-                Ext.Msg.alert('Warning', 'Please do not leave any field as blank');
+
+    onRegisterButtonTap: function() {
+        var registration_form = Ext.getCmp('RegistrationView'), //Getting DOM query of FormPanel
+            data = registration_form.getValues(); //Full form data as object
+
+        for (var key in data) {
+            if (data[key] == '') {
+                Ext.Msg.alert(l.PROBLEM, l.PLEASE_COMPLETE_ALL_FIELDS);
                 return;
             }
         }
-             
+
         var progressIndicator = Ext.Viewport.add(Ext.create("Ext.ProgressIndicator", {
-            loadingText: 'Please wait'
+            loadingText: l.LOADING
         }));
-            
+
         progressIndicator.show(); //A progress mask while making Ajax request
-            
+
         Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl+'api_view/vendors/',
-            header: { 'X-CSRFToken': Aporo.config.Env.django_token },
+            url: Aporo.config.Env.baseApiUrl + 'api_view/vendors/',
+            header: {
+                'X-CSRFToken': Aporo.config.Env.django_token
+            },
             method: 'POST',
             useDefaultXhrHeader: false,
             params: Ext.JSON.encode(registration_form.getValues()),
-            success: function(res){
+            success: function(res) {
                 progressIndicator.hide();
                 Ext.Msg.alert('Response', res.toString());
             },
-            failure: function(e)
-            {
+            failure: function(e) {
                 Ext.Msg.alert("Error", e.detail);
                 progressIndicator.hide();
             }

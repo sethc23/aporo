@@ -25,22 +25,27 @@ Ext.define('Aporo.controller.MainController', {
             }
         }
     },
+
     onMainRegistrationBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.RegistrationView'));
     },
+
     onMainHelpContactBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.ContactHelp'));
     },
+
     onMainVendorMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.vendor.MainView'));
     },
+
     onActiveDGMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.activeDG.MainView'));
     },
+
     onPassiveDGMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.MainView'));
