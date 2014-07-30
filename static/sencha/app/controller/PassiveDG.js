@@ -71,7 +71,7 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Called when the main view is shown
      */
     onActivate: function() {
-        this.getWorkJSON();
+        this.getWorkJSON(null, true);
 
         this.getPassiveDGMainView().setMasked({
             xtype: 'loadmask'
@@ -186,22 +186,23 @@ Ext.define('Aporo.controller.PassiveDG', {
     /**
      * Returns the work.json. Fetches it from the server if it is not already downloaded.
      */
-    getWork: function(callback) {
+    getWork: function(callback, update) {
         var me = this;
 
         if (me.work) {
-            return me.work;
+            callback.call(me, me.work);
+            return;
         }
 
         me.getWorkJSON(function() {
-            callback.call(me, me.json);
-        });
+            callback.call(me, me.work);
+        }, update);
     },
 
     /**
      * Gets the work JSON from the server
      */
-    getWorkJSON: function(callback) {
+    getWorkJSON: function(callback, update) {
         var me = this;
 
         Ext.Ajax.request({
@@ -216,8 +217,11 @@ Ext.define('Aporo.controller.PassiveDG', {
             success: function(response) {
                 var json = Ext.decode(response.responseText);
 
-                me.updateWorkJSON(json);
-                me.getPassiveDGMainView().setMasked(false);
+                me.updateWorkJSON(json, update);
+
+                if (update) {
+                    me.getPassiveDGMainView().setMasked(false);
+                }
 
                 if (callback) {
                     callback.call(me, json);
@@ -234,7 +238,7 @@ Ext.define('Aporo.controller.PassiveDG', {
     /**
      * Updates the local copy of work json
      */
-    updateWorkJSON: function(json) {
+    updateWorkJSON: function(json, update) {
         this.work = json;
 
         Aporo.util.PhoneGap.saveFile({
@@ -250,7 +254,9 @@ Ext.define('Aporo.controller.PassiveDG', {
             }
         });
 
-        this.updateHeader();
+        if (update) {
+            this.updateHeader();
+        }
     },
 
     /**
