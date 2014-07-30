@@ -196,7 +196,7 @@ def order(post_action='get',show_post=False,show_resp=False):
             'action': 'get'}
     all_data = [data]
     if post_action.lower()=='get':
-        resp = post_json(all_data,p_url,show_post=False,show_resp=True)
+        resp = post_json(all_data,p_url,show_post=show_post,show_resp=show_resp)
         print '\n\t\t\t--> SUCCESS\n'
         return resp
     else:
@@ -279,17 +279,17 @@ if __name__ == '__main__':
     print '\n\tTesting "'+test_server+'"...\n'
     print '\tBase URL:',BASE_URL,'\n'
 
-    new_vendor(vend_type='mgr')
-    new_vendor(vend_type='empl')
-    new_currier()
-    schedule(post_action='add',show_resp=False)
-    schedule(post_action='remove',show_resp=False)
-    schedule(post_action='add',show_resp=True)
-    work(post_action='GET',show_resp=True)
-    work(post_action='check_in',show_resp=True)
-    work(post_action='history',show_resp=True)
-    work(post_action='check_out',show_resp=True)
-    device(post_action='update',show_post=True,show_resp=True)
+    # new_vendor(vend_type='mgr')
+    # new_vendor(vend_type='empl')
+    # new_currier()
+    # schedule(post_action='add',show_resp=False)
+    # schedule(post_action='remove',show_resp=False)
+    # schedule(post_action='add',show_resp=True)
+    # work(post_action='GET',show_resp=True)
+    # work(post_action='check_in',show_resp=True)
+    # work(post_action='history',show_resp=True)
+    # work(post_action='check_out',show_resp=True)
+    # device(post_action='update',show_post=True,show_resp=True)
     ## update(post_action='update',show_post=True,show_resp=True)
     order(post_action='get',show_post=True,show_resp=True)
     # order(post_action='add',show_resp=False)

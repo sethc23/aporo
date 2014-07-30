@@ -361,7 +361,7 @@ def order(request):
         if x.keys().count('Orders.JSON')==0:
             if x['action'].lower()=='get':
                 d = Order.objects.filter(vendor_id=str(vendor_id))
-                serializer = OrderSerializer(d, context={'request': request}, many=True)
+                serializer = FilteredOrderSerializer(d, context={'request': request}, many=True)
                 return Response(serializer.data)
         else:
             orders_json = x['Orders.JSON']

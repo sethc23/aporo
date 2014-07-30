@@ -72,8 +72,10 @@ class FilteredDeviceSerializer(serializers.HyperlinkedModelSerializer):
 class FilteredOrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
-        # fields = ['update_frequency','is_active']
-        exclude = ['vendor','vendor_dev','currier','currier_dev',
+        fields = ['order_id','tag','web','call_in',
+                  'contact_num','deliv_addr','apt_num','deliv_cross_street',
+                  'req_pickup_time','price','tip','comment']
+        exclude = ['created','vendor','vendor_dev','currier','currier_dev',
                    'web_url','deliv_lat','deliv_long']
 
 class CurrierScheduleSerializer(serializers.HyperlinkedModelSerializer):
