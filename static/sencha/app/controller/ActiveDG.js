@@ -30,15 +30,6 @@ Ext.define('Aporo.controller.ActiveDG', {
         }
     },
 
-    slideLeftTransition: {
-        type: 'slide',
-        direction: 'left'
-    },
-    slideRightTransition: {
-        type: 'slide',
-        direction: 'right'
-    },
-
     device: null,
     locations: null,
 
@@ -48,7 +39,8 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     updateJSON: function(fetchDevice) {
         this.getActiveDGMainView().setMasked({
-            xtype: 'loadmask'
+            xtype: 'loadmask',
+            message: l.LOADING
         });
 
         var me = this,
@@ -60,7 +52,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             me.postDeviceJSONUpdate(json, function(success) {
                 if (!success) {
                     me.back();
-                    Ext.Msg.alert('Error', 'Something went wrong.');
+                    Ext.Msg.alert(l.PROBLEM, l.PROBLEM_SAVING_DEVICE_JSON);
                     return;
                 }
 
@@ -76,9 +68,9 @@ Ext.define('Aporo.controller.ActiveDG', {
                     me.back();
 
                     if (error) {
-                        Ext.Msg.alert('Error', 'There was a problem:<br /><br />' + error.code);
+                        Ext.Msg.alert(l.PROBLEM, l.SOMETHING_WENT_WRONG + ':<br /><br />' + error.code);
                     } else {
-                        Ext.Msg.alert('Error', 'Something went wrong. Please try again.');
+                        Ext.Msg.alert(l.PROBLEM, l.SOMETHING_WENT_WRONG);
                     }
                 }, 500);
             };
@@ -128,7 +120,7 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert('Error', 'Cannot read Device.JSON as you are not running inside PhoneGap', function() {
+            Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_DEVICE_JSON, function() {
                 config.success({});
             }, this);
 
@@ -294,7 +286,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         this.locations = json;
 
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert('Error', 'Cannot save Locations.JSON as you are not running inside PhoneGap', function() {
+            Ext.Msg.alert(l.PROBLEM, l.CANNOT_SAVE_LOCATIONS_JSON, function() {
                 setTimeout(function() {
                     callback(true);
                 }, 800);
@@ -312,7 +304,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             },
             failure: function(error) {
                 if (error) {
-                    Ext.Msg.alert('Error saving Locations.JSON', error.code);
+                    Ext.Msg.alert(l.PROBLEM, l.PROBLEM_SAVING_LOCATIONS_JSON + ':<br /><br />' + error.code);
                 }
 
                 callback(false);
@@ -365,7 +357,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             nextLocation = me.nextLocation();
 
         if (!nextLocation) {
-            Ext.Msg.alert('No location found!');
+            Ext.Msg.alert(l.PROBLEM, l.NO_LOCATION_FOUND);
             return;
         }
 
@@ -379,7 +371,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         } else if (nextLocation['web'] === true || nextLocation['web'] === "True") {
             me.onWebOrder();
         } else {
-            Ext.Msg.alert('Problem', 'Next location was neither call_in or web');
+            Ext.Msg.alert(l.PROBLEM, l.NEXT_LOCATION_WAS_NEITHER);
             return;
         }
     },
@@ -409,7 +401,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         // DEBUG undo
         if (locations.length > 0) {
-            Ext.Msg.alert('Check-Out', 'Please deliver all orders before checking out. Contact Help if you cannot do so.');
+            Ext.Msg.alert(l.CHECK_OUT, l.PLEASE_DELIVER_ALL_ORDERS);
 
             return;
         }
@@ -426,7 +418,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         controller.getWork(function(json) {
             work = json;
-            
+
         }, false);
     },
 
@@ -441,7 +433,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             value = tagField.getValue();
 
         if (!value || value == "") {
-            Ext.Msg.alert('Problem', 'Please enter a tag');
+            Ext.Msg.alert(l.PROBLEM, l.PLEASE_ENTER_A_TAG);
             return;
         }
 
@@ -474,7 +466,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 location['end_datetime'] = me.formattedDate();
 
                 me.updateLocationsJSON(me.locations, function(success) {
-                    Ext.Msg.alert('Success!', null, function() {
+                    Ext.Msg.alert(l.SUCCESS, null, function() {
                         me.back();
 
                         me.updateTitle();
@@ -520,7 +512,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                     location['end_datetime'] = me.formattedDate();
 
                     me.updateLocationsJSON(me.locations, function(success) {
-                        Ext.Msg.alert('Success!', null, function() {
+                        Ext.Msg.alert(l.SUCCESS, null, function() {
                             me.back();
 
                             me.updateTitle();
@@ -534,14 +526,14 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         // the order is not recognised, so show an alert
         Ext.Msg.show({
-            title: 'Problem',
-            message: 'This order is not recognized',
+            title: l.PROBLEM,
+            message: l.ORDER_NOT_RECOGNIZED,
             promptConfig: false,
             buttons: [{
-                text: 'Go back',
+                text: l.GO_BACK,
                 itemId: 'back'
             }, {
-                text: 'Try again',
+                text: l.TRY_AGAIN,
                 ui: 'action',
                 itemId: 'tryagain'
             }],
@@ -593,7 +585,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                     location['end_datetime'] = me.formattedDate();
 
                     me.updateLocationsJSON(me.locations, function(success) {
-                        Ext.Msg.alert('Success!');
+                        Ext.Msg.alert(l.SUCCESS);
                         me.updateTitle();
                     });
                 });
@@ -636,7 +628,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                         location['end_datetime'] = me.formattedDate();
 
                         me.updateLocationsJSON(me.locations, function(success) {
-                            Ext.Msg.alert('Success!');
+                            Ext.Msg.alert(l.SUCCESS);
                             me.updateTitle();
                         });
                     });
@@ -646,14 +638,14 @@ Ext.define('Aporo.controller.ActiveDG', {
             }
 
             Ext.Msg.show({
-                title: 'Problem',
-                message: 'This order is not recognized.<br /><br />' + QR_url,
+                title: l.PROBLEM,
+                message: l.ORDER_NOT_RECOGNIZED,
                 promptConfig: false,
                 buttons: [{
-                    text: 'Cancel',
+                    text: l.CANCEL,
                     itemId: 'back'
                 }, {
-                    text: 'Try again',
+                    text: l.TRY_AGAIN,
                     ui: 'action',
                     itemId: 'tryagain'
                 }],
@@ -674,11 +666,11 @@ Ext.define('Aporo.controller.ActiveDG', {
                     callback.call(me, result.text);
                 },
                 function(error) {
-                    Ext.Msg.alert('Scanning Failed', 'Something went wrong. Please try again');
+                    Ext.Msg.alert(l.PROBLEM, l.SOMETHING_WENT_WRONG);
                 }
             );
         } else {
-            Ext.Msg.alert('Scanner', 'You must be on a device to run the barcode scanner.');
+            Ext.Msg.alert(l.SCANNER, l.MUST_BE_ON_DEVICE_TO_USE_SCANNER);
         }
     },
 

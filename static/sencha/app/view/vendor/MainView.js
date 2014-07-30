@@ -22,7 +22,7 @@ Ext.define("Aporo.view.vendor.MainView", {
             },
 
             columns: [{
-                text: 'Type',
+                text: l.TYPE,
                 align: 'center',
                 dataIndex: 'type',
                 width: 100
@@ -31,17 +31,17 @@ Ext.define("Aporo.view.vendor.MainView", {
                 align: 'center',
                 width: 110
             }, {
-                text: 'Pick Up Time',
+                text: l.PICK_UP_TIME,
                 dataIndex: 'req_pickup_time',
                 align: 'center',
                 width: 140
             }, {
-                text: 'Tag',
+                text: l.TAG,
                 dataIndex: 'tag',
                 align: 'center',
                 width: 100
             }, {
-                text: 'Address',
+                text: l.ADDRESS,
                 dataIndex: 'deliv_addr',
                 width: 200
             }]
@@ -52,46 +52,19 @@ Ext.define("Aporo.view.vendor.MainView", {
             },
             items: [{
                 xtype: 'button',
-                text: 'New Order',
+                text: l.NEW_ORDER,
                 itemId: 'newOrderButton'
             }, {
                 xtype: 'button',
-                text: 'History',
+                text: l.HISTORY,
                 itemId: 'historyButton'
             }, {
                 xtype: 'button',
-                text: 'Log Out/Quit',
+                text: l.LOG_OUT_QUIT,
                 itemId: 'quitButton'
             }]
         }]
     },
-
-    // constructor: function() {
-    //     var me = this;
-
-    //     this.config.items[0].listeners = [{
-    //         element: 'element',
-    //         delegate: '.button.cancel',
-    //         event: 'tap',
-    //         fn: function(e, el) {
-    //             var el = Ext.get(el),
-    //                 listEl = el.parent().parent(),
-    //                 grid = me.down('grid'),
-    //                 listItem;
-
-    //             for (var i = 0; i < grid.listItems.length; i++) {
-    //                 if (listEl == grid.listItems[i].element) {
-    //                     listItem = grid.listItems[i].element;
-    //                     break;
-    //                 }
-    //             }
-
-    //             debugger;
-    //         }
-    //     }];
-
-    //     this.callParent(arguments);
-    // },
 
     updateStore: function(newStore) {
         this.down('grid').setStore(newStore);

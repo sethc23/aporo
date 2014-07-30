@@ -4,6 +4,7 @@ Ext.define('Aporo.view.passiveDG.MainView', {
     id: 'PassiveDGMainView',
 
     config: {
+        title: l.PASSIVE_DG_MENU,
         layout: 'card',
         items: [{
             id: "PassiveDGMenuView",

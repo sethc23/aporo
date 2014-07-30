@@ -15,14 +15,14 @@ Ext.define('Aporo.view.passiveDG.MenuView', {
         }, {
             xtype: 'button',
             docked: 'top',
-            text: 'Find Work Now!',
+            text: l.FIND_WORK_NOW,
             itemId: 'findWorkButton',
             margin: '2% 15% 0 15%',
             hidden: true
         }, {
             xtype: 'button',
             docked: 'top',
-            text: 'Check In Now',
+            text: l.CHECK_IN_NOW,
             itemId: 'checkInNowButton',
             margin: '2% 15% 0 15%',
             hidden: true
@@ -34,19 +34,19 @@ Ext.define('Aporo.view.passiveDG.MenuView', {
             },
             items: [{
                 xtype: 'button',
-                text: 'Contracts',
+                text: l.CONTRACTS,
                 itemId: 'btnContracts',
                 ui: "action",
                 margin: '2% 15% 0 15%'
             }, {
                 xtype: 'button',
-                text: 'Check-in',
+                text: l.CHECK_IN,
                 itemId: 'btnCheckIn',
                 ui: "action",
                 margin: '2% 15% 0 15%'
             }, {
                 xtype: 'button',
-                text: 'History',
+                text: l.HISTORY,
                 itemId: 'btnHistory',
                 ui: "action",
                 margin: '2% 15% 0 15%'

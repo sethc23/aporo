@@ -9,6 +9,7 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
     ],
 
     config: {
+        title: l.CONTRACTS,
         store: null,
         layout: 'card',
 
@@ -19,7 +20,7 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
                 xtype: 'spacer'
             }, {
                 xtype: 'button',
-                text: 'Update',
+                text: l.UPDATE,
                 itemId: 'update'
             }, {
                 xtype: 'spacer'
@@ -34,24 +35,24 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
 
             columns: [{
                 xtype: 'checkboxcolumn',
-                text: 'Registered?',
+                text: l.REGISTERED,
                 align: 'center',
                 dataIndex: 'registered',
                 width: 120
             }, {
-                text: 'Day',
+                text: l.DAY,
                 dataIndex: 'start_day',
                 align: 'center',
                 width: 110
             }, {
-                text: 'Time',
+                text: l.TIME,
                 dataIndex: 'start_time',
                 align: 'center',
                 align: 'center',
                 sortable: false,
                 width: 100
             }, {
-                text: 'Area',
+                text: l.AREA,
                 dataIndex: 'area',
                 width: 200
             }],

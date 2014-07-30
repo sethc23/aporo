@@ -134,7 +134,7 @@ Ext.define('Aporo.controller.Vendors', {
 
         me.getVendorNewOrder().setMasked({
             xtype: 'loadmask',
-            message: 'Loading...'
+            message: l.LOADING
         });
 
         me.getVendorNewOrderContinueButton().setDisabled(true);

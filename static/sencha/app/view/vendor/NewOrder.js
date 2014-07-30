@@ -3,12 +3,8 @@ Ext.define("Aporo.view.vendor.NewOrder", {
     xtype: 'VendorNewOrder',
     id: 'VendorNewOrder',
 
-    requires: [
-
-    ],
-
     config: {
-        title: 'New Order',
+        title: l.NEW_ORDER,
         items: [{
             xtype: 'toolbar',
             docked: 'bottom',
@@ -16,11 +12,11 @@ Ext.define("Aporo.view.vendor.NewOrder", {
                 xtype: 'spacer'
             }, {
                 xtype: 'button',
-                text: 'Cancel Order',
+                text: l.CANCEL_ORDER,
                 itemId: 'cancelOrderButton'
             }, {
                 xtype: 'button',
-                text: 'Continue',
+                text: l.CONTINUE,
                 itemId: 'continueButton'
             }, {
                 xtype: 'spacer'
@@ -30,35 +26,35 @@ Ext.define("Aporo.view.vendor.NewOrder", {
             items: [{
                 xtype: 'textfield',
                 name: 'contact_number',
-                label: 'Contact Number'
+                label: l.CONTACT_NUMBER
             }, {
                 xtype: 'textfield',
                 name: 'deliv_addr',
-                label: 'Delivery Address'
+                label: l.DELIVERY_ADDRESS
             }, {
                 xtype: 'textfield',
                 name: 'apt_num',
-                label: 'Apt. Number'
+                label: l.APT_NUM
             }, {
                 xtype: 'textfield',
                 name: 'deliv_cross_street',
-                label: 'Delivery Cross St.'
+                label: l.DELIVERY_CROSS_ST
             }, {
                 xtype: 'textfield',
                 name: 'req_pickup_time',
-                label: 'Pickup Time'
+                label: l.PICK_UP_TIME
             }, {
                 xtype: 'textfield',
                 name: 'price',
-                label: 'Price'
+                label: l.PRICE
             }, {
                 xtype: 'textfield',
                 name: 'tip',
-                label: 'Tip'
+                label: l.TIP
             }, {
                 xtype: 'textfield',
                 name: 'comment',
-                label: 'Comment'
+                label: l.COMMENT
             }]
         }]
     }

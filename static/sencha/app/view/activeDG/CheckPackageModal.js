@@ -12,11 +12,11 @@ Ext.define('Aporo.view.activeDG.CheckPackageModal', {
             xtype: 'fieldset',
             items: [{
                 xtype: 'textfield',
-                label: 'Price',
+                label: l.PRICE,
                 id: 'checkPackageModalPriceField'
             }, {
                 xtype: 'textfield',
-                label: 'Tip',
+                label: l.TIP,
                 id: 'checkPackageModalTipField'
             }]
         }, {
@@ -24,7 +24,7 @@ Ext.define('Aporo.view.activeDG.CheckPackageModal', {
             docked: 'bottom',
             items: [{
                 xtype: 'button',
-                text: 'Submit',
+                text: l.SUBMIT,
                 id: 'checkPackageModalSubmitButton'
             }]
         }]

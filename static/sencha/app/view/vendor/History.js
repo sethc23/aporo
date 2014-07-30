@@ -9,7 +9,7 @@ Ext.define("Aporo.view.vendor.History", {
     ],
 
     config: {
-        title: 'History',
+        title: l.HISTORY,
         store: null,
         layout: 'fit',
         items: [{
@@ -22,7 +22,7 @@ Ext.define("Aporo.view.vendor.History", {
             },
 
             columns: [{
-                text: 'Type',
+                text: l.TYPE,
                 align: 'center',
                 dataIndex: 'type',
                 width: 100
@@ -31,20 +31,20 @@ Ext.define("Aporo.view.vendor.History", {
                 align: 'center',
                 width: 110
             }, {
-                text: 'Pick Up Time',
+                text: l.PICK_UP_TIME,
                 dataIndex: 'req_pickup_time',
                 align: 'center',
                 width: 140
             }, {
-                text: 'Tag',
+                text: l.TAG,
                 dataIndex: 'tag',
                 align: 'center',
                 width: 100
             }, {
-                text: 'Address',
+                text: l.ADDRESS,
                 dataIndex: 'deliv_addr',
                 width: 200
-            }],
+            }]
         }]
     },
 

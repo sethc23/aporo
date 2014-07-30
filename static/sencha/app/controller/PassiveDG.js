@@ -47,15 +47,6 @@ Ext.define('Aporo.controller.PassiveDG', {
         }
     },
 
-    slideLeftTransition: {
-        type: 'slide',
-        direction: 'left'
-    },
-    slideRightTransition: {
-        type: 'slide',
-        direction: 'right'
-    },
-
     work: null,
 
     contracts: null,
@@ -74,7 +65,8 @@ Ext.define('Aporo.controller.PassiveDG', {
         this.getWorkJSON(null, true);
 
         this.getPassiveDGMainView().setMasked({
-            xtype: 'loadmask'
+            xtype: 'loadmask',
+            message: l.LOADING
         });
     },
 
@@ -89,7 +81,6 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Shows the contracts grid
      */
     onContracts: function() {
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Contracts');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.Contracts'));
     },
 
@@ -104,7 +95,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         //                                                                      --> directed to Contracts
 
         if (!me.hasWork()) {
-            Ext.Msg.alert('No work', 'No work is scheduled. Please sign up for new Contracts.', function() {
+            Ext.Msg.alert(l.NO_WORK, l.NO_WORK_MESSAGE, function() {
                 me.onContracts();
             }, me);
 
@@ -122,7 +113,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             canCheckIn = (startDate.getTime() - today.getTime() <= 900000);
 
         if (!workToday && startDate.getDate() == today.getDate()) {
-            Ext.Msg.alert('No work scheduled today', 'No work scheduled for you today. Check Contracts for new opportunities.', function() {
+            Ext.Msg.alert(l.NO_WORK_SCHEDULED_TODAY, l.NO_WORK_SCHEDULED_TODAY_MESSAGE, function() {
                 me.onContracts();
             }, me);
 
@@ -136,7 +127,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         //                                                                --> directed to Passive DG Menu
 
         if (!canCheckIn) {
-            Ext.Msg.alert('Check-In', 'Next Check-In for today at: ' + Ext.Date.format(startDate, 'G:i') + '<br />Check Contracts for other opportunities.', null);
+            Ext.Msg.alert(l.CHECK_IN, l.NEXT_CHECK_IN_FOR_TODAY_AT + ' ' + Ext.Date.format(startDate, 'G:i') + '<br />' + l.CHECK_CONTRACTS_FOR_OTHER_OPPORTUNITIES, null);
 
             return;
         }
@@ -145,7 +136,8 @@ Ext.define('Aporo.controller.PassiveDG', {
         // of Next Work, then the application makes a URL post request:
 
         me.getPassiveDGMainView().setMasked({
-            xtype: 'loadmask'
+            xtype: 'loadmask',
+            message: l.LOADING
         });
 
         Ext.Ajax.request({
@@ -160,13 +152,12 @@ Ext.define('Aporo.controller.PassiveDG', {
                 me.getPassiveDGMainView().setMasked(false);
 
                 // Move to the ActiveDG view
-                Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Active DG Menu');
                 Ext.getCmp('Viewport').push(Ext.create('Aporo.view.activeDG.MainView'));
             },
             failure: function(response) {
                 me.getPassiveDGMainView().setMasked(false);
 
-                Ext.Msg.alert('Error', 'There was a problem checking in.');
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_CHECKING_IN);
             }
         });
     },
@@ -175,7 +166,6 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Shows the history grid
      */
     onHistory: function() {
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('History');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.History'));
     },
 
@@ -228,7 +218,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 }
             },
             failure: function(response) {
-                Ext.Msg.alert('Error', 'There was a problem fetching Work.JSON');
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_FETCHING_WORK_JSON);
 
                 me.back();
             }
@@ -249,7 +239,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             },
             failure: function(error) {
                 if (error) {
-                    Ext.Msg.alert('Error', 'Error saving Work.JSON:<br />' + error.code);
+                    Ext.Msg.alert(l.PROBLEM, l.PROBLEM_SAVING_WORK_JSON + '<br />' + error.code);
                 }
             }
         });
@@ -292,8 +282,8 @@ Ext.define('Aporo.controller.PassiveDG', {
                     isToday = today.toDateString() == startDate.toDateString();
 
                 header.setHtml([
-                    'Next Check In:',
-                    isToday ? 'TODAY' : nextWork['start_day'],
+                    l.NEXT_CHECK_IN,
+                    isToday ? l.TODAY.toUpperCase() : nextWork['start_day'],
                     nextWork['start_time'],
                     nextWork['area']
                 ].join('<br />'));
@@ -369,7 +359,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 me.getPassiveDGContracts().setStore(me.contractsStore);
             },
             failure: function(response) {
-                Ext.Msg.alert('Error', 'There was a problem fetching Contracts.JSON');
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_FETCHING_CONTRACTS_JSON);
 
                 me.back();
             }
@@ -394,7 +384,7 @@ Ext.define('Aporo.controller.PassiveDG', {
         var records = this.changedRecords();
 
         if (records.length > 0) {
-            Ext.Msg.confirm('Updated Contracts', 'If you go back, all updated contracts will be lost. Are you sure you want to do this?', function(buttonId) {
+            Ext.Msg.confirm(l.CONTRACTS, l.UPDATED_CONTRACTS_BACK_MESSAGE, function(buttonId) {
                 if (buttonId == "yes") {
                     Ext.getCmp('Viewport').pop();
                 }
@@ -427,7 +417,7 @@ Ext.define('Aporo.controller.PassiveDG', {
             return;
         }
 
-        Ext.Msg.confirm('Update', 'Are you sure you want to update all ' + records.length + ' contract(s)?', function(buttonId) {
+        Ext.Msg.confirm(l.UPDATE, l.ARE_YOU_SURE_YOU_WANT_TO_UPDATE_CONTRACTS.replace('%@', records.length), function(buttonId) {
             if (buttonId == "yes") {
                 // Make a raw version of the records to post to the server
                 var rawRecords = [];
@@ -440,7 +430,8 @@ Ext.define('Aporo.controller.PassiveDG', {
                 }
 
                 me.getPassiveDGContracts().setMasked({
-                    xtype: 'loadmask'
+                    xtype: 'loadmask',
+                    message: l.LOADING
                 });
 
                 Ext.Ajax.request({
@@ -459,10 +450,10 @@ Ext.define('Aporo.controller.PassiveDG', {
                         me.contractsStore.setData(contracts);
                         me.updateWorkJSON(work);
 
-                        Ext.Msg.alert('Success', 'Contracts updated!');
+                        Ext.Msg.alert(l.SUCCESS, l.CONTRACTS_UPDATED);
                     },
                     failure: function(response) {
-                        Ext.Msg.alert('Problem', 'Problem updating all contracts');
+                        Ext.Msg.alert(l.PROBLEM, l.PROBLEM_UPDATING_CONTRACTS);
                     }
                 });
 
@@ -516,7 +507,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 me.getPassiveDGHistory().setStore(me.historyStore);
             },
             failure: function(response) {
-                Ext.Msg.alert('Error', 'There was a problem fetching history');
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_FETCHING_HISTORY);
 
                 me.back();
             }
@@ -594,7 +585,7 @@ Ext.define('Aporo.controller.PassiveDG', {
                 break;
             }
         }
-        
+
         return hasNotExpired;
     }
 });
