@@ -647,7 +647,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
             Ext.Msg.show({
                 title: 'Problem',
-                message: 'This order is not recognized.<br />' + QR_url,
+                message: 'This order is not recognized.<br /><br />' + QR_url,
                 promptConfig: false,
                 buttons: [{
                     text: 'Cancel',
@@ -774,7 +774,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                     if (me.locations[i][key] === false || me.locations[i][key] == "false" || !me.locations[i][key]) {
                         selected = false;
                     }
-                } else if (me.locations[i][key].toLowercase() != value.toLowercase()) {
+                } else if (me.locations[i][key].toLowerCase() != value.toLowerCase()) {
                     selected = false;
                 }
             }
