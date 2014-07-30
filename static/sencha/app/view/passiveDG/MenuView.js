@@ -17,13 +17,15 @@ Ext.define('Aporo.view.passiveDG.MenuView', {
             docked: 'top',
             text: 'Find Work Now!',
             itemId: 'findWorkButton',
-            margin: '2% 15% 0 15%'
+            margin: '2% 15% 0 15%',
+            hidden: true
         }, {
             xtype: 'button',
             docked: 'top',
             text: 'Check In Now',
             itemId: 'checkInNowButton',
-            margin: '2% 15% 0 15%'
+            margin: '2% 15% 0 15%',
+            hidden: true
         }, {
             flex: 1,
             layout: {

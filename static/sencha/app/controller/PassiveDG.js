@@ -566,10 +566,29 @@ Ext.define('Aporo.controller.PassiveDG', {
      * Returns false when there is no work
      */
     hasWork: function() {
-        // DEBUG
-        // return false;
+        var me = this,
+            notEmpty = me.work && me.work['dg_schedule'] && me.work['dg_schedule'].length > 0,
+            hasNotExpired = false;
 
-        var me = this;
-        return me.work && me.work['dg_schedule'] && me.work['dg_schedule'].length > 0;
+        if (!notEmpty) {
+            return;
+        }
+
+        // Entries will have expired if current time equal to or after "start_datetime" plus 
+        // a number of hours equal to "hour_period".
+        var items = me.work['dg_schedule'];
+        for (var i = 0; i < items.length; i++) {
+            var date = Date.parse(items[i]['start_datetime']),
+                now = Date.now(),
+                hours = items[i]['hour_period'],
+                difference = hours * 1000 * 60 * hours;
+
+            if ((now - date) < difference) {
+                hasNotExpired = true;
+                break;
+            }
+        }
+        
+        return hasNotExpired;
     }
 });
