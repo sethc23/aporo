@@ -22,3 +22,13 @@
 		@include box-shadow(#fff 0 0 0 1px inset);
 	}
 }
+
+// Active DG
+.toolbarHeader {
+	margin-top: 30px;
+	background: $ios7-red-lighten;
+	border-top: 1px solid $ios7-red;
+	border-bottom: 1px solid $ios7-red !important;
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}

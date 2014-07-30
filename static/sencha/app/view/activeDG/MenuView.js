@@ -9,7 +9,8 @@ Ext.define('Aporo.view.activeDG.MenuView', {
         items: [{
             xtype: 'toolbar',
             docked: 'top',
-            itemId: 'toolbarHeader'
+            itemId: 'toolbarHeader',
+            cls: 'toolbarHeader'
         }, {
             flex: 1,
             layout: {
