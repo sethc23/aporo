@@ -295,7 +295,9 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         if (!Aporo.util.PhoneGap.is()) {
             Ext.Msg.alert('Error', 'Cannot save Locations.JSON as you are not running inside PhoneGap', function() {
-                callback(true);
+                setTimeout(function() {
+                    callback(true);
+                }, 800);
             }, this);
 
             return;
@@ -401,8 +403,9 @@ Ext.define('Aporo.controller.ActiveDG', {
             value: null
         }]);
 
+        // DEBUG undo
         if (locations.length > 0) {
-            Ext.Msg.alert('Check-Out', '“Please deliver all orders before checking out. Contact Help if you cannot do so.');
+            Ext.Msg.alert('Check-Out', 'Please deliver all orders before checking out. Contact Help if you cannot do so.');
 
             return;
         }
@@ -419,7 +422,8 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         controller.getWork(function(json) {
             work = json;
-        });
+            
+        }, false);
     },
 
     /**
@@ -633,7 +637,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
             Ext.Msg.show({
                 title: 'Problem',
-                message: 'This order is not recognized.<br />' + url,
+                message: 'This order is not recognized.<br />' + QR_url,
                 promptConfig: false,
                 buttons: [{
                     text: 'Cancel',
@@ -653,7 +657,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             });
         };
 
-        if (Ext.browser.is.PhoneGap) {
+        if (Aporo.util.PhoneGap.is()) {
             var scanner = cordova.require("com.phonegap.plugins.barcodescanner.barcodescanner");
             scanner.scan(
                 function(result) {
@@ -760,7 +764,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                     if (me.locations[i][key] === false || me.locations[i][key] == "false" || !me.locations[i][key]) {
                         selected = false;
                     }
-                } else if (me.locations[i][key] != value) {
+                } else if (me.locations[i][key].toLowercase() != value.toLowercase()) {
                     selected = false;
                 }
             }
