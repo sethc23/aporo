@@ -11,14 +11,14 @@ Ext.define('Aporo.view.activeDG.CheckPackage', {
             xtype: 'formpanel',
             items: [{
                 xtype: 'textfield',
-                label: 'Tag',
+                label: l.TAG,
                 itemId: 'tagField'
             }, {
                 xtype: 'titlebar',
                 docked: 'bottom',
                 items: [{
                     xtype: 'button',
-                    text: 'Submit',
+                    text: l.SUBMIT,
                     align: 'right',
                     itemId: 'submitButton'
                 }]

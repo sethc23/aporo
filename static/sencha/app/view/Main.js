@@ -16,13 +16,13 @@ Ext.define('Aporo.view.Main', {
                 align: 'right',
                 id: 'addVendorsBtn',
                 hidden: true,
-                text: 'Add Vendors'
+                text: l.ADD_VENDORS
             }, {
                 xtype: 'button',
                 align: 'right',
                 id: 'historyBtn',
                 hidden: true,
-                text: 'History'
+                text: l.HISTORY
             }]
         },
         items: [{
@@ -39,35 +39,35 @@ Ext.define('Aporo.view.Main', {
                 width: '70%',
                 margin: 15,
                 itemId: 'MainRegBtn',
-                text: 'Registration'
+                text: l.REGISTRATION
             }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'MainHelpBtn',
-                text: 'Contact Help'
+                text: l.CONTACT_HELP
             }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'MainVendorBtn',
-                text: 'Vendor Menu'
+                text: l.VENDOR_MENU
             }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'ActiveDGBtn',
-                text: 'Active DG Menu'
+                text: l.ACTIVE_DG_MENU
             }, {
                 xtype: 'button',
                 ui: 'action',
                 width: '70%',
                 margin: 15,
                 itemId: 'PassiveDGBtn',
-                text: 'Passive DG Menu'
+                text: l.PASSIVE_DG_MENU
             }]
         }]
     },

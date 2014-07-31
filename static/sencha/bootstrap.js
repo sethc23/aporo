@@ -57,17 +57,15 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.controller.PassiveDG": [],
   "Aporo.controller.Registration": [],
   "Aporo.controller.Vendors": [],
+  "Aporo.extension.column.Button": [],
   "Aporo.extension.column.Checkbox": [],
   "Aporo.model.RegistrationModel": [],
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.AddVendorOrder": [],
   "Aporo.view.ContactHelp": [],
   "Aporo.view.Main": [],
   "Aporo.view.RegistrationView": [],
-  "Aporo.view.VendorHistory": [],
-  "Aporo.view.VendorOrderList": [],
   "Aporo.view.activeDG.CheckPackage": [],
   "Aporo.view.activeDG.CheckPackageModal": [],
   "Aporo.view.activeDG.MainView": [],
@@ -76,6 +74,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.view.passiveDG.History": [],
   "Aporo.view.passiveDG.MainView": [],
   "Aporo.view.passiveDG.MenuView": [],
+  "Aporo.view.vendor.History": [],
+  "Aporo.view.vendor.MainView": [],
+  "Aporo.view.vendor.NewOrder": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -727,6 +728,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.controller.PassiveDG": [],
   "Aporo.controller.Registration": [],
   "Aporo.controller.Vendors": [],
+  "Aporo.extension.column.Button": [
+    "widget.buttoncolumn"
+  ],
   "Aporo.extension.column.Checkbox": [
     "widget.checkboxcolumn"
   ],
@@ -734,9 +738,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Aporo.model.VendorOrderHistoryModel": [],
   "Aporo.store.VendorOrderHistoryStore": [],
   "Aporo.util.PhoneGap": [],
-  "Aporo.view.AddVendorOrder": [
-    "widget.AddVendorOrder"
-  ],
   "Aporo.view.ContactHelp": [
     "widget.ContactHelp"
   ],
@@ -745,12 +746,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Aporo.view.RegistrationView": [
     "widget.RegistrationView"
-  ],
-  "Aporo.view.VendorHistory": [
-    "widget.VendorHistory"
-  ],
-  "Aporo.view.VendorOrderList": [
-    "widget.VendorOrderList"
   ],
   "Aporo.view.activeDG.CheckPackage": [
     "widget.ActiveDGCheckPackage"
@@ -775,6 +770,15 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Aporo.view.passiveDG.MenuView": [
     "widget.PassiveDGMenuView"
+  ],
+  "Aporo.view.vendor.History": [
+    "widget.VendorHistory"
+  ],
+  "Aporo.view.vendor.MainView": [
+    "widget.VendorMainView"
+  ],
+  "Aporo.view.vendor.NewOrder": [
+    "widget.VendorNewOrder"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],

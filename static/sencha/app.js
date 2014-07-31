@@ -25,9 +25,10 @@ Ext.application({
         'Main',
         'ContactHelp',
         'RegistrationView',
-        'VendorOrderList',
-        'VendorHistory',
-        'AddVendorOrder',
+
+        'vendor.MainView',
+        'vendor.NewOrder',
+        'vendor.History',
 
         'activeDG.MainView',
         'activeDG.MenuView',

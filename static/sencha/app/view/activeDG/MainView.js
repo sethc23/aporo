@@ -4,6 +4,7 @@ Ext.define('Aporo.view.activeDG.MainView', {
     id: 'ActiveDGMainView',
 
     config: {
+        title: l.ACTIVE_DG_MENU,
         layout: 'card',
         items: [{
             itemId: "ActiveDGMenuView",

@@ -93,6 +93,7 @@
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/ant-build/res/drawable-xxhdpi/launcher_icon.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/_where-is-www.txt \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/app \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/app.js \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/app.json \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/config.xml \
@@ -109,6 +110,8 @@
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/resources \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/spec \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/spec.html \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/app/locale \
+/Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/app/locale/en.js \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/css/index.css \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/img/logo.png \
 /Users/rdougan/Development/odesk/23-07-2014/Seth Chase/aporo/static/sencha/phonegap/platforms/android/assets/www/js/index.js \

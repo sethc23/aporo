@@ -8,6 +8,7 @@ Ext.define('Aporo.view.passiveDG.History', {
     ],
 
     config: {
+        title: l.HISTORY,
         store: null,
         layout: 'card',
 
@@ -21,48 +22,48 @@ Ext.define('Aporo.view.passiveDG.History', {
             },
 
             columns: [{
-                text: 'Area',
+                text: l.AREA,
                 dataIndex: 'area',
                 width: 200
             }, {
                 xtype: 'datecolumn',
                 format: 'D, M. j g:i A',
-                text: 'Check In',
+                text: l.CHECK_IN,
                 dataIndex: 'check_in_datetime',
                 align: 'center',
                 width: 170
             }, {
                 xtype: 'datecolumn',
                 format: 'D, M. j g:i A',
-                text: 'Check Out',
+                text: l.CHECK_OUT,
                 dataIndex: 'check_out_datetime',
                 align: 'center',
                 width: 170
             }, {
-                text: 'Day',
+                text: l.DAY,
                 dataIndex: 'start_day',
                 align: 'center',
                 width: 110
             }, {
-                text: 'Time',
+                text: l.TIME,
                 dataIndex: 'start_time',
                 align: 'center',
                 sortable: false,
                 width: 100
             }, {
-                text: 'Hour Period',
+                text: l.HOUR_PERIOD,
                 dataIndex: 'hour_period',
                 align: 'center',
                 sortable: false,
                 width: 110
             }, {
-                text: 'Total Breaktime',
+                text: l.TOTAL_BREAKTIME,
                 dataIndex: 'total_breaktime',
                 align: 'center',
                 sortable: false,
                 width: 140
             }, {
-                text: 'Total Deliveries',
+                text: l.TOTAL_DELIVERIES,
                 dataIndex: 'total_deliveries',
                 align: 'center',
                 sortable: false,

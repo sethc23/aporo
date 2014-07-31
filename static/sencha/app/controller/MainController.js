@@ -1,9 +1,6 @@
 Ext.define('Aporo.controller.MainController', {
     extend: 'Ext.app.Controller',
     config: {
-        platformConfig: {
-
-        },
         refs: {},
         control: {
             'container[itemId=btnList]': {
@@ -28,29 +25,29 @@ Ext.define('Aporo.controller.MainController', {
             }
         }
     },
+
     onMainRegistrationBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Registration');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.RegistrationView'));
     },
+
     onMainHelpContactBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Contact Help');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.ContactHelp'));
     },
+
     onMainVendorMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Vendor Menu');
-        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.VendorOrderList'));
+        Ext.getCmp('Viewport').push(Ext.create('Aporo.view.vendor.MainView'));
     },
+
     onActiveDGMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Active DG Menu');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.activeDG.MainView'));
     },
+
     onPassiveDGMenuBtnTap: function() {
         Ext.getCmp('Viewport').getNavigationBar().setHidden(false);
-        Ext.getCmp('Viewport').getNavigationBar().titleComponent.setTitle('Passive DG Menu');
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.passiveDG.MainView'));
     }
 });
