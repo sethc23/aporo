@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url(r'^work/$', views.work, name='work'),
     url(r'^device/$', views.device, name='device'),
     url(r'^order/$', views.order, name='order'),
-    # url(r'^update/$', views.update, name='update'),
+    url(r'^update/$', views.update, name='update'),
 )

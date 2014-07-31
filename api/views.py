@@ -84,7 +84,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 def get_sencha_json(request_data):
-    return eval(request_data.keys()[0].replace('null','"null"'))
+    x=request_data.keys()[0]
+    x = x.replace('"null"','null')
+    x = x.replace('null','"null"')
+    x = x.replace('"true"','true').replace('"True"','True')
+    x = x.replace('true','"true"').replace('True','"True"')
+    x = x.replace('"false"','false').replace('"False"','False')
+    x = x.replace('false','"false"').replace('False','"False"')
+    return eval(x)
 
 @api_view(['GET', 'POST'])
 def new_currier(request):
@@ -418,7 +425,7 @@ def update(request):
 
         if x['action'].lower()=='update':
             # update DB re: device
-            d = Device.objects.get(currier_id=currier_id)
+            d = Device.objects.filter(currier_id=currier_id)
             p = x['Device.JSON']
             p.update({'is_active':True})
             # TODO adjust update frequency here

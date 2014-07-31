@@ -74,7 +74,7 @@ class FilteredOrderSerializer(serializers.HyperlinkedModelSerializer):
         model = Order
         fields = ['order_id','tag','web','call_in',
                   'contact_num','deliv_addr','apt_num','deliv_cross_street',
-                  'req_pickup_time','price','tip','comment']
+                  'req_pickup_time','price','tip','comment','end_datetime']
         exclude = ['created','vendor','vendor_dev','currier','currier_dev',
                    'web_url','deliv_lat','deliv_long']
 
