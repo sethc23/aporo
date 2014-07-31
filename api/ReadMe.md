@@ -192,6 +192,7 @@
 					"speed" 			: 	"1.508",
 					"last_updated" 		: 	"2014-01-01T15:45:00",
 				},
+				"Locations.JSON": [{}],
 				"is_active"			: 	"True",
 				"update_frequency"	:	"120",
 			},]

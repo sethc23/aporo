@@ -311,10 +311,10 @@ def work(request):
 @api_view(['GET', 'POST'])
 def device(request):
     # TODO: when authenticating, change dg_id=1 in api.view.device(request)
-    dg_id = 1  # set by "currier_id"
+    currier_id = 1  # set by "currier_id"
 
     if request.method == 'GET':
-        d = Device.objects.get(currier_id=dg_id)
+        d = Device.objects.get(currier_id=currier_id)
         serializer = DeviceSerializer(d)
         return Response(serializer.data)
 
@@ -323,7 +323,7 @@ def device(request):
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='update':
-            d = Device.objects.filter(currier_id=dg_id)
+            d = Device.objects.filter(currier_id=currier_id)
             p = x['device']
             p.update({'is_active':True})
             # TODO adjust update frequency here
@@ -333,7 +333,7 @@ def device(request):
 
             # d = Device.objects.get(currier_id=currier_id)
             dev_serializer = FilteredDeviceSerializer(d, context={'request': request}, many=True)
-            l = Location.objects.filter(currier_id=dg_id)
+            l = Location.objects.filter(currier_id=currier_id)
             loc_serializer = LocationSerializer(l, context={'request': request}, many=True)
             z = {'Device.JSON':dev_serializer.data[0],
                  'Locations.JSON':loc_serializer.data}
@@ -409,7 +409,7 @@ def update(request):
 
     if request.method == 'GET':
         d = Location.objects.get(currier_id=currier_id)
-        serializer = DeviceSerializer(d)
+        serializer = LocationSerializer(d, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -417,12 +417,26 @@ def update(request):
         # TODO account for an unregistered device posting update
 
         if x['action'].lower()=='update':
+            # update DB re: device
             d = Device.objects.get(currier_id=currier_id)
-            dev_serializer = FilteredDeviceSerializer(d)
-            l = Location.objects.filter(currier_id=currier_id)
-            loc_serializer = LocationSerializer(l)
+            p = x['Device.JSON']
+            p.update({'is_active':True})
+            # TODO adjust update frequency here
+            p.update({'update_frequency':60})
+            for k,v in p.iteritems():
+                if v != 'null': d.update(**{k:v})
+                else: d.update(**{k:''})
+            dev_serializer = FilteredDeviceSerializer(d, many=True)
+
+            # update DB re: locations
+            # l = Location.objects.filter(currier_id=currier_id)
+            #
+            # TODO: update Location objects on 'update' action post to /api/update
+            #
+            # loc_serializer = FilteredLocationSerializer(l, many=True)
+
             z = {'Device.JSON':dev_serializer.data,
-                 'Locations.JSON':loc_serializer.data}
+                 'Locations.JSON':x['Locations.JSON']}
 
             return Response(z)
 
