@@ -117,6 +117,56 @@ Ext.define('Aporo.controller.Vendors', {
 
     onHistory: function() {
         Ext.getCmp('Viewport').push(Ext.create('Aporo.view.vendor.History'));
+
+        var me = this;
+
+        me.getVendorHistory().setMasked({
+            xtype: 'loadmask',
+            message: l.LOADING
+        });
+
+        Ext.Ajax.request({
+            url: Aporo.config.Env.baseApiUrl + 'api/order/',
+            method: 'GET',
+            useDefaultXhrHeader: false,
+            params: Ext.encode({
+                action: 'history',
+                vendor_id: Aporo.config.Env.vendor_id
+            }),
+
+            success: function(response) {
+                var json = Ext.decode(response.responseText);
+
+                // Create the history store
+                me.historyStore = Ext.create('Ext.data.Store', {
+                    storeId: 'historyStore',
+                    fields: [
+                        'req_pickup_time',
+                        'tag',
+                        'deliv_addr',
+
+                        'type',
+
+                        {
+                            name: 'web',
+                            convert: function(value, record) {
+                                record.set('type', (value == "True" || value === true) ? 'Web' : 'User');
+                            }
+                        }
+                    ],
+                    data: json
+                });
+
+                me.getVendorHistory().setMasked(false);
+
+                // Give the grid the new store
+                me.getVendorHistory().setStore(me.historyStore);
+            },
+            failure: function(response) {
+                Ext.Msg.alert(l.PROBLEM, l.PROBLEM_FETCHING_HISTORY);
+                me.back();
+            }
+        });
     },
 
     onQuit: function() {
