@@ -22,11 +22,6 @@ Ext.define("Aporo.view.vendor.MainView", {
             },
 
             columns: [{
-                text: l.TYPE,
-                align: 'center',
-                dataIndex: 'type',
-                width: 100
-            }, {
                 xtype: 'buttoncolumn',
                 align: 'center',
                 width: 110
@@ -44,6 +39,11 @@ Ext.define("Aporo.view.vendor.MainView", {
                 text: l.ADDRESS,
                 dataIndex: 'deliv_addr',
                 width: 200
+            }, {
+                text: l.TYPE,
+                align: 'center',
+                dataIndex: 'type',
+                width: 100
             }]
         }, {
             xtype: 'container',
