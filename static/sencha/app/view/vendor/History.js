@@ -4,8 +4,7 @@ Ext.define("Aporo.view.vendor.History", {
     id: 'VendorHistory',
 
     requires: [
-        'Ext.grid.Grid',
-        'Aporo.extension.column.Button'
+        'Ext.grid.Grid'
     ],
 
     config: {
@@ -26,10 +25,6 @@ Ext.define("Aporo.view.vendor.History", {
                 align: 'center',
                 dataIndex: 'type',
                 width: 100
-            }, {
-                xtype: 'buttoncolumn',
-                align: 'center',
-                width: 110
             }, {
                 text: l.PICK_UP_TIME,
                 dataIndex: 'req_pickup_time',
