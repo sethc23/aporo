@@ -26,11 +26,15 @@ var l = {
     TOTAL_DELIVERIES: 'Total Deliveries',
     PICK_UP_TIME: 'Pick Up Time',
     ADDRESS: 'Address',
+    PHONE: 'Phone',
     CONTACT_NUMBER: 'Contact Number',
+    ADDRESS: 'Address',
     DELIVERY_ADDRESS: 'Delivery Address',
-    APT_NUM: 'Apt. Number',
-    DELIVERY_CROSS_STREET: 'Delivery Cross St.',
+    APT_NUM: 'Apt. #',
+    DELIVERY_CROSS_STREET: 'Cross Street',
     COMMENT: 'Comment',
+
+    ASAP: 'ASAP',
 
     PLEASE_COMPLETE_ALL_FIELDS: 'Please complete all fields',
 
@@ -64,6 +68,7 @@ var l = {
     PROBLEM_FETCHING_VENDORS: 'There was a problem fetching Vendors',
     NEW_ORDER_CREATED: 'New order created',
     PROBLEM_CREATING_NEW_ORDER: 'There was a problem creating the new order',
+    PROBLEM_FETCHING_HISTORY: 'There was a problem fetching history',
 
     /**
      * Active DG Menu
@@ -76,6 +81,7 @@ var l = {
     CANNOT_READ_DEVICE_JSON: 'Cannot read Device.JSON as you are not running inside PhoneGap',
     CANNOT_SAVE_LOCATIONS_JSON: 'Cannot save Locations.JSON as you are not running inside PhoneGap',
     PROBLEM_SAVING_LOCATIONS_JSON: 'There was a problem saving Locations.JSON',
+    CANNOT_READ_LOCATIONS_JSON: 'Cannot read Locations.JSON',
 
     NO_LOCATION_FOUND: 'No location was found',
     NEXT_LOCATION_WAS_NEITHER: 'Next location was neither call_in or web',

@@ -121,7 +121,9 @@ Ext.define('Aporo.controller.ActiveDG', {
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
             Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_DEVICE_JSON, function() {
-                config.success({});
+                setTimeout(function() {
+                    config.success({});
+                }, 800);
             }, this);
 
             return;
@@ -129,6 +131,7 @@ Ext.define('Aporo.controller.ActiveDG', {
 
         Aporo.util.PhoneGap.readFile({
             fileName: 'device.JSON',
+            format: 'json',
             success: function(json) {
                 config.success(json);
             },
@@ -189,6 +192,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 timeout: 5000
             });
         } else {
+            json['model'] = 'iPhone';
             _callback();
         }
     },
@@ -197,6 +201,7 @@ Ext.define('Aporo.controller.ActiveDG', {
      * Posts the curent Device.JSON to the server
      */
     postDeviceJSONUpdate: function(json, callback) {
+        console.log('postDeviceJSONUpdate');
         var me = this,
             device = Ext.clone(json);
 
@@ -204,74 +209,68 @@ Ext.define('Aporo.controller.ActiveDG', {
         delete device['is_active'];
         delete device['update_frequency'];
 
-        var params = {
-            action: 'update',
-            currier_id: Aporo.config.Env.currier_id,
-            device: device,
-            is_active: json['is_active'],
-            update_frequency: json['update_frequency']
+        var updateJSON = function() {
+            var params = {
+                action: 'update',
+                currier_id: Aporo.config.Env.currier_id,
+                is_active: json['is_active'],
+                update_frequency: json['update_frequency'],
+                'Device.JSON': device,
+                'Locations.JSON': me.locations
+            };
+
+            Ext.Ajax.request({
+                url: Aporo.config.Env.baseApiUrl + 'api/update/',
+                method: 'POST',
+                useDefaultXhrHeader: false,
+                params: Ext.encode(params),
+                success: function(response) {
+                    console.log(' - success');
+                    var responseJson = Ext.decode(response.responseText),
+                        device = responseJson['Device.JSON'],
+                        locations = responseJson['Locations.JSON'];
+
+                    // Update the Device.JSON
+                    json = Ext.Object.merge(json, device);
+                    me.updateDeviceJSON(json, function() {
+                        // Update Locations.JSON
+                        me.updateLocationsJSON(locations, function() {
+                            callback(true);
+                        });
+                    });
+                },
+                failure: function(response) {
+                    callback(false);
+                }
+            });
         };
 
-        Ext.Ajax.request({
-            url: Aporo.config.Env.baseApiUrl + 'api/device/',
-            method: 'POST',
-            useDefaultXhrHeader: false,
-            params: Ext.encode(params),
-            success: function(response) {
-                var responseJson = Ext.decode(response.responseText),
-                    device = responseJson['Device.JSON'],
-                    locations = responseJson['Locations.JSON'];
+        me.getLocationsJSON(updateJSON);
+    },
 
-                // Update the Device.JSON
-                json = Ext.Object.merge(json, device);
-                me.updateDeviceJSON(json, function() {
-                    // Update Locations.JSON
-                    me.updateLocationsJSON(locations, function() {
-                        callback(true);
-                    });
-                });
+    getLocationsJSON: function(callback) {
+        var me = this;
+
+        if (!Aporo.util.PhoneGap.is()) {
+            Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_LOCATIONS_JSON, function() {
+                setTimeout(function() {
+                    callback();
+                }, 800);
+            }, me);
+
+            return;
+        }
+
+        Aporo.util.PhoneGap.readFile({
+            fileName: 'Locations.JSON',
+            format: 'json',
+            success: function(json) {
+                console.log('getLocationsJSON');
+                me.locations = json;
+                callback();
             },
-            failure: function(response) {
-                callback(false);
-
-                // DEBUG
-                // Used when the server is down
-
-                // var responseJson = [{
-                //     "Device.JSON": {
-                //         "update_frequency": "60",
-                //         "is_active": "True"
-                //     },
-                //     "Locations.JSON": [{
-                //         "loc_num": 1,
-                //         "addr": "ONE_pickup_addr",
-                //         "call_in": true,
-                //         "pickup": true,
-                //         "cross_street": "",
-                //         "end_datetime": null,
-                //         "location_id": 1,
-                //         "price": null,
-                //         "req_datetime": null,
-                //         "tag": "test",
-                //         "tip": null,
-                //         "web": false,
-                //         "web_url": ""
-                //     }]
-                // }];
-
-                // var device = responseJson[0]['Device.JSON'],
-                //     locations = responseJson[0]['Locations.JSON'];
-
-                // // Update the Device.JSON
-                // json = Ext.Object.merge(json, device);
-                // me.updateDeviceJSON(json, function() {
-                //     // Update Locations.JSON
-                //     me.updateLocationsJSON(locations, function() {
-                //         callback(true);
-                //     });
-                // });
-
-                // /DEBUG
+            failure: function(error) {
+                config.failure(error);
             }
         });
     },
@@ -280,13 +279,19 @@ Ext.define('Aporo.controller.ActiveDG', {
      * Updates the local Locations.JSON file with specified data.
      */
     updateLocationsJSON: function(json, callback) {
+        console.log('updateLocationsJSON', json);
         // DEBUG
         // json[0]['tag'] = 'test';
         // json[0]['web_url'] = 'url';
         // json[0]['pickup'] = '';
         // json[0]['delivery'] = 'True';
 
+        if (json == "null") {
+            json = null;
+        }
+
         this.locations = json;
+        this.updateTitle();
 
         if (!Aporo.util.PhoneGap.is()) {
             Ext.Msg.alert(l.PROBLEM, l.CANNOT_SAVE_LOCATIONS_JSON, function() {
@@ -470,9 +475,11 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                 me.updateLocationsJSON(me.locations, function(success) {
                     Ext.Msg.alert(l.SUCCESS, null, function() {
-                        me.back();
+                        setTimeout(function() {
+                            me.back();
 
-                        me.updateTitle();
+                            me.updateTitle();
+                        }, 800);
                     }, me);
                 });
             });
@@ -516,9 +523,11 @@ Ext.define('Aporo.controller.ActiveDG', {
 
                     me.updateLocationsJSON(me.locations, function(success) {
                         Ext.Msg.alert(l.SUCCESS, null, function() {
-                            me.back();
+                            setTimeout(function() {
+                                me.back();
 
-                            me.updateTitle();
+                                me.updateTitle();
+                            }, 800);
                         }, me);
                     });
                 });
@@ -542,7 +551,9 @@ Ext.define('Aporo.controller.ActiveDG', {
             }],
             fn: function(buttonId) {
                 if (buttonId == "back") {
-                    me.back();
+                    setTimeout(function() {
+                        me.back();
+                    }, 800);
                 }
             }
         });
@@ -588,8 +599,11 @@ Ext.define('Aporo.controller.ActiveDG', {
                     location['end_datetime'] = me.formattedDate();
 
                     me.updateLocationsJSON(me.locations, function(success) {
-                        Ext.Msg.alert(l.SUCCESS);
-                        me.updateTitle();
+                        Ext.Msg.alert(l.SUCCESS, null, function() {
+                            setTimeout(function() {
+                                me.updateTitle();
+                            }, 800);
+                        });
                     });
                 });
 
@@ -631,8 +645,11 @@ Ext.define('Aporo.controller.ActiveDG', {
                         location['end_datetime'] = me.formattedDate();
 
                         me.updateLocationsJSON(me.locations, function(success) {
-                            Ext.Msg.alert(l.SUCCESS);
-                            me.updateTitle();
+                            Ext.Msg.alert(l.SUCCESS, null, function() {
+                                setTimeout(function() {
+                                    me.updateTitle();
+                                }, 800);
+                            });
                         });
                     });
                 }, me);
@@ -656,7 +673,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                     if (buttonId == "tryagain") {
                         setTimeout(function() {
                             me.onWebOrder();
-                        }, 500);
+                        }, 800);
                     }
                 }
             });
@@ -690,7 +707,7 @@ Ext.define('Aporo.controller.ActiveDG', {
                 return n < 10 ? '0' + n : n;
             };
 
-            return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + 'Z'
+            return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds())
         };
 
         return ISODateString(new Date());
