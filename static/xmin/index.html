@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Django xmin </title>
+
+    <link rel="stylesheet" type="text/css" href="../extjs-4/resources/css/ext-all-gray.css">
+    <link rel="stylesheet" type="text/css" href="../xmin/styles/xmin.css">
+</head>
+<body>
+
+	<form id="history-form" class="x-hide-display">
+		<input type="hidden" id="x-history-field" />
+		<iframe id="x-history-frame"></iframe>
+	</form>
+
+	<script src="../jsi18n/jsi18n.js"></script>
+	<!--<script src="/static/extjs-4/ext-all.js"></script>-->
+	<script src="../extjs-4/ext-dev.js"></script>
+	<script type="text/javascript">
+
+		Ext.namespace('Xmin.settings');
+
+		Xmin.settings = {
+			site_title: '',
+			app_list: [],
+			data_path: null,
+			poll_interval: 120000,
+			user: {
+				name: null,
+				id: null
+			}
+		};
+
+	    // Xmin.settings = {{ settings|safe }};
+
+	</script>
+	<script src="../xmin/app.js" type="text/javascript" ></script>
+</body>
+</html>
