@@ -17,7 +17,7 @@ INSTALLED_APPS = (
     'api',
     'rest_framework',
     #'cal',
-    # 'xmin',
+    'xmin',
     'phonegap',
     #'login',
     'corsheaders',

@@ -146,6 +146,7 @@ class Order(models.Model):
     price = models.FloatField(blank=True, null=True)
     tip = models.FloatField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
+    end_datetime = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
 
     def __unicode__(self):
         return ' '.join([
@@ -167,7 +168,8 @@ class Order(models.Model):
                 self.deliv_long,
                 self.price,
                 self.tip,
-                self.comment
+                self.comment,
+                self.end_datetime,
             ])
 
 class Location(models.Model):
@@ -181,18 +183,17 @@ class Location(models.Model):
     web_url = models.TextField(blank=True)
     pickup = models.BooleanField(default=True)
     delivery = models.BooleanField(default=False)
-    req_datetime = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
+    req_datetime = models.DateTimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
     addr = models.TextField(blank=True)
     cross_street = models.TextField(blank=True)
-    end_datetime = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
-    price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
-    tip = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
+    end_datetime = models.DateTimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
+    price = models.FloatField(blank=True, null=True)
+    tip = models.FloatField(blank=True, null=True)
     comments = models.TextField(blank=True)
     lat = models.FloatField(blank=True, null=True)
     long = models.FloatField(blank=True, null=True)
     batt_level = models.SmallIntegerField(blank=True, null=True, max_length=3)
     dev_updated = models.TimeField(blank=True, null=True, auto_now=False, auto_now_add=False)
-
 
     def __unicode__(self):
         return ' '.join([
