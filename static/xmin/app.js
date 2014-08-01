@@ -26,7 +26,8 @@ Ext.application({
     requires: [
         'Ext.util.History',
         'Ext.util.Cookies',
-        'Ext.window.MessageBox'
+        'Ext.window.MessageBox',
+        'Ext.container.Viewport'
     ],
 
     launch: function() {
