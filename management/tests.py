@@ -5,13 +5,9 @@ import json
 from urllib2 import urlopen,Request
 from datetime import timedelta
 from datetime import datetime as DT
+from sencha_related_functions import handle_dict_strings,adjust_json_for_sencha
 
 
-def adjust_json_for_sencha(data):
-    # When Django receives post url requests from the Sencha app,
-    # all the data is delivered in the first key of a dictionary.
-    # The value for the key is null.
-    return { str(data[0]): '' }
 
 def post_form(f_url, FORM_HTML, BASE_URL):
     from mechanize import Browser,_form
@@ -246,13 +242,49 @@ def order(post_action='get',show_post=False,show_resp=False):
         print '\n\t\t\t--> SUCCESS\n'
         return resp
 
-def update(post_action='get',show_post=False,show_resp=False):
+def update(post_action='update',update_locs=False,show_post=False,show_resp=False):
     p_url = BASE_URL+'/api/update/'
-    print '\t\tupdate','\n\t\t\tURL:',p_url
-    data = {
-                "action" : post_action,
-                "currier_id" : "1",
+    print '\t\tupdate','with EMPTY Locations.JSON','\n\t\t\tURL:',p_url
+    gen_data = {
+                "action"            : post_action,
+                "currier_id"        : "1",
+                'is_active'         : 'false',
+                'update_frequency'  : '120',
             }
+    last_updated = str(DT(2014,07,17,12,45,0).isoformat())
+    device_json = {"model" : "XT926",
+                "platform" : "Android",
+                "uuid" : "398923",
+                "op_sys_ver" : "4.2",
+                "battery_level" : "50",
+                "lat" : "0.0045",
+                "long" : "0.8983",
+                "coord_accuracy" : "1.0",
+                "heading" : "0.4444",
+                "speed" : "1.508",
+                "last_updated" : last_updated,
+                "update_frequency" : "120",
+                "is_active" : "True",
+                }
+    location_json = 'null'
+    data = {}
+    data.update(gen_data)
+    data.update({'Device.JSON':device_json,'Locations.JSON':location_json})
+    all_data = [data]
+    resp = post_json(all_data,p_url,show_post,show_resp)
+
+    print '\n\n\t\tupdate','with UPDATED Locations.JSON','\n\t\t\tURL:',p_url
+    # update first location with end_datetime and re-submit
+    x = eval(handle_dict_strings(resp))
+    loc_json_resp_1 = x['Locations.JSON'][0]
+    just_updated = str(DT.now().isoformat())
+    loc_json_resp_1['end_datetime'] = just_updated
+    new_loc_json = [loc_json_resp_1]
+    new_loc_json.extend(x['Locations.JSON'][1:])
+
+    data = {}
+    data.update(gen_data)
+    data.update({'Device.JSON':device_json,'Locations.JSON':new_loc_json})
     all_data = [data]
     resp = post_json(all_data,p_url,show_post,show_resp)
 
@@ -269,7 +301,7 @@ if __name__ == '__main__':
 
     THE_PAST = DT(2014,1,2,12,30,0).isoformat()
 
-    SERVERS = {'dj_dev' :   'http://0.0.0.0:8080',
+    SERVERS = {'dev'    :   'http://0.0.0.0:8080',
                'local'  :   'http://0.0.0.0',
                'ec2'    :   'http://54.191.47.76',
                'ec3'    :   'http://54.186.48.182'}
@@ -289,11 +321,11 @@ if __name__ == '__main__':
     # work(post_action='check_in',show_resp=True)
     # work(post_action='history',show_resp=True)
     # work(post_action='check_out',show_resp=True)
-    # device(post_action='update',show_post=True,show_resp=True)
-    ## update(post_action='update',show_post=True,show_resp=True)
-    order(post_action='get',show_post=True,show_resp=True)
+    ## device(post_action='update',show_post=True,show_resp=True)
+    # order(post_action='get',show_post=True,show_resp=True)
     # order(post_action='add',show_resp=False)
     # order(post_action='remove',show_resp=False)
     # order(post_action='add',show_post=True,show_resp=True)
+    update(post_action='update',show_post=True,show_resp=True)
 
     print '\n\tTesting COMPLETE\n'

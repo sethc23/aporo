@@ -61,7 +61,7 @@ class FilteredScheduleSerializer(serializers.HyperlinkedModelSerializer):
 class FilteredLocationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Location
-        fields = ['loc_num','location_id','tag','web','web_url','call_in','pickup','delivery'
+        fields = ['loc_num','location_id','tag','web','web_url','call_in','pickup','delivery',
                   'req_datetime','addr','cross_street','end_datetime','price','tip','comments']
         # exclude = ['batt_level','currier','dev_updated','lat','long','order']
 class FilteredDeviceSerializer(serializers.HyperlinkedModelSerializer):

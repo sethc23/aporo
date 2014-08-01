@@ -23,7 +23,7 @@ os_system('bin/python manage.py runserver 0.0.0.0:8080 &')
 delay(6)
 
 os_system('bin/python management/initialize.py')                    # Load data
-os_system('bin/python management/tests.py "dj_dev"')                # Run Tests
+os_system('bin/python management/tests.py "dev"')                # Run Tests
 
 os_system('pkill -f "python manage.py runserver"')
 

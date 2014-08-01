@@ -83,15 +83,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-def get_sencha_json(request_data):
-    x=request_data.keys()[0]
-    x = x.replace('"null"','null')
-    x = x.replace('null','"null"')
-    x = x.replace('"true"','true').replace('"True"','True')
-    x = x.replace('true','"true"').replace('True','"True"')
-    x = x.replace('"false"','false').replace('"False"','False')
-    x = x.replace('false','"false"').replace('False','"False"')
-    return eval(x)
+from management.sencha_related_functions import get_sencha_json
 
 @api_view(['GET', 'POST'])
 def new_currier(request):
@@ -433,19 +425,22 @@ def update(request):
             for k,v in p.iteritems():
                 if v != 'null': d.update(**{k:v})
                 else: d.update(**{k:''})
-            dev_serializer = FilteredDeviceSerializer(d, many=True)
+            dev_serializer = FilteredDeviceSerializer(d, context={'request': request}, many=True)
 
             # update DB re: locations
-            if x['Locations.JSON'] != 'null':
-                Location.objects.filter(currier_id=currier_id).update(**x['Locations.JSON'])
-                # serializer = LocationSerializer(x['Locations.JSON'], context={'request': request})
-                # if serializer.is_valid():
-                # if serializer.data != []:
-                #     c = serializer.save()
-            l = Location.objects.filter(currier_id=currier_id).exclude(end_datetime__isnull=False)
-            # TODO: update Location objects on 'update' action post to /api/update
-            # serializer = OrderSerializer(d, context={'request': request}, many=True)
-            loc_serializer = LocationSerializer(l, many=True)
+            if x['Locations.JSON'] != 'None':
+                locs = x['Locations.JSON'].__iter__()
+                while True==True:
+                    try:
+                        this_loc = locs.next()
+                        print this_loc
+                        Location.objects.filter(currier_id=currier_id,loc_num=this_loc['loc_num']).update(**this_loc)
+                    except StopIteration:
+                        break
+
+            l = Location.objects.filter(currier_id=currier_id)#.exclude(end_datetime__isnull=False)
+            # TODO: (after proto ready) limit returned Locations to those not delivered
+            loc_serializer = FilteredLocationSerializer(l, context={'request': request}, many=True)
 
             z = {'Device.JSON':dev_serializer.data,
                  'Locations.JSON':loc_serializer.data}
