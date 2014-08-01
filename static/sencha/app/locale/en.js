@@ -26,11 +26,15 @@ var l = {
     TOTAL_DELIVERIES: 'Total Deliveries',
     PICK_UP_TIME: 'Pick Up Time',
     ADDRESS: 'Address',
+    PHONE: 'Phone',
     CONTACT_NUMBER: 'Contact Number',
+    ADDRESS: 'Address',
     DELIVERY_ADDRESS: 'Delivery Address',
-    APT_NUM: 'Apt. Number',
-    DELIVERY_CROSS_STREET: 'Delivery Cross St.',
+    APT_NUM: 'Apt. #',
+    DELIVERY_CROSS_STREET: 'Cross Street',
     COMMENT: 'Comment',
+
+    ASAP: 'ASAP',
 
     PLEASE_COMPLETE_ALL_FIELDS: 'Please complete all fields',
 

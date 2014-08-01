@@ -91,7 +91,7 @@ Ext.define('Aporo.util.PhoneGap', {
                         reader.onloadend = function(e) {
                             var data = e.target.result;
 
-                            if (data) {
+                            if (data && data != "null") {
                                 config.success(config.format == "json" ? Ext.decode(data) : data)
                             } else {
                                 // File not found

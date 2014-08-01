@@ -26,35 +26,87 @@ Ext.define("Aporo.view.vendor.NewOrder", {
             items: [{
                 xtype: 'textfield',
                 name: 'contact_number',
-                label: l.CONTACT_NUMBER
+                placeHolder: l.PHONE
             }, {
                 xtype: 'textfield',
                 name: 'deliv_addr',
-                label: l.DELIVERY_ADDRESS
+                placeHolder: l.ADDRESS
             }, {
                 xtype: 'textfield',
                 name: 'apt_num',
-                label: l.APT_NUM
+                placeHolder: l.APT_NUM
             }, {
                 xtype: 'textfield',
                 name: 'deliv_cross_street',
-                label: l.DELIVERY_CROSS_ST
+                placeHolder: l.DELIVERY_CROSS_ST
             }, {
-                xtype: 'textfield',
+                xtype: 'selectfield',
                 name: 'req_pickup_time',
-                label: l.PICK_UP_TIME
+                label: l.PICK_UP_TIME,
+                options: [{
+                    text: l.ASAP,
+                    value: 0
+                }, {
+                    text: '15',
+                    value: 15
+                }, {
+                    text: '20',
+                    value: 20
+                }, {
+                    text: '25',
+                    value: 25
+                }, {
+                    text: '30',
+                    value: 30
+                }, {
+                    text: '35',
+                    value: 35
+                }, {
+                    text: '40',
+                    value: 40
+                }, {
+                    text: '45',
+                    value: 45
+                }, {
+                    text: '50',
+                    value: 50
+                }, {
+                    text: '55',
+                    value: 55
+                }, {
+                    text: '60',
+                    value: 60
+                }, {
+                    text: '65',
+                    value: 65
+                }, {
+                    text: '70',
+                    value: 70
+                }, {
+                    text: '75',
+                    value: 75
+                }, {
+                    text: '80',
+                    value: 80
+                }, {
+                    text: '85',
+                    value: 85
+                }, {
+                    text: '90',
+                    value: 90
+                }]
             }, {
                 xtype: 'textfield',
                 name: 'price',
-                label: l.PRICE
+                placeHolder: l.PRICE
             }, {
                 xtype: 'textfield',
                 name: 'tip',
-                label: l.TIP
+                placeHolder: l.TIP
             }, {
                 xtype: 'textfield',
                 name: 'comment',
-                label: l.COMMENT
+                placeHolder: l.COMMENT
             }]
         }]
     }

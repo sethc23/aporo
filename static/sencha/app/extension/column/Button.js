@@ -3,7 +3,7 @@ Ext.define('Aporo.extension.column.Button', {
     xtype: 'buttoncolumn',
 
     defaultRenderer: function(value) {
-        return '<div class="button">Cancel</div>';
+        return '<div class="button">Change</div>';
     },
 
     updateCell: function(cell, record, content) {
