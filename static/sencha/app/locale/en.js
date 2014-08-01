@@ -77,11 +77,14 @@ var l = {
     UPDATE_ROUTE: 'Update Route',
     CHECK_OUT: 'Check-out',
 
+    NO_CURRENT_DELIVERIES: 'No current deliveries.',
+    CHECK_FOR_MORE_DELIVERIES: 'Check for more Deliveries',
+
     PROBLEM_SAVING_DEVICE_JSON: 'There was a problem saving Device.JSON',
     CANNOT_READ_DEVICE_JSON: 'Cannot read Device.JSON as you are not running inside PhoneGap',
     CANNOT_SAVE_LOCATIONS_JSON: 'Cannot save Locations.JSON as you are not running inside PhoneGap',
     PROBLEM_SAVING_LOCATIONS_JSON: 'There was a problem saving Locations.JSON',
-    CANNOT_READ_LOCATIONS_JSON: 'Cannot read Locations.JSON',
+    CANNOT_READ_LOCATIONS_JSON: 'Cannot read Locations.JSON as you are not running inside PhoneGap',
 
     NO_LOCATION_FOUND: 'No location was found',
     NEXT_LOCATION_WAS_NEITHER: 'Next location was neither call_in or web',

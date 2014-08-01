@@ -4,7 +4,9 @@ Ext.define('Aporo.controller.ActiveDG', {
         refs: {
             ActiveDGMainView: 'ActiveDGMainView',
             ActiveDGMenuView: 'ActiveDGMainView #ActiveDGMenuView',
-            ActiveDGCheckPackage: 'ActiveDGCheckPackage'
+            ActiveDGCheckPackage: 'ActiveDGCheckPackage',
+
+            checkPackageButton: 'ActiveDGMainView #btnCheckPackage'
         },
 
         control: {
@@ -120,11 +122,15 @@ Ext.define('Aporo.controller.ActiveDG', {
      */
     readDeviceJSON: function(config) {
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_DEVICE_JSON, function() {
-                setTimeout(function() {
-                    config.success({});
-                }, 800);
-            }, this);
+            if (Aporo.config.Env.showPhoneGapAlerts) {
+                Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_DEVICE_JSON, function() {
+                    setTimeout(function() {
+                        config.success({});
+                    }, 800);
+                }, this);
+            } else {
+                config.success({});
+            }
 
             return;
         }
@@ -151,11 +157,7 @@ Ext.define('Aporo.controller.ActiveDG', {
         // PhoneGap library, defines “is_active” as True, and keeps “update_frequency” 
         // constant.
 
-        if (json) {
-            json = Ext.clone(json);
-        } else {
-            json = me.json || {};
-        }
+        json = me.json || {};
 
         json['is_active'] = 'True';
 
@@ -192,7 +194,6 @@ Ext.define('Aporo.controller.ActiveDG', {
                 timeout: 5000
             });
         } else {
-            json['model'] = 'iPhone';
             _callback();
         }
     },
@@ -252,11 +253,15 @@ Ext.define('Aporo.controller.ActiveDG', {
         var me = this;
 
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_LOCATIONS_JSON, function() {
-                setTimeout(function() {
-                    callback();
-                }, 800);
-            }, me);
+            if (Aporo.config.Env.showPhoneGapAlerts) {
+                Ext.Msg.alert(l.PROBLEM, l.CANNOT_READ_LOCATIONS_JSON, function() {
+                    setTimeout(function() {
+                        callback();
+                    }, 800);
+                }, me);
+            } else {
+                callback();
+            }
 
             return;
         }
@@ -294,11 +299,15 @@ Ext.define('Aporo.controller.ActiveDG', {
         this.updateTitle();
 
         if (!Aporo.util.PhoneGap.is()) {
-            Ext.Msg.alert(l.PROBLEM, l.CANNOT_SAVE_LOCATIONS_JSON, function() {
-                setTimeout(function() {
-                    callback(true);
-                }, 800);
-            }, this);
+            if (Aporo.config.Env.showPhoneGapAlerts) {
+                Ext.Msg.alert(l.PROBLEM, l.CANNOT_SAVE_LOCATIONS_JSON, function() {
+                    setTimeout(function() {
+                        callback(true);
+                    }, 800);
+                }, this);
+            } else {
+                callback(true);
+            }
 
             return;
         }
@@ -341,10 +350,19 @@ Ext.define('Aporo.controller.ActiveDG', {
     updateTitle: function() {
         var me = this,
             nextLocation = me.nextLocation(),
-            toolbar = me.getActiveDGMenuView().getComponent('toolbarHeader');
+            toolbar = me.getActiveDGMenuView().getComponent('toolbarHeader'),
+            button = me.getCheckPackageButton();
 
         if (nextLocation) {
             toolbar.setTitle(me.titleForLocation(nextLocation));
+
+            button.setText(l.CHECK_PACKAGE);
+            button.setUi('normal');
+        } else {
+            toolbar.setTitle(l.NO_CURRENT_DELIVERIES);
+
+            button.setText(l.CHECK_FOR_MORE_DELIVERIES);
+            button.setUi('decline');
         }
     },
 
@@ -365,7 +383,7 @@ Ext.define('Aporo.controller.ActiveDG', {
             nextLocation = me.nextLocation();
 
         if (!nextLocation) {
-            Ext.Msg.alert(l.PROBLEM, l.NO_LOCATION_FOUND);
+            me.updateJSON(false);
             return;
         }
 

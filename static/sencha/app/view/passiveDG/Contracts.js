@@ -43,7 +43,7 @@ Ext.define('Aporo.view.passiveDG.Contracts', {
                 text: l.DAY,
                 dataIndex: 'start_day',
                 align: 'center',
-                width: 110
+                width: 130
             }, {
                 text: l.TIME,
                 dataIndex: 'start_time',

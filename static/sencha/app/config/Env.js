@@ -5,6 +5,7 @@ Ext.define("Aporo.config.Env", {
         vendor_id: 1,
         is_active: false,
 
+        showPhoneGapAlerts: false,
         logLevel: 'verbose',
         baseApiUrl: 'http://app.aporodelivery.com/',
         django_token: typeof Aporo == "undefined" ? null : Aporo.csrftoken
