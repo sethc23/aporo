@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     url(r'^app/', include('app.urls', namespace='app')),
     url(r'^management/', include('management.urls', namespace='mgmt')),
     url(r'^phonegap/', include('phonegap.urls')),
-    # url(r'^xmin/', include('xmin.urls')),
+    url(r'^xmin/', include('xmin.urls')),
     # url(r'^login/', include('login.urls')),
 
     # TODO refactor some api/api_view urls in Sencha

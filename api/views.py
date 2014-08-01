@@ -415,7 +415,7 @@ def update(request):
     currier_id = 1  # set by "currier_id"
 
     if request.method == 'GET':
-        d = Location.objects.get(currier_id=currier_id)
+        d = Location.objects.filter(currier_id=currier_id)
         serializer = LocationSerializer(d, many=True)
         return Response(serializer.data)
 
@@ -436,14 +436,19 @@ def update(request):
             dev_serializer = FilteredDeviceSerializer(d, many=True)
 
             # update DB re: locations
-            # l = Location.objects.filter(currier_id=currier_id)
-            #
+            if x['Locations.JSON'] != 'null':
+                Location.objects.filter(currier_id=currier_id).update(**x['Locations.JSON'])
+                # serializer = LocationSerializer(x['Locations.JSON'], context={'request': request})
+                # if serializer.is_valid():
+                # if serializer.data != []:
+                #     c = serializer.save()
+            l = Location.objects.filter(currier_id=currier_id).exclude(end_datetime__isnull=False)
             # TODO: update Location objects on 'update' action post to /api/update
-            #
-            # loc_serializer = FilteredLocationSerializer(l, many=True)
+            # serializer = OrderSerializer(d, context={'request': request}, many=True)
+            loc_serializer = LocationSerializer(l, many=True)
 
             z = {'Device.JSON':dev_serializer.data,
-                 'Locations.JSON':x['Locations.JSON']}
+                 'Locations.JSON':loc_serializer.data}
 
             return Response(z)
 
