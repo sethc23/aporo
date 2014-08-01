@@ -408,7 +408,7 @@ def update(request):
 
     if request.method == 'GET':
         d = Location.objects.filter(currier_id=currier_id)
-        serializer = LocationSerializer(d, many=True)
+        serializer = FilteredLocationSerializer(d, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -428,7 +428,7 @@ def update(request):
             dev_serializer = FilteredDeviceSerializer(d, context={'request': request}, many=True)
 
             # update DB re: locations
-            if x['Locations.JSON'] != 'None':
+            if x['Locations.JSON'] != None:
                 locs = x['Locations.JSON'].__iter__()
                 while True==True:
                     try:
