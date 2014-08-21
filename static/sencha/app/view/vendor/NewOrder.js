@@ -38,7 +38,7 @@ Ext.define("Aporo.view.vendor.NewOrder", {
             }, {
                 xtype: 'textfield',
                 name: 'deliv_cross_street',
-                placeHolder: l.DELIVERY_CROSS_ST
+                placeHolder: l.DELIVERY_CROSS_STREET
             }, {
                 xtype: 'selectfield',
                 name: 'req_pickup_time',

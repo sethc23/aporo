@@ -52,6 +52,10 @@ Ext.define("Aporo.view.vendor.MainView", {
             },
             items: [{
                 xtype: 'button',
+                itemId: 'geoButton',
+                text: 'Geo View'
+            }, {
+                xtype: 'button',
                 text: l.NEW_ORDER,
                 itemId: 'newOrderButton'
             }, {

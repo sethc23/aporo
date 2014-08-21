@@ -28,11 +28,12 @@ var l = {
     ADDRESS: 'Address',
     PHONE: 'Phone',
     CONTACT_NUMBER: 'Contact Number',
-    ADDRESS: 'Address',
     DELIVERY_ADDRESS: 'Delivery Address',
     APT_NUM: 'Apt. #',
+    STATE: 'State',
     DELIVERY_CROSS_STREET: 'Cross Street',
     COMMENT: 'Comment',
+    ZIP_CODE: 'Zip Code',
 
     ASAP: 'ASAP',
 
@@ -69,6 +70,14 @@ var l = {
     NEW_ORDER_CREATED: 'New order created',
     PROBLEM_CREATING_NEW_ORDER: 'There was a problem creating the new order',
     PROBLEM_FETCHING_HISTORY: 'There was a problem fetching history',
+
+    PROBLEM_FETCHING_GEOLOCATION: 'There was a problem fetching the GeoLocation',
+    PROBLEM_SAVING_GEOLOCATION: 'There was a problem saving the GeoLocation',
+
+    ZERO_RESULTS: 'No results found',
+    OVER_QUERY_LIMT: 'API query limit reached',
+    REQUEST_DENIED: 'API request denied',
+    INVALID_REQUEST: 'Invalid API request',
 
     /**
      * Active DG Menu

@@ -74,6 +74,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Aporo.view.passiveDG.History": [],
   "Aporo.view.passiveDG.MainView": [],
   "Aporo.view.passiveDG.MenuView": [],
+  "Aporo.view.vendor.Geo": [],
   "Aporo.view.vendor.History": [],
   "Aporo.view.vendor.MainView": [],
   "Aporo.view.vendor.NewOrder": [],
@@ -770,6 +771,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Aporo.view.passiveDG.MenuView": [
     "widget.PassiveDGMenuView"
+  ],
+  "Aporo.view.vendor.Geo": [
+    "widget.VendorGeo"
   ],
   "Aporo.view.vendor.History": [
     "widget.VendorHistory"

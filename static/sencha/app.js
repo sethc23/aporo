@@ -29,6 +29,7 @@ Ext.application({
         'vendor.MainView',
         'vendor.NewOrder',
         'vendor.History',
+        'vendor.Geo',
 
         'activeDG.MainView',
         'activeDG.MenuView',
