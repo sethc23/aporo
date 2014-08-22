@@ -1,0 +1,31 @@
+sudo ./configure \
+--with-luajit \
+--without-http_redis2_module \
+--with-http_drizzle_module \
+--with-http_iconv_module \
+--with-http_postgres_module \
+--with-libdrizzle="/usr/local" \
+--with-select_module \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/gnosek-nginx-upstream-fair-a18b409 \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/nginx-http-rdns-master \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/ngx_aws_auth-master \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/ngx_http_lower_upper_case-master \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/ngx_http_internal_redirect-master \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/ngx_upstream_jdomain-master \
+--with-http_sub_module \
+--with-http_addition_module \
+--without-lua_redis_parser
+
+sudo make && sudo make install
+
+
+--with-ld-opt="-L/opt/local/lib" \
+--with-cc-opt="-I/opt/local/include" \
+--sbin-path="/opt/local/sbin" \
+--conf-path="/opt/local/etc/nginx" \
+
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/nginx-http-sysguard-master \
+--add-module=/Users/sethchase/Desktop/OPENRESTY/openresty_mods/nginx-backtrace-master \
+
+
+no DEBUG??

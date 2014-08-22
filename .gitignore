@@ -1,13 +1,10 @@
 # Specific Folders #
 ####################
-/Aporo/bin/
-/Aporo/include/
-/Aporo/lib/
+
 
 
 # Specific Files #
 ##################
-.python
 .seth
 
 # OS generated files #

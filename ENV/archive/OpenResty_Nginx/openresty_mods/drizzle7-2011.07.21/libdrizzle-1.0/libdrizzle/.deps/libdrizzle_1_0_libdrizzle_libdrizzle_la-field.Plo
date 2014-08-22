@@ -1,0 +1,246 @@
+libdrizzle-1.0/libdrizzle/libdrizzle_1_0_libdrizzle_libdrizzle_la-field.lo: \
+ libdrizzle-1.0/libdrizzle/field.c libdrizzle-1.0/libdrizzle/common.h \
+ config.h config/top.h \
+ /opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdint.h \
+ /opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include-fixed/stdint.h \
+ /usr/include/inttypes.h /usr/include/sys/cdefs.h \
+ /usr/include/sys/_symbol_aliasing.h \
+ /usr/include/sys/_posix_availability.h /usr/include/_types.h \
+ /usr/include/sys/_types.h /usr/include/machine/_types.h \
+ /usr/include/i386/_types.h libdrizzle-1.0/libdrizzle/drizzle_client.h \
+ libdrizzle-1.0/libdrizzle/drizzle.h /usr/include/sys/types.h \
+ /usr/include/sys/appleapiopts.h /usr/include/machine/types.h \
+ /usr/include/i386/types.h /usr/include/machine/endian.h \
+ /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+ /usr/include/libkern/_OSByteOrder.h \
+ /usr/include/libkern/i386/_OSByteOrder.h /usr/include/sys/_structs.h \
+ /opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdbool.h \
+ /usr/include/sys/socket.h /usr/include/machine/_param.h \
+ /usr/include/i386/_param.h /usr/include/Availability.h \
+ /usr/include/AvailabilityInternal.h /usr/include/netinet/in.h \
+ /usr/include/netinet6/in6.h /usr/include/arpa/inet.h \
+ /usr/include/sys/un.h /usr/include/netdb.h /usr/include/poll.h \
+ /usr/include/sys/poll.h /usr/include/assert.h /usr/include/errno.h \
+ /usr/include/sys/errno.h libdrizzle-1.0/libdrizzle/visibility.h \
+ libdrizzle-1.0/libdrizzle/constants.h \
+ libdrizzle-1.0/libdrizzle/structs.h libdrizzle-1.0/libdrizzle/conn.h \
+ libdrizzle-1.0/libdrizzle/result.h libdrizzle-1.0/libdrizzle/column.h \
+ libdrizzle-1.0/libdrizzle/conn_client.h \
+ libdrizzle-1.0/libdrizzle/handshake_client.h \
+ libdrizzle-1.0/libdrizzle/command_client.h \
+ libdrizzle-1.0/libdrizzle/query.h \
+ libdrizzle-1.0/libdrizzle/result_client.h \
+ libdrizzle-1.0/libdrizzle/column_client.h \
+ libdrizzle-1.0/libdrizzle/row_client.h \
+ libdrizzle-1.0/libdrizzle/field_client.h \
+ libdrizzle-1.0/libdrizzle/drizzle_server.h \
+ libdrizzle-1.0/libdrizzle/conn_server.h \
+ libdrizzle-1.0/libdrizzle/handshake_server.h \
+ libdrizzle-1.0/libdrizzle/command_server.h \
+ libdrizzle-1.0/libdrizzle/result_server.h \
+ libdrizzle-1.0/libdrizzle/column_server.h \
+ libdrizzle-1.0/libdrizzle/row_server.h \
+ libdrizzle-1.0/libdrizzle/field_server.h /usr/include/fcntl.h \
+ /usr/include/sys/fcntl.h /usr/include/netinet/tcp.h \
+ /usr/include/sys/uio.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+ /usr/include/sys/select.h /usr/include/sys/_select.h \
+ /opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdarg.h \
+ /usr/include/stdio.h /usr/include/secure/_stdio.h \
+ /usr/include/secure/_common.h /usr/include/stdlib.h \
+ /usr/include/sys/wait.h /usr/include/sys/signal.h \
+ /usr/include/machine/signal.h /usr/include/i386/signal.h \
+ /usr/include/i386/_structs.h /usr/include/machine/_structs.h \
+ /usr/include/mach/i386/_structs.h /usr/include/sys/resource.h \
+ /usr/include/alloca.h /usr/include/string.h /usr/include/strings.h \
+ /usr/include/secure/_string.h /usr/include/signal.h \
+ libdrizzle-1.0/libdrizzle/drizzle_local.h \
+ libdrizzle-1.0/libdrizzle/conn_local.h libdrizzle-1.0/libdrizzle/pack.h \
+ libdrizzle-1.0/libdrizzle/state.h libdrizzle-1.0/libdrizzle/sha1.h
+
+libdrizzle-1.0/libdrizzle/common.h:
+
+config.h:
+
+config/top.h:
+
+/opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdint.h:
+
+/opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include-fixed/stdint.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+libdrizzle-1.0/libdrizzle/drizzle_client.h:
+
+libdrizzle-1.0/libdrizzle/drizzle.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/appleapiopts.h:
+
+/usr/include/machine/types.h:
+
+/usr/include/i386/types.h:
+
+/usr/include/machine/endian.h:
+
+/usr/include/i386/endian.h:
+
+/usr/include/sys/_endian.h:
+
+/usr/include/libkern/_OSByteOrder.h:
+
+/usr/include/libkern/i386/_OSByteOrder.h:
+
+/usr/include/sys/_structs.h:
+
+/opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdbool.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/machine/_param.h:
+
+/usr/include/i386/_param.h:
+
+/usr/include/Availability.h:
+
+/usr/include/AvailabilityInternal.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/netinet6/in6.h:
+
+/usr/include/arpa/inet.h:
+
+/usr/include/sys/un.h:
+
+/usr/include/netdb.h:
+
+/usr/include/poll.h:
+
+/usr/include/sys/poll.h:
+
+/usr/include/assert.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+libdrizzle-1.0/libdrizzle/visibility.h:
+
+libdrizzle-1.0/libdrizzle/constants.h:
+
+libdrizzle-1.0/libdrizzle/structs.h:
+
+libdrizzle-1.0/libdrizzle/conn.h:
+
+libdrizzle-1.0/libdrizzle/result.h:
+
+libdrizzle-1.0/libdrizzle/column.h:
+
+libdrizzle-1.0/libdrizzle/conn_client.h:
+
+libdrizzle-1.0/libdrizzle/handshake_client.h:
+
+libdrizzle-1.0/libdrizzle/command_client.h:
+
+libdrizzle-1.0/libdrizzle/query.h:
+
+libdrizzle-1.0/libdrizzle/result_client.h:
+
+libdrizzle-1.0/libdrizzle/column_client.h:
+
+libdrizzle-1.0/libdrizzle/row_client.h:
+
+libdrizzle-1.0/libdrizzle/field_client.h:
+
+libdrizzle-1.0/libdrizzle/drizzle_server.h:
+
+libdrizzle-1.0/libdrizzle/conn_server.h:
+
+libdrizzle-1.0/libdrizzle/handshake_server.h:
+
+libdrizzle-1.0/libdrizzle/command_server.h:
+
+libdrizzle-1.0/libdrizzle/result_server.h:
+
+libdrizzle-1.0/libdrizzle/column_server.h:
+
+libdrizzle-1.0/libdrizzle/row_server.h:
+
+libdrizzle-1.0/libdrizzle/field_server.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/sys/fcntl.h:
+
+/usr/include/netinet/tcp.h:
+
+/usr/include/sys/uio.h:
+
+/usr/include/unistd.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/sys/_select.h:
+
+/opt/local/lib/gcc45/gcc/x86_64-apple-darwin12/4.5.4/include/stdarg.h:
+
+/usr/include/stdio.h:
+
+/usr/include/secure/_stdio.h:
+
+/usr/include/secure/_common.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/sys/wait.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/machine/signal.h:
+
+/usr/include/i386/signal.h:
+
+/usr/include/i386/_structs.h:
+
+/usr/include/machine/_structs.h:
+
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/alloca.h:
+
+/usr/include/string.h:
+
+/usr/include/strings.h:
+
+/usr/include/secure/_string.h:
+
+/usr/include/signal.h:
+
+libdrizzle-1.0/libdrizzle/drizzle_local.h:
+
+libdrizzle-1.0/libdrizzle/conn_local.h:
+
+libdrizzle-1.0/libdrizzle/pack.h:
+
+libdrizzle-1.0/libdrizzle/state.h:
+
+libdrizzle-1.0/libdrizzle/sha1.h:
