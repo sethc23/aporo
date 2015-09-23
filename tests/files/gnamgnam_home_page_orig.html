@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>GnamGnam | Food Delivered. Anywhere. </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/flexslider.css" rel="stylesheet" type="text/css" />
+    <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css" />
+    <link href="css/animate.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- MODAL -->
+
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="myModal" style="display: none; z-index: 10000;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button> -->
+                    <h4 class="modal-title" id="modaltitletochange">Interested?</h4>
+                </div>
+                <div class="modal-body modalstep1">
+                    <p style="font-size: 20px; line-height: 25px; font-weight: normal">Anyone can try out <strong>GnamGnam</strong>, but we still want to get to know every one of our merchants personally. Please fill out the short form below.<strong> All of your private information will only be seen and used by us.</strong></p>
+                    <input type="text" class="sign-up-input" id="signupinput1" placeholder="What's your name?" style="margin: 15px 0 10px; padding: 10px; text-transform: capitalize; border: 1px solid #D8D8D8;" autofocus>
+                    <button class="sign-up-button" id="modalbuttonstep1">Next Question (1/3)</button>
+                </div>
+                <div class="modal-body modalstep2">
+                    <p style="font-size: 20px; line-height: 25px; font-weight: normal">Anyone can try out <strong>GnamGnam</strong>, but we still want to get to know every one of our merchants personally. Please fill out the short form below. <strong>All of your private information will only be seen and used by us.</strong></p>
+                    <input type="text" class="sign-up-input" id="signupinput2" placeholder="What's your email?" style="margin: 15px 0 10px; padding: 10px; border: 1px solid #D8D8D8;" autofocus>
+                    <button class="sign-up-button" id="modalbuttonstep2">Next Question (2/3)</button>
+                </div>
+                <div class="modal-body modalstep3">
+                    <p style="font-size: 20px; line-height: 25px; font-weight: normal">Anyone can try out <strong>GnamGnam</strong>, but we still want to get to know every one of our merchants personally. Please fill out the short form below.<strong> All of your private information will only be seen and used by us.</strong></p>
+                    <input type="text" class="sign-up-input" id="signupinput3" placeholder="What's your country?" style="margin: 15px 0 10px; padding: 10px; text-transform: capitalize; border: 1px solid #D8D8D8;" autofocus>
+                    <button class="sign-up-button" id="modalbuttonstep3">You're done! Submit your data</button>
+                </div>
+                <div class="modal-body modalstep4">
+                    <!-- <h4 id="thankyoumodal">Thank You!</h4> -->
+                    <!-- h4 id="myModalLabel" class="modal-thankyou">Thank You!</h4 -->
+                    <p style="text-align: center; font-size: 20px;">One of our sales team will get in touch with you shortly. In the meantime feel free to download the Vendor app.</p>
+                    <div style="text-align: center;">
+                        <a href="https://itunes.apple.com/us/app/gnamgnam-vendor/id777626950?mt=8" target="_blank">
+                            <img src="images/works/appstore.png" alt="" style="width: 30%" />
+                        </a>&nbsp;&nbsp;&nbsp;
+										<a href="https://play.google.com/store/apps/details?id=it.fi.appstyx.gnamgnam&hl=en_GB" target="_blank">
+                                            <img src="images/works/googleplay.png" alt="" style="width: 29%" />
+                                        </a>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+          <button class="btn btn-primary" type="button">Save changes</button>
+        </div> -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- //MODAL -->
+
+
+
+    <!-- PRELOADER -->
+    <img id="preloader" src="images/preloader.gif" alt="" />
+    <!-- //PRELOADER -->
+    <div class="preloader_hide">
+
+        <!-- PAGE -->
+        <div id="page">
+
+            <!-- HEADER -->
+            <header>
+
+                <!-- MENU BLOCK -->
+                <div class="menu_block">
+
+                    <!-- CONTAINER -->
+                    <div class="container clearfix">
+
+                        <!-- LOGO -->
+                        <div class="logo pull-left" style="padding: 0;">
+                            <a href="index.html">
+                                <img src="images/logo1.png" alt="" style="width: 230px; margin-top: 13px;" /></a>
+                        </div>
+                        <!-- //LOGO -->
+
+                        <!-- MENU -->
+                        <div class="pull-right">
+                            <nav class="navmenu center">
+                                <ul>
+                                    <!-- <li class="first active scroll_btn"><a href="#home" >Home</a></li> -->
+                                    <li class="scroll_btn"><a href="#about">About</a></li>
+                                    <li class="scroll_btn"><a href="#portfolio">Solutions</a></li>
+                                    <li class="scroll_btn"><a href="#team">Team</a></li>
+                                    <!-- <li class="scroll_btn"><a href="#price_block" >Pricing</a></li> -->
+                                    <li class="scroll_btn"><a href="#video_block">Demo</a></li>
+                                    <li class="scroll_btn last"><a href="#contacts">Contact Us</a></li>
+                                    <li class="scroll_btn"><a href="/join/">Join Us</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- //MENU -->
+                    </div>
+                    <!-- //MENU BLOCK -->
+                </div>
+                <!-- //CONTAINER -->
+            </header>
+            <!-- //HEADER -->
+
+
+            <!-- HOME -->
+            <section id="home" class="padbot0">
+
+                <!-- TOP SLIDER -->
+                <!-- <div class="flexslider top_slider">
+				<ul class="slides">
+					<li class="slide1" data-stellar-background-ratio="0.5">
+						<div class="flex_caption1">
+							<p class="title1 captionDelay2 FromTop">Creative</p>
+							<p class="title2 captionDelay4 FromTop">Flat Design</p>
+							<p class="title3 captionDelay6 FromTop">Template</p>
+						</div>
+						<div class="flex_caption2 captionDelay4 FromRight"></div>
+						<a class="slide_btn FromBottom" href="javascript:void(0);" >Learn more about GnamGnam</a>
+					<li class="slide2" data-stellar-background-ratio="0.5">
+						<div class="flex_caption1">
+							<p class="title1 captionDelay6 FromLeft">Modern</p>
+							<p class="title2 captionDelay4 FromLeft">Portfolio</p>
+							<p class="title3 captionDelay2 FromLeft">preview</p>
+						</div>
+						<div class="flex_caption2 captionDelay4 FromRight"></div>
+						<a class="slide_btn FromBottom" href="javascript:void(0);" >Learn more about GnamGnam</a>
+					</li>
+					<li class="slide3" data-stellar-background-ratio="0.5">
+						<div class="flex_caption1">
+							<p class="title1 captionDelay1 FromBottom">preview</p>
+							<p class="title2 captionDelay2 FromBottom">Video</p>
+							<p class="title3 captionDelay3 FromBottom">in the slide</p>
+						</div>
+						<div class="flex_caption2 captionDelay4 FromRight">
+							<div class="slide_video_in">
+								<a id="P1" class="player" data-property="{videoURL:'5uL9c1nwsoQ', containment:'self', autoPlay:true, mute:false, vol:20, autoPlay:false, startAt:0, opacity:1}" ></a>
+							</div>
+						</div>
+						<a class="slide_btn FromBottom" href="javascript:void(0);" >Learn more about GnamGnam</a>
+					</li>
+				</ul>
+			</div><!-- //TOP SLIDER -->
+            </section>
+            <!-- //HOME -->
+
+
+            <!-- ABOUT -->
+            <section id="about">
+
+                <!-- CONTAINER -->
+                <div class="container">
+
+                    <!-- ABOUT DESCRIPTION -->
+                    <div class="about_description" data-appear-top-offset="-200">
+
+                        <!-- ROW -->
+                        <div class="row">
+                           <!-- <div class="col-lg-6 col-md-6 padbot30">
+                                <h3><strike>GnamGnam is a mobile app that redefines the process of finding nearby customers and selling food/merchandise in entertainment venues such as stadiums, hotels, restaurants and many more.</strike>
+                                    <br>
+                                    <br>
+                                    <em>Waiting Sucks. Use GnamGnam!</em></h3>
+                            </div> -->
+
+                            <div class="col-lg-12 col-md-12 padbot30">
+                                <h4>We enable vendors to easily set up their mobile "store" so nearby customers can access the app and place a food/merchandise order. The vendor receives the order in real-time, prepares it and delivers it to the customer at their specified seat/room/address.</h4>
+                                <h4>We want every merchant anywhere in the world to be able to put its menu in everybody's smartphone. We <font color="#F61E13"> connect </font>customers with vendors with a single click.</h4>
+                                <div style="width:310px;margin:0 auto;">
+                                    <a href="https://itunes.apple.com/us/app/gnamgnam-vendor/id777626950?mt=8" target="_blank">
+                                        <img src="images/works/appstore.png" alt="" style="width: 140px" />
+                                    </a>&nbsp;&nbsp;&nbsp;
+							<a href="https://play.google.com/store/apps/details?id=it.fi.appstyx.gnamgnamvendor" target="_blank">
+                                <img src="images/works/googleplay.png" alt="" style="width: 140px" />
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //ROW -->
+                    </div>
+                    <!-- //ABOUT DESCRIPTION -->
+
+
+                    <!-- SERVICES -->
+                    <div class="services_block padbot40" data-appear-top-offset="-200" data-animated="fadeInUp">
+
+                        <!-- ROW -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 margbot30">
+                                <div class="services_item bg1 center">
+                                    <i class="fa fa-usd"></i>
+                                    <p>Sell<strong> More</strong></p>
+                                    <span>We enable you to broadcast and sell your products to geo-located iOS and Android users around you. So it's easier for them to buy from you.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 margbot30">
+                                <div class="services_item bg2 center">
+                                    <i class="fa fa-users"></i>
+                                    <p><strong>Know</strong> Your Customers</p>
+                                    <span>Keep track and analyze your sales and your customer's preferences in real time. You are going to love those stats! </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 margbot30">
+                                <div class="services_item bg1 center">
+                                    <i class="fa fa-signal"></i>
+                                    <p>Grow<strong> Faster</strong></p>
+                                    <span>Reach customers you weren't able to reach yesterday. Our infrastructure is built around the idea of your millionth sale. And, it won't cost you a penny more.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 margbot30">
+                                <div class="services_item bg3 center">
+                                    <i class="fa fa-credit-card"></i>
+                                    <p>Your Business. <strong>Better</strong></p>
+                                    <span>No more annoying POS or dropping coins. We take care of all the boring bits so that you can focus on improving your business .</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //ROW -->
+                    </div>
+                    <!-- //SERVICES -->
+                </div>
+                <!-- //CONTAINER -->
+
+
+            </section>
+            <!-- //ABOUT -->
+
+
+            <!-- PORTFOLIO -->
+            <section id="portfolio" class="padbot70">
+
+                <!-- CONTAINER -->
+                <div class="container">
+                    <div class="center title">Solutions</div>
+                </div>
+                <!-- //CONTAINER -->
+
+
+                <!-- PORTFOLIO JCAROUSEL -->
+                <!-- CONTAINER -->
+                <div class="container jcarousel-wrapper">
+
+                    <!-- CONTROLS -->
+                    <div class="jCarousel_pagination clearfix">
+                        <!-- <a href="javascript:void(0);" class="jcarousel-control-prev" ><i class="fa fa-chevron-left"></i></a>
+					<a href="javascript:void(0);" class="jcarousel-control-next" ><i class="fa fa-chevron-right"></i></a> -->
+                    </div>
+                    <!-- //CONTROLS -->
+
+                    <div class="jcarousel" data-appear-top-offset="-200" data-animated="fadeInUp">
+                        <ul>
+                            <li>
+                                <!-- work1 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/stadium.jpg" alt="" />
+                                            <a class="zoom" href="images/works/stadiumzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Sports Venues</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work1 -->
+
+                                <!-- work2 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/restaurant.jpg" alt="" />
+                                            <a class="zoom" href="images/works/restaurantzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Restaurants</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work2 -->
+                            </li>
+                            <li>
+                                <!-- work3 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/hotel.jpg" alt="" />
+                                            <a class="zoom" href="images/works/hotelzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Hotels</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work3 -->
+
+                                <!-- work4 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/golf.jpg" alt="" />
+                                            <a class="zoom" href="images/works/golfzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Golf Courses</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work4 -->
+                            </li>
+                            <li>
+                                <!-- work5 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/exibithion.jpg" alt="" />
+                                            <a class="zoom" href="images/works/exibithionzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Exhibition Centers</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work5 -->
+
+                                <!-- work6 -->
+                                <div class="item margbot30">
+                                    <div class="work_item">
+                                        <div class="work_img">
+                                            <img src="images/works/beach.jpg" alt="" />
+                                            <a class="zoom" href="images/works/beachzoom.jpg" rel="prettyPhoto[portfolio1]">More</a>
+                                        </div>
+                                        <div class="work_description">
+                                            <p>Private Beaches</p>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //work6 -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- //CONTAINER -->
+            </section>
+            <!-- //PORTFOLIO -->
+
+
+
+
+            <!-- CUSTOMERS -->
+            <section class="customers padbot30">
+
+                <!-- CONTAINER -->
+                <div class="container" data-appear-top-offset="-200" data-animated="fadeInUp">
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30">
+                    
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/1.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"I’ve thought about this type of app before. I’m glad someone made it happen. Now my waiting staff will never make a mistake placing orders again because it’s all digital!"</div>
+                                <div class="testimonials_author">
+                                    Jimmy L. <b>
+                                        <br>
+                                        Tanko, NY</b>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30">
+                        
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/2.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"We have been using this app to attract a younger crowd. We have live performances here and it’s great to have our guests make orders without missing the show!"</div>
+                                <div class="testimonials_author">
+                                    John S. <b>
+                                        <br>
+                                        Lowes Pub, Boston</b>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30">
+                   
+
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/3.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"We are operating by Central Park and orders started coming. We prepare the orders and people came up to grabbed them just in time!"</div>
+                                <div class="testimonials_author">
+                                    Mike R. <b>
+                                        <br>
+                                        Halal, NY</b>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30" style="clear:both">
+                    
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/4.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"We run a high-end hotel and being able to provide a smooth solution for ordering by the pool has been a game changer. I see this becoming a standard in the industry."</div>
+                                <div class="testimonials_author">
+                                    Liam H. <b>
+                                        <br>
+                                        Gros Hotel, FL</b>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30">
+                    
+
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/5.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"I was skeptical at first but after a couple of days I fell in love with the concept of having all my customers within reach whenever I wanted!"</div>
+                                <div class="testimonials_author">
+                                    Kristen R. <b>
+                                        <br>
+                                        Yerba Buena, LA</b>
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 padbot30">
+                    
+                        <div class="client_logos_block">
+                            <div class="client_img">
+                                <img src="images/clients/6.jpg" alt="" style="width:100%" />
+                            </div>
+                            <div class="testimonials_item">
+                                <div class="testimonials_content">"Our fans totally love the ability to order without missing the game. We actually had to hire more runners to cope with the increase in orders!"</div>
+                                <div class="testimonials_author">
+                                    Zen F. <b>
+                                        <br>
+                                        Mansfield Stadium, MA</b>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!-- //CONTAINER -->
+            </section>
+            <!-- //CUSTOMERS -->
+
+            <!-- TEAM -->
+            <section id="team">
+
+                <!-- CONTAINER -->
+                <div class="container">
+                    <div class="center title">Team</div>
+                </div>
+                <!-- //CONTAINER -->
+
+                <!-- CONTAINER -->
+                <div class="container">
+
+                    <!-- ROW -->
+                    <!-- <div class="row" data-appear-top-offset="-200" data-animated="fadeInUp">
+					
+					<!-- TEAM BLOCK -->
+                    <div class="team_block clearfix">
+					
+						<!-- CREWMAN1 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 padbot30">
+                        <div class="crewman_item">
+                            <div class="crewman_foto">
+                                <a href="http://www.linkedin.com/pub/matteo-pellegrini/26/1aa/917" target="_blank">
+                                    <img src="images/team/matteo.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="crewman_descr center">
+                                <div class="crewman_name">Matteo Pellegrini</div>
+                                <div class="crewman_post">CEO & Founder</div>
+                                <div class="crewman_social">
+                                    <!-- <a class="b1" href="javascript:void(0);" ><i class="fa fa-twitter"></i></a> -->
+                                    <a class="b2" href="http://www.linkedin.com/pub/matteo-pellegrini/26/1aa/917" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <!-- <a class="b3" href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a> -->
+                                </div>
+
+                                <!--<div class="crewman_about">In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget. In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //CREWMAN1 -->
+
+                    <!-- CREWMAN2 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 padbot30">
+                        <div class="crewman_item">
+                            <div class="crewman_foto">
+                                <a href="http://www.linkedin.com/in/garyriger" target="_blank">
+                                    <img src="images/team/gary.jpg" alt="" /></a>
+                            </div>
+                            <div class="crewman_descr center">
+                                <div class="crewman_name">Gary Riger</div>
+                                <div class="crewman_post">VP & Co-Founder</div>
+
+                                <div class="crewman_social">
+                                    <!-- <a class="b1" href="javascript:void(0);" ><i class="fa fa-twitter"></i></a> -->
+                                    <a class="b2" href="http://www.linkedin.com/in/garyriger" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <!-- <a class="b3" href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a> -->
+                                </div>
+
+                                <!--<div class="crewman_about">In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget. In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //CREWMAN2 -->
+
+                    <!-- CREWMAN3 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 padbot30">
+                        <div class="crewman_item">
+                            <div class="crewman_foto">
+                                <a href="http://www.linkedin.com/pub/federico-frappi/17/908/9b" target="_blank">
+                                    <img src="images/team/federico.jpg" alt="" /></a>
+                            </div>
+                            <div class="crewman_descr center">
+                                <div class="crewman_name">Federico Frappi</div>
+                                <div class="crewman_post">Mobile Developer</div>
+
+                                <div class="crewman_social">
+                                    <!-- <a class="b1" href="javascript:void(0);" ><i class="fa fa-twitter"></i></a> -->
+                                    <a class="b2" href="http://www.linkedin.com/pub/federico-frappi/17/908/9b" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <!-- <a class="b3" href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a> -->
+                                </div>
+
+                                <!--<div class="crewman_about">In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget. In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //CREWMAN3 -->
+
+                    <!-- CREWMAN4 -->
+                    <div class="col-lg-3 col-md-3 col-sm-6 padbot30">
+                        <div class="crewman_item">
+                            <div class="crewman_foto">
+                                <a href="http://www.linkedin.com/pub/matteo-innocenti/2b/217/374/en" target="_blank">
+                                    <img src="images/team/matteoi.jpg" alt="" /></a>
+                            </div>
+                            <div class="crewman_descr center">
+                                <div class="crewman_name">Matteo Innocenti</div>
+                                <div class="crewman_post">Mobile Developer</div>
+
+                                <div class="crewman_social">
+                                    <!-- <a class="b1" href="javascript:void(0);" ><i class="fa fa-twitter"></i></a> -->
+                                    <a class="b2" href="http://www.linkedin.com/pub/matteo-innocenti/2b/217/374/en" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <!-- <a class="b3" href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a> -->
+                                </div>
+
+                                <!--<div class="crewman_about">In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget. In et massa a massa egestas suscipit tincidunt ut est. Curabitur rutrum faucibus elit, at convallis diam mattis eget.</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- //CREWMAN4 -->
+                </div>
+                <!-- //TEAM BLOCK -->
+        	</div>
+        <!-- //CONTAINER -->
+        </section><!-- //TEAM -->
+
+
+        <!-- VIDEO BLOCK -->
+        <section id="video_block" class="padbot0">
+
+            <!-- CONTAINER -->
+            <div class="container">
+                <div class="center title">DEMO <span></span></div>
+            </div>
+            <!-- //CONTAINER -->
+
+            <!-- VIDEO BACKGROUND -->
+            <a id="P2" class="player" data-property="{videoURL:'q3oiIpiXtGg', containment:'#video_block', autoPlay:true, mute:false, vol:20, autoPlay:false, startAt:0, opacity:1}"></a>
+            <!-- //VIDEO BACKGROUND -->
+
+            <div class="overlay"></div>
+        </section>
+        <!-- //VIDEO BLOCK -->
+
+
+
+        <!-- CONTACTS -->
+        <section id="contacts" class="padbot80">
+
+            <!-- CONTAINER -->
+            <div class="container">
+                <div class="center title">Contact Us</div>
+            </div>
+            <!-- //CONTAINER -->
+
+
+            <!-- CONTAINER -->
+            <div class="container">
+
+                <!-- ROW -->
+                <div class="row">
+
+                    <!-- CONTACT FORM -->
+                    <div class="contact_form">
+                        <div id="fields">
+                            <form id="ajax-contact-form" action="">
+                                <div class="clearfix" id="contacform">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ss-12">
+                                        <label>Name</label>
+                                        <input id="name" type="text" name="name" value="" placeholder="Name" style="text-transform: capitalize;" /><br>
+                                        <label>Email</label>
+                                        <input id="email" type="text" name="email" value="" placeholder="Email" /><br>
+                                        <label>Phone</label>
+                                        <input id="phone" type="text" name="phone" value="" placeholder="Phone" /><br>
+                                        <br>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-ss-12">
+                                        <label>Message</label>
+                                        <textarea name="message" value="" placeholder="Message"></textarea><br>
+                                        <br>
+                                    </div>
+                                </div>
+                                <input class="contact_btn sent_btn" id="sendMessage" type="submit" value="Send Message" />
+                                <div id="note" class="center">
+                                    <!--<div class="notification_ok">Your message has been sent. Thank you!</div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- //CONTACT FORM -->
+                </div>
+                <!-- //ROW -->
+            </div>
+            <!-- //CONTAINER -->
+        </section>
+        <!-- //CONTACTS -->
+
+        <!-- <h2 style="text-align:center">Interested?</h2>
+
+                <p style="text-align:center">
+                    Anyone can try out <strong>GnamGnam</strong>, but we still want to get to know every one of our merchant personally. Please fill out the short form below, we’ll reply soon with a hello and perhaps a joke if we have a good one for you. <strong>All of your private information will only be seen and used by us.</strong>
+                </p>
+                
+                <div id="invite-form">
+                    
+    <div class="form-section clearfix active input" style="display:block">
+        
+        <label for="">What’s your name? <span class="error"></span></label>
+        <input type="text" id="name" name="name" class="the-field" />
+        
+        <a href="javascript:nextQuestion()">Next Question (1 / 5)</a>
+    </div>
+
+    <div class="form-section clearfix input">
+        
+        <label for="">What’s your email? <span class="error"></span></label>
+        <input type="text" id="email" name="email" class="the-field" />
+        
+        <a href="javascript:nextQuestion()">Next Question (2 / 5)</a>
+    </div>
+
+    <div class="form-section clearfix input">
+        
+        <label for="">Company name? <span class="error"></span></label>
+        <input type="text" id="company" name="company" class="the-field" />
+        
+        <a href="javascript:nextQuestion()">Next Question (3 / 5)</a>
+    </div>
+
+    <div class="form-section clearfix select">
+        
+        <label for="">Company size? <span class="error"></span></label>
+        <select name="companysize" id="companysize" class="fancy the-field">
+            <option value="">please select</option>
+            <option value="one">One Brand</option>
+            <option value="multiple">Multiple Brands</option>
+            <option value="freelancer">Freelancer</option>
+            <option value="agency">Agency</option>
+            <option value="big">Big Business</option>
+        </select>
+        
+        <a href="javascript:nextQuestion()">Next Question (4 / 5)</a>
+    </div>
+
+    <div class="form-section clearfix last select">
+        
+        <label for="">Fancount? <span class="error"></span></label>
+        <select name="fancount" id="fancount" class="fancy the-field">
+            <option value="">please select</option>
+            <option value="0_10000">0 to 10.000</option>
+            <option value="10000_50000">10.000 to 50.000</option>
+            <option value="50000_100000">50.000 to 100.000</option>
+            <option value="100000_1000000">100.000 to 1Mio</option>
+            <option value="way_more">way more</option>
+
+        </select>
+        
+        <a href="javascript:nextQuestion()">You are done! Submit your data.</a>
+    </div>
+	
+		<!-- FOOTER -->
+        <footer>
+
+            <!-- CONTAINER -->
+            <div class="container">
+
+                <!-- ROW -->
+                <div class="row">
+
+                    <a class="back_top" href="javascript:void(0);"><i class="fa fa-chevron-up"></i></a>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 footer_phone">
+                        <!-- <p><i class="fa fa-phone"></i> + (123) 456-789</p> -->
+                        <a href="mailto:info@gnamgnamapp.com?subject=Contact from gnamgnamapp.com"><i class="fa fa-envelope"></i>info@gnamgnamapp.com</a>
+                    </div>
+
+                    <div class="col-lg-6 col-md-4 col-sm-4 padbot30 center copyright">
+                        GNAMGNAM LLC © 2013-2014 All rights reserved. 
+						<!-- <a href="/index/privacy" target="blank"/> <p> Privacy </p> 
+						<p style="font-color:white"> Built with Love in Italy </p>
+					</a> -->
+                        <div style="padding-top: 10px; float: center">
+                            <a href="https://www.braintreegateway.com/merchants/hrct2cy7dsqbccpr/verified" target="_blank">
+                                <img src="https://braintree-badges.s3.amazonaws.com/08.png" border="0" />
+                            </a>
+                            <br>
+                            <a href="http://printer.aporodelivery.com/static/downloads/AporoDelivery_Setup.exe" target="_blank"><img src="images/printerdriver.png" style="width: 25%; margin-top: 5px;"/></a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-4 padbot30 right">
+
+                        <a href="https://itunes.apple.com/us/app/gnamgnam-vendor/id777626950?mt=8" target="_blank">
+                            <img src="images/works/appstore.png" alt="" style="width: 45%" />
+                        </a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://play.google.com/store/apps/details?id=it.fi.appstyx.gnamgnam&hl=en_GB" target="_blank">
+                            <img src="images/works/googleplay.png" alt="" style="width: 45%" />
+                            &nbsp;&nbsp;&nbsp;</a>
+                    
+                        <!-- <div class="social">
+							<a class="twitter" href="javascript:void(0);" ><i class="fa fa-twitter"></i></a>
+							<a class="facebook" href="javascript:void(0);" ><i class="fa fa-facebook"></i></a>
+							<a class="g_plus" href="javascript:void(0);" ><i class="fa fa-google-plus"></i></a>
+							<a class="dribbble" href="javascript:void(0);" ><i class="fa fa-dribbble"></i></a>
+						</div> -->
+                    </div>
+                </div>
+                <!-- //ROW -->
+            </div>
+            <!-- //CONTAINER -->
+        </footer>
+        <!-- //FOOTER -->
+    </div>
+    <!-- //PAGE -->
+    </div>
+
+	<!-- SCRIPTS -->
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if IE]><html class="ie" lang="en"> <![endif]-->
+
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <script src="js/jquery.stellar.min.js" type="text/javascript"></script>
+    <script src="js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="js/jquery.jcarousel.js" type="text/javascript"></script>
+    <script src="js/jquery.mb.YTPlayer.js" type="text/javascript"></script>
+    <script src="js/animate.js" type="text/javascript"></script>
+    <script src="js/jquery.timer.js" type="text/javascript"></script>
+    <script src="js/jquery.twitter.js" type="text/javascript"></script>
+    <script src="js/myscript.js" type="text/javascript"></script>
+    <script>
+
+        //PrettyPhoto
+        jQuery(document).ready(function () {
+            jQuery("a[rel^='prettyPhoto']").prettyPhoto();
+
+            jQuery("#modalbuttonstep1").click(function () {
+                //alert(jQuery("#signupinput1").val().length);
+                if (jQuery("#signupinput1").val().length > 1) {
+                    jQuery(".modalstep1").hide();
+                    jQuery(".modalstep2").show();
+                }
+            });
+
+            jQuery("#modalbuttonstep2").click(function () {
+                var value = jQuery('#signupinput2').val();
+                if (value.length > 3 && value.indexOf('@') >= 0) {
+                    jQuery(".modalstep2").hide();
+                    jQuery(".modalstep3").show();
+                }
+            });
+            jQuery("#modalbuttonstep3").click(function () {
+                if (jQuery("#signupinput3").val().length > 2) {
+                    jQuery(".modalstep3").hide();
+                    jQuery(".modalstep4").show();
+                    jQuery("#modaltitletochange").html("Thank You!");
+                    var input1 = jQuery("#signupinput1").val();
+                    var input2 = jQuery("#signupinput2").val();
+                    var input3 = jQuery("#signupinput3").val();
+                    jQuery.post("/contact_form/joinnow_process.php", { name: input1, email: input2, country: input3 });
+                }
+            });
+        });
+
+
+        //Stellar
+        jQuery(window).load(function () {
+            jQuery(window).stellar();
+        });
+        jQuery(window).resize(function () {
+            jQuery(window).stellar();
+        });
+
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-46229745-2', 'gnamgnamapp.com');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>

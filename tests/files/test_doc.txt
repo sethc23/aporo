@@ -1,0 +1,2062 @@
+[
+{
+  "description": [
+    "."
+  ], 
+  "elements": [
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/active_servers.feature:12", 
+      "name": "Confirm All Servers and Webpages are live", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/active_servers.feature:14", 
+          "match": {
+            "arguments": [
+              {
+                "name": "page_title", 
+                "value": "GnamGnam Home Page"
+              }, 
+              {
+                "name": "webpage", 
+                "value": "http://www.gnamgnamapp.com/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:51"
+          }, 
+          "name": "\"GnamGnam Home Page\" is live and we access \"http://www.gnamgnamapp.com/\"", 
+          "result": {
+            "duration": 0.0002961158752441406, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/active_servers.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "response_time", 
+                "value": "5.0"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:194"
+          }, 
+          "name": "the page should start loading within \"5.0\" seconds", 
+          "result": {
+            "duration": 0.5816278457641602, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "msg", 
+                "value": "OK"
+              }, 
+              {
+                "name": "code", 
+                "value": "200"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:227"
+          }, 
+          "name": "the response message should be \"OK\" with response code \"200\"", 
+          "result": {
+            "duration": 0.0003521442413330078, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/active_servers.feature:12", 
+      "name": "Confirm All Servers and Webpages are live", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/active_servers.feature:14", 
+          "match": {
+            "arguments": [
+              {
+                "name": "page_title", 
+                "value": "GnamGnam Join Us Page"
+              }, 
+              {
+                "name": "webpage", 
+                "value": "http://www.gnamgnamapp.com/join/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:51"
+          }, 
+          "name": "\"GnamGnam Join Us Page\" is live and we access \"http://www.gnamgnamapp.com/join/\"", 
+          "result": {
+            "duration": 0.00043892860412597656, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/active_servers.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "response_time", 
+                "value": "5.0"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:194"
+          }, 
+          "name": "the page should start loading within \"5.0\" seconds", 
+          "result": {
+            "duration": 0.4523460865020752, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "msg", 
+                "value": "OK"
+              }, 
+              {
+                "name": "code", 
+                "value": "200"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:227"
+          }, 
+          "name": "the response message should be \"OK\" with response code \"200\"", 
+          "result": {
+            "duration": 0.0003228187561035156, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/active_servers.feature:12", 
+      "name": "Confirm All Servers and Webpages are live", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/active_servers.feature:14", 
+          "match": {
+            "arguments": [
+              {
+                "name": "page_title", 
+                "value": "GnamGnam Admin Page"
+              }, 
+              {
+                "name": "webpage", 
+                "value": "http://admin.gnamgnamapp.com/login"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:51"
+          }, 
+          "name": "\"GnamGnam Admin Page\" is live and we access \"http://admin.gnamgnamapp.com/login\"", 
+          "result": {
+            "duration": 0.0005180835723876953, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/active_servers.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "response_time", 
+                "value": "5.0"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:194"
+          }, 
+          "name": "the page should start loading within \"5.0\" seconds", 
+          "result": {
+            "duration": 0.17784595489501953, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "msg", 
+                "value": "OK"
+              }, 
+              {
+                "name": "code", 
+                "value": "200"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:227"
+          }, 
+          "name": "the response message should be \"OK\" with response code \"200\"", 
+          "result": {
+            "duration": 0.00011396408081054688, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/active_servers.feature:25", 
+      "name": "Confirm Printer Driver Available for Fast Download", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/active_servers.feature:27", 
+          "match": {
+            "arguments": [
+              {
+                "name": "page_title", 
+                "value": "Aporo"
+              }, 
+              {
+                "name": "webpage", 
+                "value": "http://printer.aporodelivery.com/static/downloads/AporoDelivery_Setup.exe"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:51"
+          }, 
+          "name": "\"Aporo\" is live and we access \"http://printer.aporodelivery.com/static/downloads/AporoDelivery_Setup.exe\"", 
+          "result": {
+            "duration": 0.00014019012451171875, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/active_servers.feature:28", 
+          "match": {
+            "arguments": [
+              {
+                "name": "response_time", 
+                "value": "5.0"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:194"
+          }, 
+          "name": "the page should start loading within \"5.0\" seconds", 
+          "result": {
+            "duration": 0.8245251178741455, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:29", 
+          "match": {
+            "arguments": [
+              {
+                "name": "msg", 
+                "value": "OK"
+              }, 
+              {
+                "name": "code", 
+                "value": "200"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:227"
+          }, 
+          "name": "the response message should be \"OK\" with response code \"200\"", 
+          "result": {
+            "duration": 0.0001239776611328125, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:30", 
+          "match": {
+            "arguments": [
+              {
+                "name": "download_time", 
+                "value": "10"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:215"
+          }, 
+          "name": "the download should finish within \"10\" seconds", 
+          "result": {
+            "duration": 0.0031480789184570312, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/active_servers.feature:36", 
+      "name": "Confirm GnamGnamApp.com is Unchanged", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/active_servers.feature:38", 
+          "match": {
+            "arguments": [
+              {
+                "name": "page_title", 
+                "value": "GnamGnam Home Page"
+              }, 
+              {
+                "name": "webpage", 
+                "value": "http://www.gnamgnamapp.com/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:51"
+          }, 
+          "name": "\"GnamGnam Home Page\" is live and we access \"http://www.gnamgnamapp.com/\"", 
+          "result": {
+            "duration": 0.0001628398895263672, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/active_servers.feature:39", 
+          "match": {
+            "arguments": [
+              {
+                "name": "response_time", 
+                "value": "5.0"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:194"
+          }, 
+          "name": "the page should start loading within \"5.0\" seconds", 
+          "result": {
+            "duration": 0.5765819549560547, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:40", 
+          "match": {
+            "arguments": [
+              {
+                "name": "msg", 
+                "value": "OK"
+              }, 
+              {
+                "name": "code", 
+                "value": "200"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:227"
+          }, 
+          "name": "the response message should be \"OK\" with response code \"200\"", 
+          "result": {
+            "duration": 0.00013399124145507812, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/active_servers.feature:41", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:221"
+          }, 
+          "name": "the webpage should be unchanged", 
+          "result": {
+            "duration": 0.0002129077911376953, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }
+  ], 
+  "keyword": "Feature", 
+  "location": "tests/features/active_servers.feature:3", 
+  "name": "Verify Online Presence", 
+  "status": "passed", 
+  "tags": []
+},
+
+{
+  "description": [
+    "Each time a Client prints an Order with an authenticated", 
+    "Aporo Printer Driver (\"Driver\"), the Driver, in a matter of milliseconds:", 
+    "(a) submits authentication credentials to Aporo,", 
+    "(b) receives an Order Tag and destination URL for submitting the Order,", 
+    "(c) transmits the Order to the destination URL, and", 
+    "(d) prints out the Order with the Order Tag at the local printer", 
+    "designated by the Client.", 
+    "."
+  ], 
+  "elements": [
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.00040411949157714844, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "vendor"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "vendor1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"vendor\" with the credentials: \"vendor1\"", 
+          "result": {
+            "duration": 0.00043010711669921875, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "valid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"valid\"", 
+          "result": {
+            "duration": 0.00021314620971679688, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.007973909378051758, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "CREATED"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"CREATED\"", 
+          "result": {
+            "duration": 0.00019788742065429688, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 0.0296480655670166, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.0004429817199707031, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "manager"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "admin1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"manager\" with the credentials: \"admin1\"", 
+          "result": {
+            "duration": 0.00021409988403320312, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "valid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"valid\"", 
+          "result": {
+            "duration": 0.000244140625, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.007397174835205078, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "CREATED"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"CREATED\"", 
+          "result": {
+            "duration": 0.0002219676971435547, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 0.010529041290283203, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.0003409385681152344, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "unknown"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "unknown"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"unknown\" with the credentials: \"unknown\"", 
+          "result": {
+            "duration": 0.0001938343048095703, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "valid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"valid\"", 
+          "result": {
+            "duration": 0.0001690387725830078, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.005626201629638672, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "CREATED"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"CREATED\"", 
+          "result": {
+            "duration": 0.00023412704467773438, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 0.010200023651123047, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.0009081363677978516, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "vendor"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "vendor1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"vendor\" with the credentials: \"vendor1\"", 
+          "result": {
+            "duration": 0.0005462169647216797, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.00026607513427734375, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.009196996688842773, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.00019407272338867188, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 0.0001289844512939453, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.000988006591796875, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "manager"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "admin1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"manager\" with the credentials: \"admin1\"", 
+          "result": {
+            "duration": 0.0004990100860595703, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.00023484230041503906, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.005883932113647461, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.00014591217041015625, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 8.893013000488281e-05, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.00027108192443847656, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "unknown"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "unknown"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"unknown\" with the credentials: \"unknown\"", 
+          "result": {
+            "duration": 0.0001590251922607422, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.000141143798828125, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.004194021224975586, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.0001361370086669922, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 8.511543273925781e-05, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.00039696693420410156, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "vendor"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "None"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"vendor\" with the credentials: \"None\"", 
+          "result": {
+            "duration": 0.0001709461212158203, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.00015497207641601562, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.010418891906738281, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.00016808509826660156, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 0.0001010894775390625, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.00032711029052734375, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "manager"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "None"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"manager\" with the credentials: \"None\"", 
+          "result": {
+            "duration": 0.00017499923706054688, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.00017404556274414062, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.012215852737426758, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.00013685226440429688, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 8.606910705566406e-05, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/client_communication.feature:13", 
+      "name": "Post Requests to Aporo with Different Credentials", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/client_communication.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.0002779960632324219, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/client_communication.feature:16", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "unknown"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "None"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"unknown\" with the credentials: \"None\"", 
+          "result": {
+            "duration": 0.00015616416931152344, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:17", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.00014090538024902344, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:18", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.004034996032714844, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/client_communication.feature:19", 
+          "match": {
+            "arguments": [
+              {
+                "name": "result", 
+                "value": "FORBIDDEN"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:249"
+          }, 
+          "name": "Aporo returns: \"FORBIDDEN\"", 
+          "result": {
+            "duration": 0.0001690387725830078, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/client_communication.feature:20", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:253"
+          }, 
+          "name": "(if not FORBIDDEN) Aporo creates a DB entry and returns an Order Tag, a Post Url, and QR code information", 
+          "result": {
+            "duration": 8.797645568847656e-05, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }
+  ], 
+  "keyword": "Feature", 
+  "location": "tests/features/client_communication.feature:3", 
+  "name": "Client Communicates Order to Aporo", 
+  "status": "passed", 
+  "tags": []
+},
+
+{
+  "description": [
+    "Aporo uses a Contract as one means of authenticating a Client.", 
+    "Each time a Client installs an Aporo Printer Driver (\"Driver\"),", 
+    "the Driver generates a random, highly-unique ID (\"UID\") that is saved", 
+    "on the Client's computer. A Client can authenticate a Driver", 
+    "by printing (with the Aporo Delivery Driver) a Contract approved", 
+    "by an Aporo manager. This method of authenticating a Client's", 
+    "computer involves:", 
+    "(a) a manager printing a Client Contract with", 
+    "an Aporo Printer Driver having administrative credentials,", 
+    "(b) Aporo servers processing the contents of the Contract", 
+    "and registering the Client, and", 
+    "(c) the Client printing the same Contract to Aporo from", 
+    "any computer the Client wishes to authenticate.", 
+    "."
+  ], 
+  "elements": [
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/contract_authentication.feature:18", 
+      "name": "A manager prints a Client Contract", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/contract_authentication.feature:20", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "manager"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "admin1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:72"
+          }, 
+          "name": "a successful 'handshake' with Aporo servers from a(n) \"manager\" with the credentials: \"admin1\"", 
+          "result": {
+            "duration": 0.007236003875732422, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:21", 
+          "match": {
+            "arguments": [
+              {
+                "name": "upload_url", 
+                "value": "http://printer.aporodelivery.com/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:82"
+          }, 
+          "name": "a Client Contract for uploading to \"http://printer.aporodelivery.com/\"", 
+          "result": {
+            "duration": 0.006606101989746094, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/contract_authentication.feature:22", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.02021193504333496, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/contract_authentication.feature:23", 
+          "match": {
+            "arguments": [
+              {
+                "name": "process_seconds", 
+                "value": "5"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:282"
+          }, 
+          "name": "within \"5\" seconds", 
+          "result": {
+            "duration": 5.005461931228638, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:24", 
+          "match": {
+            "arguments": [
+              {
+                "name": "the_client", 
+                "value": "Quick Bytes"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:285"
+          }, 
+          "name": "\"Quick Bytes\" in the Contract becomes registered", 
+          "result": {
+            "duration": 0.02829599380493164, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:25", 
+          "match": {
+            "arguments": [
+              {
+                "name": "save_dir", 
+                "value": "media/contracts/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:300"
+          }, 
+          "name": "the Contract is saved to the \"media/contracts/\" directory", 
+          "result": {
+            "duration": 0.00019598007202148438, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/contract_authentication.feature:31", 
+      "name": "After a manager prints a Client Contract, the Client prints the same Contract", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/contract_authentication.feature:33", 
+          "match": {
+            "arguments": [
+              {
+                "name": "user_type", 
+                "value": "manager"
+              }, 
+              {
+                "name": "user_creds", 
+                "value": "admin1"
+              }, 
+              {
+                "name": "client_name", 
+                "value": "Quick Bytes"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:105"
+          }, 
+          "name": "a \"manager\" with credentials \"admin1\" prints the \"Quick Bytes\" Contract", 
+          "result": {
+            "duration": 0.06542801856994629, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:34", 
+          "match": {
+            "arguments": [
+              {
+                "name": "client_name", 
+                "value": "Quick Bytes"
+              }, 
+              {
+                "name": "process_seconds", 
+                "value": "5"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:119"
+          }, 
+          "name": "\"Quick Bytes\" in the Contract becomes registered within \"5\" seconds", 
+          "result": {
+            "duration": 5.027933120727539, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:35", 
+          "match": {
+            "arguments": [
+              {
+                "name": "user_type", 
+                "value": "vendor"
+              }, 
+              {
+                "name": "user_creds", 
+                "value": "vendor1"
+              }, 
+              {
+                "name": "client_name", 
+                "value": "Quick Bytes"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:105"
+          }, 
+          "name": "a \"vendor\" with credentials \"vendor1\" prints the \"Quick Bytes\" Contract", 
+          "result": {
+            "duration": 0.05408596992492676, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/contract_authentication.feature:36", 
+          "match": {
+            "arguments": [
+              {
+                "name": "process_seconds", 
+                "value": "5"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:282"
+          }, 
+          "name": "within \"5\" seconds", 
+          "result": {
+            "duration": 5.0053019523620605, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:37", 
+          "match": {
+            "arguments": [
+              {
+                "name": "client_name", 
+                "value": "Quick Bytes"
+              }, 
+              {
+                "name": "user_creds", 
+                "value": "vendor1"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:231"
+          }, 
+          "name": "\"Quick Bytes\" becomes associated with \"vendor1\"", 
+          "result": {
+            "duration": 0.013342857360839844, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/contract_authentication.feature:38", 
+          "match": {
+            "arguments": [
+              {
+                "name": "known_user", 
+                "value": "IS REGISTERED"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:241"
+          }, 
+          "name": "the source IP address \"IS REGISTERED\" as a Known User", 
+          "result": {
+            "duration": 0.004996061325073242, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }
+  ], 
+  "keyword": "Feature", 
+  "location": "tests/features/contract_authentication.feature:2", 
+  "name": "Client Computer Authentication via a Contract", 
+  "status": "passed", 
+  "tags": []
+},
+
+{
+  "description": [
+    "In order to minimize exposure to Denial-of-Service attacks,", 
+    "Aporo Delivery limits the number of URL post requests it processes", 
+    "from non-authenticated sources before blacklisting an IP address."
+  ], 
+  "elements": [
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/limited_authenticated_access.feature:8", 
+      "name": "Instances when an IP address is blacklisted", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/limited_authenticated_access.feature:10", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:55"
+          }, 
+          "name": "a new IP address", 
+          "result": {
+            "duration": 0.00347900390625, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:11", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.0004858970642089844, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/limited_authenticated_access.feature:12", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "unknown"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "unknown"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"unknown\" with the credentials: \"unknown\"", 
+          "result": {
+            "duration": 0.0002951622009277344, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:13", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "valid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"valid\"", 
+          "result": {
+            "duration": 0.00023698806762695312, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:14", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.007146120071411133, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "post_count", 
+                "value": "4"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:173"
+          }, 
+          "name": "the date is posted \"4\" more times", 
+          "result": {
+            "duration": 0.13216614723205566, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/limited_authenticated_access.feature:16", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:276"
+          }, 
+          "name": "the source IP is blacklisted", 
+          "result": {
+            "duration": 0.00476384162902832, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }, 
+    {
+      "keyword": "Scenario Outline", 
+      "location": "tests/features/limited_authenticated_access.feature:8", 
+      "name": "Instances when an IP address is blacklisted", 
+      "steps": [
+        {
+          "keyword": "Given", 
+          "location": "tests/features/limited_authenticated_access.feature:10", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:55"
+          }, 
+          "name": "a new IP address", 
+          "result": {
+            "duration": 0.003773927688598633, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:11", 
+          "match": {
+            "arguments": [
+              {
+                "name": "order_post_url", 
+                "value": "http://printer.aporodelivery.com/api/check/"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:60"
+          }, 
+          "name": "data for posting to \"http://printer.aporodelivery.com/api/check/\"", 
+          "result": {
+            "duration": 0.00032401084899902344, 
+            "status": "passed"
+          }, 
+          "step_type": "given"
+        }, 
+        {
+          "keyword": "When", 
+          "location": "tests/features/limited_authenticated_access.feature:12", 
+          "match": {
+            "arguments": [
+              {
+                "name": "credentials", 
+                "value": "unknown"
+              }, 
+              {
+                "name": "machine_id", 
+                "value": "None"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:131"
+          }, 
+          "name": "the post request is from a(n) \"unknown\" with the credentials: \"None\"", 
+          "result": {
+            "duration": 0.00015592575073242188, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:13", 
+          "match": {
+            "arguments": [
+              {
+                "name": "request_format", 
+                "value": "invalid"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:140"
+          }, 
+          "name": "the request format is \"invalid\"", 
+          "result": {
+            "duration": 0.0001399517059326172, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:14", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:155"
+          }, 
+          "name": "the data is posted", 
+          "result": {
+            "duration": 0.03674721717834473, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "And", 
+          "location": "tests/features/limited_authenticated_access.feature:15", 
+          "match": {
+            "arguments": [
+              {
+                "name": "post_count", 
+                "value": "2"
+              }
+            ], 
+            "location": "tests/features/steps/test_aprinto_api.py:173"
+          }, 
+          "name": "the date is posted \"2\" more times", 
+          "result": {
+            "duration": 0.012662887573242188, 
+            "status": "passed"
+          }, 
+          "step_type": "when"
+        }, 
+        {
+          "keyword": "Then", 
+          "location": "tests/features/limited_authenticated_access.feature:16", 
+          "match": {
+            "arguments": [], 
+            "location": "tests/features/steps/test_aprinto_api.py:276"
+          }, 
+          "name": "the source IP is blacklisted", 
+          "result": {
+            "duration": 0.004118919372558594, 
+            "status": "passed"
+          }, 
+          "step_type": "then"
+        }
+      ], 
+      "tags": [], 
+      "type": "scenario"
+    }
+  ], 
+  "keyword": "Feature", 
+  "location": "tests/features/limited_authenticated_access.feature:3", 
+  "name": "Limited Authenticated Access", 
+  "status": "passed", 
+  "tags": []
+}
+]

@@ -27,3 +27,6 @@ static/sencha/phonegap/platforms/ios/build/Aporo.build/Debug-iphonesimulator
 static/sencha/phonegap/platforms/ios/CordovaLib/build/CordovaLib.build
 static/sencha/phonegap/platforms/ios/build
 static/sencha/phonegap/platforms/ios/CordovaLib
+ENV/
+
+*.pyc
